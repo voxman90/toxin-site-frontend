@@ -9,6 +9,7 @@
   --color-secondary-accent: #66d2ea;
   --color-error: #d32f2f;
   --color-disabled: color-mix(in srgb, var(--color-foreground), var(--color-bg) 50%);
+  --color-outline: #0088e5;
 
   --color-foreground-05: rgb(from var(--color-foreground) r g b / 0.05);
   --color-foreground-10: rgb(from var(--color-foreground) r g b / 0.1);
@@ -43,6 +44,7 @@
   --color-secondary-accent: #66d2ea;
   --color-error: #f87171;
   --color-disabled: color-mix(in srgb, var(--color-foreground), var(--color-bg) 50%);
+  --color-outline: #8ad6ff;
 
   --color-primary-hover: color-mix(in srgb, var(--color-primary), #fff 30%);
   --color-primary-accent-hover: color-mix(in srgb, var(--color-primary-accent), #fff 30%);
