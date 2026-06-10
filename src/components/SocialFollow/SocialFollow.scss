@@ -1,0 +1,33 @@
+.social-follow {
+  &__items {
+    display: flex;
+    gap: var(--gap-md);
+  }
+
+  &__link {
+    display: inline-block;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+
+    background: var(--lg-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    &:visited,
+    &:link {
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:hover {
+      background: var(--lg-primary-hover);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+  }
+}

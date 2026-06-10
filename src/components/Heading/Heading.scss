@@ -1,0 +1,31 @@
+@use '../../styles/text' as text;
+
+.heading {
+  margin: 0;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  &--type-h2 {
+    @include text.widget-text;
+
+    margin-bottom: var(--gap-md);
+  }
+
+  &--type-label {
+    @include text.label-text;
+  }
+
+  &--type-h1 {
+    @include text.h1-text;
+
+    margin-block: var(--gap-sm) var(--gap-md);
+  }
+
+  &--type-h4 {
+    @include text.p-text;
+
+    font-weight: bold;
+  }
+}

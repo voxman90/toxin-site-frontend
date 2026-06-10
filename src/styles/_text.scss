@@ -1,0 +1,93 @@
+@mixin text-style($weight: var(--fw-normal)) {
+  font-family: var(--font-family-main);
+  font-style: normal;
+  font-weight: $weight;
+}
+
+@mixin text-normal {
+  @include text-style(var(--fw-normal));
+}
+
+@mixin text-semibold {
+  @include text-style(var(--fw-semibold));
+}
+
+@mixin text-bold {
+  @include text-style(var(--fw-bold));
+}
+
+@mixin h1-text($color: var(--color-foreground)) {
+  @include text-bold;
+  font-size: var(--fz-h1);
+  line-height: var(--lh-standard);
+  color: $color;
+}
+
+@mixin widget-text($color: var(--color-foreground)) {
+  @include text-bold;
+  font-size: var(--fz-widget);
+  line-height: var(--lh-standard);
+  color: $color;
+}
+
+@mixin label-text($color: var(--color-foreground)) {
+  @include text-bold;
+  font-size: var(--fz-label);
+  line-height: var(--lh-standard);
+  text-transform: uppercase;
+  color: $color;
+}
+
+@mixin label-appendix-text($color: var(--color-foreground-50)) {
+  @include text-normal;
+  font-size: var(--fz-label);
+  line-height: var(--lh-standard);
+  text-transform: uppercase;
+  color: $color;
+}
+
+@mixin button-text($color: var(--color-primary)) {
+  @include text-semibold;
+  font-size: var(--fz-button);
+  line-height: var(--lh-standard);
+  text-transform: uppercase;
+  letter-spacing: 0.1px;
+  color: $color;
+}
+
+@mixin p-text($color: var(--color-foreground-75)) {
+  @include text-normal;
+  font-size: var(--fz-p);
+  line-height: var(--lh-reading);
+  color: $color;
+}
+
+@mixin icon-base($size, $line-height) {
+  display: inline-block;
+
+  font-size: $size;
+  line-height: $line-height;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@mixin material-icons($size: var(--icon-size-sm), $line-height: 1) {
+  @include icon-base($size, $line-height);
+  font-family: 'Material Icons';
+  font-feature-settings: 'liga';
+}
+
+@mixin awesome-icons($size: var(--icon-size-sm), $line-height: 1) {
+  @include icon-base($size, $line-height);
+  font-family: 'Font Awesome 7 Brands', fantasy;
+  font-synthesis: none;
+  font-variant: normal;
+  text-align: center;
+}

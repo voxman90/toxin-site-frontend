@@ -1,0 +1,103 @@
+{
+  "colorsAndTypes": {
+    "title": "Цвета и типы",
+    "h1": "Это заголовок подраздела или виджета",
+    "widget": "Это заголовок элемента внутри виджетов",
+    "label": "Это текст метки или призыва к действию (CTA)",
+    "p": "Это основной текст, используемый в большинстве элементов дизайна, таких как абзацы, списки и т.д.",
+    "foreground": "Оттенок текста 100%",
+    "foreground-75": "Оттенок текста 75%",
+    "foreground-50": "Оттенок текста 50%",
+    "foreground-25": "Оттенок текста 25%",
+    "foreground-05": "Оттенок текста 5%",
+    "primary": "Основной",
+    "secondary": "Акцентный"
+  },
+  "formElements": {
+    "title": "Формы и элементы",
+    "textFieldPlaceholder": "Email",
+    "textFieldLabel": "text field",
+    "textFieldAppendix": "default",
+    "textFieldFocusedLabel": "text field",
+    "textFieldFocusedAppendix": "hover / focus",
+    "textFieldFocusedText": "Это весьма замечательно",
+    "maskedTextFieldLabel": "masked text field",
+    "dropdownDateFilterLabel": "filter date dropdown",
+    "dropdownDateLabel": "date dropdown",
+    "subscriptionTextField": "subscription text field",
+    "dropdownFacilitiesLabel": "dropdown",
+    "dropdownFacilitiesAppendix": "default",
+    "dropdownFacilitiesExpandedLabel": "dropdown",
+    "dropdownFacilitiesExpandedAppendix": "expanded",
+    "expandableCheckboxListText": "expandable checkbox list",
+    "expandableCheckboxListItems": [
+      "Завтрак",
+      "Письменный стол",
+      "Стул для кормления",
+      "Кроватка",
+      "Телевизор",
+      "Шампунь"
+    ],
+    "iconItems": {
+      "insert_emoticon": {
+        "heading": "Комфорт",
+        "description": "Шумопоглощающие стены"
+      },
+      "location_city": {
+        "heading": "Удобство",
+        "description": "Окно в каждой из спален"
+      }
+    },
+    "checkboxBtnsLabel": "checkbox buttons",
+    "checkboxBtnsItems": [
+      "Можно курить",
+      "Можно с питомцами",
+      "Можно пригласить гостей\n(до 10 человек)"
+    ],
+    "radioBtnsLabel": "radio buttons",
+    "radioBtnsMale": "Мужчина",
+    "radioBtnsFemale": "Женщина",
+    "toggleLabel": "toggle",
+    "toggleText": "Получать спецпредложения",
+    "likesLabel": "like buttons",
+    "rateBtnLabel": "rate buttons",
+    "dropdownGuestsLabel": "dropdown",
+    "ratingChart": "rating chart",
+    "richCheckboxBtnsLabel": "rich checkbox buttons",
+    "richCheckboxBtnsItems": [
+      {
+        "heading": "Широкий коридор",
+        "description": "Ширина коридоров в номере\nне менее 91 см."
+      },
+      {
+        "heading": "Помощник для инвалидов",
+        "description": "На 1 этаже вас встретит специалист\nи проводит до номера."
+      }
+    ],
+    "rangeSliderLabel": "range slider",
+    "btnsLabel": "buttons",
+    "btnText": "click me",
+    "btnPayment": "перейти к оплате",
+    "paginationLabel": "pagination",
+    "paginationCaption": "{{itemsOnPage}} из {{totalItems}} вариантов аренды",
+    "bulletList": "bullet list",
+    "bulletListItems": [
+      "Нельзя с питомцами",
+      "Без вечеринок и мероприятий",
+      "Время прибытия — после 13:00,\nа выезд до 12:00"
+    ],
+    "comment": {
+      "name": "Мурад Сарафанов",
+      "text": "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплементы повару — никто не жаловался из соседей."
+    },
+    "submit": "отправить",
+    "reset": "сбросить",
+    "controlLabel": "control buttons"
+  },
+  "cards": {
+    "title": "Карточки"
+  },
+  "headersAndFooters": {
+    "title": "Хэдеры и футеры"
+  }
+}

@@ -1,0 +1,30 @@
+.field {
+  position: relative;
+  width: 100%;
+
+  $widths: (
+    'sm': var(--field-width-sm),
+    'md': var(--field-width-md),
+    'lg': var(--field-width-lg),
+  );
+
+  @each $name, $value in $widths {
+    &--width-#{$name} {
+      max-width: $value;
+    }
+  }
+
+  $margins: (
+    'xs': var(--field-margin-xs),
+    'sm': var(--field-margin-sm),
+    'md': var(--field-margin-md),
+    'lg': var(--field-margin-lg),
+    'xl': var(--field-margin-xl),
+  );
+
+  @each $name, $value in $margins {
+    &--margin-#{$name} {
+      margin-bottom: $value;
+    }
+  }
+}

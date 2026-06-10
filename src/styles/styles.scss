@@ -1,0 +1,152 @@
+@use 'colors.module';
+@use './fonts';
+@use './service.module';
+
+@layer reset, utilities;
+
+:root {
+  --anim-duration: 0.3s;
+  --anim-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-standard: var(--anim-duration) var(--anim-easing);
+
+  --layout-gutter: 140px;
+  --layout-gutter-min: 70px;
+  --layout-gutter-clamp: clamp(var(--layout-gutter-min), 10%, var(--layout-gutter));
+  --layout-w-clamp: clamp(320px, 100%, 1920px);
+
+  --focus-width: 2px;
+  --focus-color: var(--color-foreground-75);
+  --focus-offset: 2px;
+  --focus-shadow:
+    0 0 0 var(--focus-offset) var(--color-bg),
+    0 0 0 calc(var(--focus-offset) + var(--focus-width)) var(--focus-color);
+  --focus-shadow-inset: inset 0 0 0 var(--focus-width) var(--focus-color);
+
+  --lg-primary: linear-gradient(180deg, var(--color-primary), var(--color-primary-accent));
+  --lg-secondary: linear-gradient(180deg, var(--color-secondary), var(--color-secondary-accent));
+  --lg-primary-hover: linear-gradient(
+    180deg,
+    var(--color-primary-hover),
+    var(--color-primary-accent-hover)
+  );
+  --lg-secondary-hover: linear-gradient(
+    180deg,
+    var(--color-secondary-hover),
+    var(--color-secondary-accent-hover)
+  );
+
+  --interactive-border: var(--color-foreground-25);
+  --interactive-border-hover: var(--color-foreground-50);
+  --interactive-accent: var(--color-primary);
+  --interactive-accent-hover: var(--color-primary-hover);
+  --interactive-icon: var(--color-foreground-50);
+  --interactive-icon-hover: var(--color-foreground-75);
+
+  --header-height: 70px;
+
+  --font-family-main: 'Montserrat', sans-serif;
+  --fw-normal: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --fz-h1: 1.5rem;
+  --fz-widget: 1.1875rem;
+  --fz-label: 0.75rem;
+  --fz-p: 0.875rem;
+  --fz-button: var(--fz-label);
+
+  --label-height: 0.9375rem;
+
+  --fc-placeholder: var(--color-foreground-25);
+  --fc-muted: var(--color-foreground-50);
+  --fc-standard: var(--color-foreground-75);
+
+  --lh-standard: 1.25;
+  --lh-reading: 1.5rem;
+
+  --gap-xs: 0.3125rem;
+  --gap-sm: 0.625rem;
+  --gap-md: 1.25rem;
+  --gap-lg: 1.875rem;
+  --gap-xl: 2.5rem;
+
+  --register-height: 46rem;
+
+  --z-index-tooltip: 100;
+
+  --error-fz: 0.8rem;
+  --error-top-offset: 0.125rem;
+  --error-reserved-space: calc(var(--error-fz) + var(--error-top-offset) + 0.2rem);
+
+  --field-height: 2.75rem;
+  --field-width-sm: 13.875rem;
+  --field-width-md: 16.625rem;
+  --field-width-lg: 20rem;
+  --field-margin-xs: var(--gap-xs);
+  --field-margin-sm: var(--gap-sm);
+  --field-margin-md: var(--gap-md);
+  --field-margin-lg: var(--gap-lg);
+  --field-margin-xl: var(--gap-xl);
+  --field-border-w: 1px;
+  --field-border-radius: 0.25rem;
+  --field-padding-left: 0.9375rem;
+  --field-padding-bottom: 0.125rem;
+
+  --room-card-width-min: 270px;
+  --room-card-width-max: 340px;
+  --room-card-shadow-c: 0px 0px 25px rgba(from var(--color-foreground) r g b / 0.02);
+  --room-card-img-ar: 1.788 / 1;
+
+  --card-width-min: 18.75rem;
+  --card-width-max: 23.75rem;
+  --card-padding-sm: 0.875rem;
+  --card-padding-md: 1.8125rem;
+  --card-shadow: 0px 10px 20px var(--color-foreground-05);
+
+  --btn-height: var(--field-height);
+  --btn-outline-border-w: 2px;
+  --btn-short-w: 6.1875rem;
+  --btn-long-w: var(--field-width-lg);
+  --btn-arrow-fz: 1.5rem;
+  --btn-arrow-pos-right: 0.625rem;
+  --btn-arrow-padding-inline: calc(var(--btn-arrow-fz) + 2 * var(--btn-arrow-pos-right));
+
+  --label-gap: 0.75rem;
+  --label-margin-bottom: 0.3125rem;
+
+  --logo-size-sm: 2.5rem;
+  --logo-size-lg: 3rem;
+
+  --icon-size-sm: 1.5rem;
+  --icon-size-lg: 3rem;
+
+  --control-width: 2.5rem;
+  --control-height: 1.25rem;
+  --control-border-w: var(--field-border-w);
+  --control-gap: var(--gap-sm);
+  --control-dot-size: 0.75rem;
+  --control-dot-left: calc(
+    (var(--control-height) - var(--control-dot-size) - var(--control-border-w) * 2) / 2
+  );
+  --control-dot-slip: calc(
+    var(--control-width) - var(--control-dot-size) - var(--control-dot-left) *
+      2 - var(--control-border-w) * 2
+  );
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:where(input:focus-visible),
+.is-programmatic-focus {
+  box-shadow: var(--focus-shadow);
+}
+
+html {
+  background-color: var(--color-bg);
+
+  font-family: sans-serif;
+  font-size: 16px;
+  color: var(--color-foreground);
+}

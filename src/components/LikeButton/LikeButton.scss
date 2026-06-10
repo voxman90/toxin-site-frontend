@@ -1,0 +1,103 @@
+@use '../../styles/text' as text;
+
+.like-button {
+  --like-button-fz: 0.625rem;
+  --like-button-p-r: calc(var(--control-height) / 2 - var(--control-border-w));
+
+  display: inline-flex;
+  align-items: center;
+  min-width: var(--control-width);
+  height: var(--control-height);
+  border: var(--control-border-w) solid var(--interactive-border);
+
+  border-radius: var(--control-height);
+  background-color: var(--color-bg);
+  cursor: pointer;
+  transition: border-color var(--anim-standard);
+
+  &:hover {
+    border-color: var(--interactive-border-hover);
+  }
+
+  &:has(.like-button__input:checked) {
+    border-color: var(--interactive-accent);
+
+    &:hover {
+      border-color: var(--interactive-accent-hover);
+    }
+  }
+
+  &:has(.like-button__input:focus-visible) {
+    box-shadow: var(--focus-shadow);
+  }
+
+  &__input {
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--control-height);
+    height: var(--control-height);
+
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: none;
+    }
+
+    &::after,
+    &::before {
+      @include text.material-icons;
+
+      position: absolute;
+
+      font-size: var(--like-button-fz);
+      color: var(--interactive-border);
+      transition: opacity var(--anim-standard);
+    }
+
+    &::after {
+      content: 'favorite_border';
+      opacity: 1;
+    }
+
+    &::before {
+      content: 'favorite';
+      opacity: 0;
+
+      background: var(--lg-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    &:checked {
+      &::after {
+        opacity: 0;
+      }
+
+      &::before {
+        opacity: 1;
+      }
+
+      & + .like-button__counter {
+        color: var(--interactive-accent);
+      }
+    }
+  }
+
+  &__counter {
+    @include text.p-text(var(--interactive-border));
+
+    padding-right: var(--like-button-p-r);
+    padding-bottom: 1px;
+
+    font-size: var(--like-button-fz);
+    line-height: 1;
+    text-align: left;
+    transition: color var(--anim-standard);
+  }
+}

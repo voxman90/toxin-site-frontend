@@ -1,0 +1,174 @@
+@use '../../styles/text' as text;
+
+.dropdown {
+  --dropdown-option-height: 1.875rem;
+  --dropdown-option-gap: 0.4375rem;
+
+  position: relative;
+  z-index: 1;
+
+  &--width-md {
+    width: var(--field-width-md);
+  }
+
+  &--width-lg {
+    width: var(--field-width-lg);
+  }
+
+  &__display {
+    @include text.p-text;
+
+    position: relative;
+    width: 100%;
+    height: var(--field-height);
+    padding-left: var(--field-padding-left);
+    padding-right: var(--field-height);
+    padding-bottom: var(--field-padding-bottom);
+    border: var(--field-border-w) solid var(--interactive-border);
+    overflow: hidden;
+
+    line-height: var(--field-height);
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+    border-radius: var(--field-border-radius);
+    background-color: var(--color-bg);
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--interactive-border-hover);
+
+      & > .dropdown__icon {
+        color: var(--interactive-icon-hover);
+      }
+    }
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &--expanded {
+      border-radius: var(--field-border-radius) var(--field-border-radius) 0 0;
+      border-color: var(--interactive-border-hover);
+    }
+
+    &--expanded > .dropdown__icon {
+      color: var(--interactive-icon-hover);
+    }
+
+    &--invalid {
+      border-color: var(--color-error);
+    }
+
+    &--focused {
+      box-shadow: var(--focus-shadow);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    right: var(--field-border-w);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--field-height);
+    height: var(--field-height);
+
+    color: var(--interactive-icon);
+  }
+
+  &__bar {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    border: var(--field-border-w) solid var(--interactive-border-hover);
+    border-top: none;
+
+    border-radius: 0 0 var(--field-border-radius) var(--field-border-radius);
+    background-color: var(--color-bg);
+    box-shadow: var(--card-shadow);
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dropdown-option-gap);
+    padding-block: var(--dropdown-option-gap);
+    padding-inline: var(--field-padding-left) var(--dropdown-option-gap);
+  }
+
+  &__option {
+    display: flow-root;
+    height: var(--dropdown-option-height);
+  }
+
+  &__option-label {
+    @include text.label-text(var(--fz-label));
+
+    float: left;
+    height: var(--dropdown-option-height);
+    overflow: hidden;
+
+    line-height: var(--dropdown-option-height);
+    text-overflow: ellipsis;
+    color: var(--color-foreground-75);
+  }
+
+  &__option-controls {
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &__option-btn {
+    @include text.text-normal;
+
+    position: relative;
+    width: var(--dropdown-option-height);
+    height: var(--dropdown-option-height);
+    border: var(--field-border-w) solid var(--interactive-border);
+
+    font-size: 1.125rem;
+    line-height: 1;
+    text-align: center;
+    color: var(--interactive-icon);
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:not(:disabled):hover {
+      border-color: var(--interactive-border-hover);
+    }
+
+    &:disabled {
+      color: var(--color-foreground-05);
+      border-color: var(--color-foreground-05);
+    }
+  }
+
+  &__option-output {
+    @include text.label-text;
+
+    width: calc(var(--dropdown-option-height) + 2px);
+    height: var(--dropdown-option-height);
+
+    line-height: var(--dropdown-option-height);
+    text-align: center;
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: calc(var(--gap-md) - var(--dropdown-option-gap)) 0;
+    padding-left: calc(var(--field-padding-left) - 1px);
+    padding-right: calc(var(--dropdown-option-gap) + 1px);
+  }
+}

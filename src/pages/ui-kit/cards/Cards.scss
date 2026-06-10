@@ -1,0 +1,67 @@
+.cards {
+  position: relative;
+  background-color: var(--color-bg);
+
+  & > header {
+    display: flex;
+    height: var(--header-height);
+    gap: var(--gap-md);
+    padding-inline: var(--layout-gutter-clamp);
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+
+  &__wrapper {
+    padding-top: 150px;
+    padding-bottom: 140px;
+
+    text-align: initial;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    gap: 40px;
+
+    & > * {
+      flex: 0 0 max-content;
+    }
+  }
+
+  &__carousel {
+    width: 320px;
+    aspect-ratio: 1.6 / 1;
+
+    &-item {
+      width: 100%;
+      height: 100%;
+
+      &[data-id='1'] {
+        background: red;
+      }
+
+      &[data-id='2'] {
+        background: green;
+      }
+
+      &[data-id='3'] {
+        background: cyan;
+      }
+    }
+  }
+}

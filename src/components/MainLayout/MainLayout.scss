@@ -1,0 +1,21 @@
+.main-layout__wrapper {
+  width: clamp(320px, 100%, 1920px);
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: var(--color-bg);
+}
+
+.main-layout__header {
+  position: relative;
+  z-index: 10;
+}
+
+.main-layout__main {
+  position: relative;
+  z-index: 5;
+}
+
+.main-layout__footer {
+  position: relative;
+  z-index: 0;
+}

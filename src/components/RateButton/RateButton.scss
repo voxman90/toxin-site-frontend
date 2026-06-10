@@ -1,0 +1,46 @@
+@use '../../styles/text' as text;
+
+.rate-button {
+  display: inline-flex;
+
+  &__star {
+    appearance: none;
+    position: relative;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+
+    background-color: transparent;
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &:after {
+      @include text.material-icons(var(--icon-size-sm));
+
+      content: 'star_border';
+
+      color: transparent;
+      background: var(--lg-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    &:checked:after,
+    &:has(~ :checked):after {
+      content: 'star';
+    }
+
+    &:not(:disabled):is(:hover, :has(~ :hover), :focus-visible, :has(~ :focus-visible)):after {
+      content: 'star';
+      background: var(--lg-primary-hover);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+  }
+}

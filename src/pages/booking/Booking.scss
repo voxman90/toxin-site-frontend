@@ -1,0 +1,60 @@
+@use '../../styles/text' as text;
+
+.booking {
+  --booking-gap-block: var(--gap-lg);
+  --booking-gap-inline: calc(var(--layout-gutter) / 2);
+
+  &__content-grid {
+    display: grid;
+    grid-template-areas:
+      'features chart   booking'
+      'reviews  reviews booking'
+      'rules    cancel  booking';
+    column-gap: var(--booking-gap-inline);
+    row-gap: var(--booking-gap-block);
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-block: var(--booking-gap-inline);
+    padding-inline: var(--layout-gutter);
+
+    @media (max-width: 1100px) {
+      grid-template-areas:
+        'features booking'
+        'chart    booking'
+        'reviews  reviews'
+        'rules    cancel';
+    }
+  }
+
+  &__gallery-wrapper {
+    max-height: 485px;
+  }
+
+  &__sidebar {
+    grid-area: booking;
+  }
+
+  &__features {
+    grid-area: features;
+  }
+
+  &__rating-chart {
+    grid-area: chart;
+  }
+
+  &__reviews {
+    grid-area: reviews;
+  }
+
+  &__rules {
+    grid-area: rules;
+  }
+
+  &__cancellation {
+    grid-area: cancel;
+  }
+
+  &__cancellation-text {
+    @include text.p-text;
+  }
+}

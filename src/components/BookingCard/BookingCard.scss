@@ -1,0 +1,255 @@
+@use '../../styles/text' as text;
+
+.booking-card {
+  width: 380px;
+
+  &--skeleton {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__room-info {
+    flex: 0 0 40%;
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__number-symbol {
+    @include text.h1-text();
+
+    font-size: var(--fz-p);
+  }
+
+  &__room-type {
+    @include text.label-text();
+
+    color: var(--color-primary);
+    font-size: var(--fz-label);
+    transform: translate(2px, 1px);
+  }
+
+  &__price-per-day {
+    @include text.p-text();
+
+    flex: 0 0 50%;
+
+    font-size: var(--fz-widget);
+    color: var(--fc-muted);
+    text-align: end;
+  }
+
+  &__price-bold {
+    font-size: var(--fz-p);
+    font-weight: bold;
+  }
+
+  &__price-text {
+    font-size: var(--fz-label);
+  }
+
+  &__invoice-details {
+    @include text.p-text();
+
+    margin-bottom: var(--gap-lg);
+
+    color: var(--fc-standard);
+    line-height: 1.125rem;
+    opacity: 1;
+    filter: blur(0);
+    transition:
+      opacity 0.2s ease-in-out,
+      filter 0.2s ease-in-out;
+
+    &--blurred {
+      opacity: 0.6;
+      filter: blur(2px);
+
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+
+  &__invoice-item {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-bottom: var(--gap-md);
+  }
+
+  &__info-price {
+    text-align: right;
+  }
+
+  &__info-label {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__info-icon {
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid var(--fc-placeholder);
+
+    color: var(--fc-placeholder);
+    font-size: var(--fz-label);
+    font-style: normal;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-bg);
+    }
+  }
+
+  &__total {
+    display: flex;
+    height: 1.5rem;
+    align-items: baseline;
+    gap: 0.25rem;
+    width: 100%;
+    margin-bottom: var(--gap-md);
+
+    opacity: 1;
+    filter: blur(0);
+    transition:
+      opacity 0.2s ease-in-out,
+      filter 0.2s ease-in-out;
+
+    &--blurred {
+      opacity: 0.6;
+      filter: blur(2px);
+
+      user-select: none;
+    }
+  }
+
+  &__total-divider {
+    flex-grow: 1;
+    border-bottom: 1px dotted var(--fc-muted);
+    transform: translateY(1px);
+  }
+
+  &__add-service {
+    &-list {
+      @include text.p-text();
+
+      width: 100%;
+
+      color: var(--color-bg);
+    }
+
+    &-item {
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      justify-content: stretch;
+      align-items: baseline;
+      gap: 3px;
+    }
+
+    &-label {
+      white-space: nowrap;
+    }
+
+    &-divider {
+      flex-grow: 1;
+      border-bottom: 1px dotted var(--color-bg);
+
+      transform: translateY(1px);
+    }
+
+    &-price {
+      white-space: nowrap;
+      text-align: right;
+    }
+  }
+
+  &__skeleton-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-block: var(--gap-sm) var(--gap-md);
+  }
+
+  &__skeleton-date-dropdown {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--gap-md);
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__skeleton-field {
+    position: relative;
+    height: var(--field-height);
+    overflow: hidden;
+
+    &--check-in,
+    &--check-out {
+      flex-grow: 1;
+      margin-top: var(--gap-xs);
+    }
+
+    &--guests {
+      margin-top: var(--gap-xs);
+    }
+
+    &--submit {
+      margin-top: var(--gap-lg);
+
+      border-radius: var(--field-height);
+    }
+  }
+
+  &__skeleton-text {
+    position: relative;
+    height: 1rem;
+
+    &--room-number {
+      width: 30%;
+      height: 1.75rem;
+    }
+
+    &--price-per-night {
+      width: 35%;
+      height: 1.25rem;
+    }
+
+    &--label {
+      height: var(--label-height);
+      width: 30%;
+    }
+
+    &--title {
+      width: 80%;
+      height: 1.5rem;
+    }
+
+    &--price {
+      width: 100%;
+      height: 1.5rem;
+    }
+
+    &--total {
+      width: 25%;
+      height: 1.5rem;
+    }
+
+    &--total-price {
+      width: 30%;
+      height: 1.5rem;
+    }
+  }
+}

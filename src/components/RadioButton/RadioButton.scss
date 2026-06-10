@@ -1,0 +1,68 @@
+@use '../../styles/text' as text;
+
+.radio-button {
+  display: flex;
+  gap: var(--control-gap);
+  align-items: center;
+  flex-wrap: nowrap;
+  width: fit-content;
+  max-width: var(--field-width-lg);
+
+  cursor: pointer;
+}
+
+.radio-button__input {
+  appearance: none;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  height: var(--control-height);
+  width: var(--control-height);
+  border: var(--field-border-w) solid var(--interactive-border);
+
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  cursor: pointer;
+
+  &:focus-visible {
+    box-shadow: var(--focus-shadow);
+  }
+
+  &:hover {
+    border-color: var(--interactive-border-hover);
+  }
+
+  &:checked {
+    border-color: var(--interactive-accent);
+
+    &::after {
+      content: '';
+      width: var(--control-dot-size);
+      height: var(--control-dot-size);
+
+      border-radius: 50%;
+      background: var(--lg-primary);
+    }
+  }
+
+  &:checked + .radio-button__text {
+    color: var(--fc-standard);
+  }
+
+  &:checked:hover {
+    border-color: var(--interactive-accent-hover);
+  }
+}
+
+.radio-button__text {
+  @include text.p-text(var(--color-foreground-50));
+
+  min-width: 0;
+  overflow: hidden;
+
+  font-size: var(--fz-p);
+  line-height: var(--lh-standard);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: top;
+}

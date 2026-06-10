@@ -1,0 +1,59 @@
+@use '../../styles/text' as text;
+
+.landing {
+  &__main {
+    position: relative;
+    height: calc(100vh - var(--header-height));
+
+    background-image: url('/images/bg-landing-w1440.jpg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+  }
+
+  &__search-card-wrapper {
+    position: absolute;
+    top: 140px;
+    left: 9.725%;
+
+    @media only screen and (max-width: 1152px) {
+      .landing__card-wrapper {
+        left: 6%;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      .landing__card-wrapper {
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &__caption {
+    @include text.p-text;
+
+    position: absolute;
+    margin: 0;
+    right: 9.3%;
+    bottom: 18px;
+
+    white-space: pre;
+    text-align: right;
+
+    :root[data-theme='dark'] & {
+      color: var(--color-bg);
+    }
+
+    @media only screen and (max-width: 768px) {
+      right: 5%;
+    }
+
+    @media only screen and (max-width: 480px) {
+      right: 50%;
+      transform: translateX(50%);
+      text-align: center;
+    }
+  }
+}

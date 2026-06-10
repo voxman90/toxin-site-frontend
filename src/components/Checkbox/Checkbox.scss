@@ -1,0 +1,91 @@
+@use '../../styles/text' as text;
+
+.checkbox {
+  --checkbox-lh: 1.125rem;
+  --checkbox-text-align-offset: calc((var(--control-height) - var(--checkbox-lh)) / 2);
+
+  display: flex;
+  align-items: flex-start;
+  gap: var(--control-gap);
+  width: fit-content;
+  max-width: var(--field-width-lg);
+  min-height: var(--control-height);
+
+  cursor: pointer;
+
+  &__input {
+    appearance: none;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: var(--control-height);
+    height: var(--control-height);
+    border: var(--control-border-w) solid var(--interactive-border);
+
+    font-size: 0;
+    border-radius: var(--field-border-radius);
+    background-color: var(--color-bg);
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:hover {
+      border-color: var(--interactive-border-hover);
+      cursor: inherit;
+    }
+
+    &:checked {
+      border-color: var(--interactive-accent);
+      background: url(./Check.svg);
+      background: {
+        color: var(--color-bg);
+        repeat: no-repeat;
+        position: 4px 3px;
+      }
+    }
+
+    &:checked:hover {
+      border-color: var(--interactive-accent-hover);
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    min-width: 0;
+    padding-top: var(--checkbox-text-align-offset);
+    overflow: hidden;
+  }
+
+  &__text {
+    @include text.p-text(var(--fc-muted));
+
+    line-height: var(--checkbox-lh);
+    white-space: pre-wrap;
+
+    &--truncated {
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &--rich {
+      @include text.text-bold;
+
+      vertical-align: top;
+
+      color: var(--fc-standard);
+    }
+  }
+
+  &__description {
+    @include text.p-text(var(--fc-muted));
+
+    font-size: var(--fz-label);
+    line-height: var(--lh-standard);
+    white-space: pre-wrap;
+  }
+}

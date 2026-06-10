@@ -1,0 +1,101 @@
+@use '../../styles/text' as text;
+
+.rating-chart {
+  --lg-excellent: linear-gradient(180deg, var(--color-excellent), var(--color-excellent-accent));
+  --lg-disappointing: linear-gradient(
+    180deg,
+    var(--color-disappointing),
+    var(--color-disappointing-accent)
+  );
+
+  --rc-marker-size: 0.625rem;
+  --rc-chart-size: 7.5rem;
+  --rc-stroke-width: 0.25rem;
+  --rc-inner-radius: calc(var(--rc-chart-size) / 2 - var(--rc-stroke-width));
+
+  $rate-lg: (
+    'excellent': var(--lg-excellent),
+    'good': var(--lg-secondary),
+    'satisfactory': var(--lg-primary),
+    'disappointing': var(--lg-disappointing),
+  );
+
+  &__content {
+    display: flex;
+    width: max-content;
+    gap: var(--gap-lg);
+  }
+
+  &__visual {
+    position: relative;
+  }
+
+  &__pie {
+    --mask-rg: radial-gradient(
+      circle,
+      transparent calc(var(--rc-inner-radius) - 0.5px),
+      var(--color-bg) calc(var(--rc-inner-radius) + 0.5px)
+    );
+
+    width: var(--rc-chart-size);
+    height: var(--rc-chart-size);
+
+    border-radius: 50%;
+    -webkit-mask-image: var(--mask-rg);
+    mask-image: var(--mask-rg);
+  }
+
+  &__center {
+    @include text.text-bold;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    font-size: var(--fz-label);
+    color: var(--color-primary);
+  }
+
+  &__count {
+    font-size: var(--fz-h1);
+  }
+
+  &__label {
+    font-size: var(--fz-label);
+  }
+
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 0.25rem;
+  }
+
+  &__legend-item {
+    @include text.text-normal;
+
+    display: flex;
+    align-items: center;
+
+    font-size: var(--fz-p);
+    line-height: 1.5;
+    text-transform: capitalize;
+    color: var(--fc-standard);
+  }
+
+  &__marker {
+    width: var(--rc-marker-size);
+    height: var(--rc-marker-size);
+    margin-right: var(--gap-xs);
+
+    border-radius: 50%;
+
+    @each $name, $value in $rate-lg {
+      &--#{$name} {
+        background: $value;
+      }
+    }
+  }
+}

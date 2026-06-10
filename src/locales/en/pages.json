@@ -1,0 +1,48 @@
+{
+  "landing": {
+    "title": "TOXIN - Room",
+    "caption": "The best rooms for your work, relaxation, and inspiration"
+  },
+  "search": {
+    "title": "TOXIN - Search",
+    "heading": "The rooms we've selected for you",
+    "paginationCaption": "{{from}}-{{to}} of {{total}} rental options",
+    "paginationCaption_one": "{{from}}-{{to}} of {{total}} rental options",
+    "notFoundTitle": "Nothing found",
+    "notFoundDescription": "Try changing your dates, expanding your price range, or removing some filters.",
+    "invalidUrlTitle": "Invalid search parameters",
+    "invalidUrlDescription": "Please select valid dates and/or the number of guests to start your search.",
+    "serverErrorTitle": "Data loading error",
+    "serverErrorDescription": "Failed to load rooms.\nCode: {{status}}, message: \"{{message}}\"",
+    "retryButtonText": "Retry"
+  },
+  "login": {
+    "title": "TOXIN - Login"
+  },
+  "register": {
+    "title": "TOXIN - Register"
+  },
+  "booking": {
+    "title": "TOXIN - Booking",
+    "featuresTitle": "Room details",
+    "rulesTitle": "Rules",
+    "cancellationTitle": "Cancellation",
+    "cancellationText": "Free cancellation within 48 hours. After that, cancellations made no later than 5 days prior to Upon arrival, you will receive a full refund minus the service fee.",
+    "features": {
+      "comfort": "Comfort",
+      "comfortDescription": "Sound-absorbing walls",
+      "convenience": "Convenience",
+      "convenienceDescription": "A window in each bedroom",
+      "cosiness": "Cosiness",
+      "cosinessDescription": "The room is equipped with a fireplace"
+    },
+    "rules": {
+      "checkInAndOut": "Check-in is after 1:00 PM,\nand check-out is before 12:00 PM",
+      "noPets": "Pets are not allowed",
+      "noSmoking": "Smoking and not allowed",
+      "noParties": "No parties or events"
+    },
+    "reviewsFetchError": "Failed to load reviews.",
+    "summaryFetchError": "Failed to load rating."
+  }
+}

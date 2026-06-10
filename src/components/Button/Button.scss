@@ -1,0 +1,104 @@
+@use '../../styles/text' as text;
+@use '../../styles/shared' as *;
+
+.button {
+  @include text.button-text(var(--color-primary));
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  white-space: nowrap;
+  background-color: transparent;
+  cursor: pointer;
+
+  opacity: 1;
+  transition:
+    opacity 0.2s ease-in-out,
+    filter 0.2s ease-in-out;
+
+  &:focus-visible {
+    box-shadow: var(--focus-shadow);
+  }
+
+  &:disabled {
+    @extend %disabled;
+  }
+
+  &--size-content {
+    width: min-content;
+  }
+
+  &--size-stretchy {
+    width: 100%;
+    height: 100%;
+  }
+
+  &--size-short {
+    width: 100%;
+    max-width: var(--btn-short-w);
+    height: var(--btn-height);
+  }
+
+  &--size-long {
+    width: 100%;
+    max-width: var(--field-width-lg);
+    height: var(--btn-height);
+  }
+
+  &--variant-filled {
+    color: var(--color-bg);
+    border-radius: var(--btn-height);
+    background: var(--lg-primary);
+
+    &:not(:disabled):hover {
+      background-image: var(--lg-primary-hover);
+    }
+  }
+
+  &--variant-outlined {
+    border: var(--btn-outline-border-w) solid transparent;
+
+    color: var(--color-primary);
+    border-radius: var(--btn-height);
+    background-image: linear-gradient(var(--color-bg)), var(--lg-primary);
+    background-clip: content-box, border-box;
+    background-origin: border-box;
+
+    &:not(:disabled):hover {
+      background-image: linear-gradient(var(--color-bg)), var(--lg-primary-hover);
+    }
+  }
+
+  &--variant-text {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:disabled):hover {
+      color: var(--color-primary-hover);
+    }
+  }
+
+  &--has-arrow {
+    padding-inline: var(--btn-arrow-padding-inline);
+
+    &::after {
+      @include text.material-icons;
+
+      content: 'arrow_forward';
+      position: absolute;
+      right: var(--btn-arrow-pos-right);
+      top: 50%;
+
+      font-size: var(--btn-arrow-fz);
+      transform: translateY(-50%);
+    }
+  }
+
+  &--has-padding {
+    padding-inline: var(--gap-md);
+  }
+}

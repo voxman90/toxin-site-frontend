@@ -1,0 +1,48 @@
+{
+  "landing": {
+    "title": "TOXIN - Выбор номера",
+    "caption": "Лучшие номера для вашей работы,\nотдыха и просто вдохновения"
+  },
+  "search": {
+    "title": "TOXIN - Поиск",
+    "heading": "Номера, которые мы для вас подобрали",
+    "paginationCaption": "{{from}}-{{to}} из {{total}} вариантов аренды",
+    "paginationCaption_one": "{{from}}-{{to}} из {{total}} варианта аренды",
+    "notFoundTitle": "Ничего не найдено",
+    "notFoundDescription": "Попробуйте изменить даты, расширить диапазон цен или убрать некоторые фильтры.",
+    "invalidUrlTitle": "Параметры поиска неполные",
+    "invalidUrlDescription": "Пожалуйста, выберите корректные даты и/или количество гостей для начала поиска.",
+    "serverErrorTitle": "Ошибка загрузки данных",
+    "serverErrorDescription": "Не удалось загрузить комнаты.\nКод: {{status}}, сообщение: \"{{message}}\"",
+    "retryButtonText": "Обновить данные"
+  },
+  "login": {
+    "title": "TOXIN - Войти"
+  },
+  "register": {
+    "title": "TOXIN - Зарегистрироваться"
+  },
+  "booking": {
+    "title": "TOXIN - Заказ номера",
+    "featuresTitle": "Сведения о номере",
+    "rulesTitle": "Правила",
+    "cancellationTitle": "Отмена",
+    "cancellationText": "Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.",
+    "features": {
+      "comfort": "Комфорт",
+      "comfortDescription": "Шумопоглощающие стены",
+      "convenience": "Удобство",
+      "convenienceDescription": "Окно в каждой из спален",
+      "cosiness": "Уют",
+      "cosinessDescription": "Номер оснащён камином"
+    },
+    "rules": {
+      "checkInAndOut": "Время прибытия — после 13:00,\nа выезд до 12:00",
+      "noPets": "Нельзя с питомцами",
+      "noParties": "Без вечеринок и мероприятий",
+      "noSmoking": "В номере нельзя курить"
+    },
+    "reviewsFetchError": "Не удалось загрузить отзывы.",
+    "summaryFetchError": "Не удалось загрузить рейтинг."
+  }
+}

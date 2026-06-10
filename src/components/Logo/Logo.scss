@@ -1,0 +1,17 @@
+.logo {
+  display: inline-flex;
+
+  color: var(--color-foreground);
+
+  &--size-sm {
+    height: var(--logo-size-sm);
+  }
+
+  &--size-lg {
+    height: var(--logo-size-lg);
+  }
+
+  &__svg {
+    height: 100%;
+  }
+}

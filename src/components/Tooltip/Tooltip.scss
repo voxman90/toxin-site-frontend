@@ -1,0 +1,72 @@
+@use '../../styles/text' as text;
+
+.tooltip-container {
+  display: inline-flex;
+  cursor: pointer;
+  outline: none;
+
+  border-radius: var(--field-border-radius);
+
+  &:focus-visible {
+    box-shadow: var(--focus-shadow);
+  }
+}
+
+.tooltip {
+  --tooltip-array-size: 0.5rem;
+
+  position: absolute;
+  z-index: var(--z-index-tooltip);
+
+  animation: tooltipFadeIn 0.2s ease-out;
+  pointer-events: auto;
+
+  &__bridge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
+
+  &__content {
+    @include text.p-text();
+
+    max-width: var(--field-width-lg);
+    width: 100%;
+    min-width: var(--field-width-md);
+    padding: var(--card-padding-sm);
+
+    word-wrap: break-word;
+    color: var(--color-bg);
+    background-color: var(--color-tooltip);
+    border-radius: var(--field-border-radius);
+  }
+
+  &__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: var(--tooltip-array-size) solid transparent;
+    border-right: var(--tooltip-array-size) solid transparent;
+    transform: translateX(-50%);
+
+    &--side-top {
+      bottom: calc(var(--tooltip-array-size) * -1);
+      border-top: var(--tooltip-array-size) solid var(--color-tooltip);
+    }
+
+    &--side-bottom {
+      top: calc(var(--tooltip-array-size) * -1);
+      border-bottom: var(--tooltip-array-size) solid var(--color-tooltip);
+    }
+  }
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

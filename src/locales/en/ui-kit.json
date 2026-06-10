@@ -1,0 +1,97 @@
+{
+  "colorsAndTypes": {
+    "title": "Colors & Types",
+    "h1": "This one is the sub-section or widget title",
+    "widget": "Next one is the item title inside widgets",
+    "label": "This is a label or CTA text",
+    "p": "This is the body text which is used for most of the design, like paragraphs, lists, etc.",
+    "foreground": "Text Shade 100%",
+    "foreground-75": "Text Shade 75%",
+    "foreground-50": "Text Shade 50%",
+    "foreground-25": "Text Shade 25%",
+    "foreground-05": "Text Shade 5%",
+    "primary": "Primary",
+    "secondary": "Secondary"
+  },
+  "formElements": {
+    "title": "Form Elements",
+    "textFieldPlaceholder": "Email",
+    "textFieldLabel": "text field",
+    "textFieldAppendix": "default",
+    "textFieldFocusedLabel": "text field",
+    "textFieldFocusedAppendix": "hover / focus",
+    "textFieldFocusedText": "This is pretty awesome",
+    "maskedTextFieldLabel": "masked text field",
+    "dropdownDateFilterLabel": "filter date dropdown",
+    "dropdownDateLabel": "date dropdown",
+    "dropdownDatePlaceholder": "DD.MM.YYYY",
+    "subscriptionTextField": "subscription text field",
+    "dropdownFacilitiesLabel": "dropdown",
+    "dropdownFacilitiesAppendix": "default",
+    "dropdownFacilitiesExpandedLabel": "dropdown",
+    "dropdownFacilitiesExpandedAppendix": "expanded",
+    "expandableCheckboxListText": "expandable checkbox list",
+    "expandableCheckboxListItems": ["dinner", "desk", "high chair", "crib", "TV", "shampoo"],
+    "iconItems": {
+      "insert_emoticon": {
+        "heading": "Comfort",
+        "description": "Sound-absorbing walls"
+      },
+      "location_city": {
+        "heading": "Convenience",
+        "description": "Window in each bedroom"
+      }
+    },
+    "checkboxBtnsLabel": "checkbox buttons",
+    "checkboxBtnsItems": [
+      "Smoking is permitted",
+      "Pets are permitted",
+      "Guests are welcome\n(up to 10 people)"
+    ],
+    "radioBtnsLabel": "radio buttons",
+    "radioBtnsMale": "Male",
+    "radioBtnsFemale": "Female",
+    "toggleLabel": "toggle",
+    "toggleText": "Receive special offers",
+    "likesLabel": "like buttons",
+    "rateBtnLabel": "rate buttons",
+    "dropdownGuestsLabel": "dropdown",
+    "ratingChart": "rating chart",
+    "richCheckboxBtnsLabel": "rich checkbox buttons",
+    "richCheckboxBtnsItems": [
+      {
+        "heading": "Wide corridor",
+        "description": "The width of the corridors in the room\nis not less than 91 cm."
+      },
+      {
+        "heading": "Disabled access",
+        "description": "A specialist will meet you on the first floor and escort you to your room."
+      }
+    ],
+    "rangeSliderLabel": "range slider",
+    "btnsLabel": "buttons",
+    "btnText": "click me",
+    "btnPayment": "Proceed to payment",
+    "paginationLabel": "pagination",
+    "paginationCaption": "{{itemsOnPage}} of {{totalItems}} rental options",
+    "bulletList": "bullet list",
+    "bulletListItems": [
+      "Pets are not allowed",
+      "No parties or events",
+      "Arrival time is after 1:00 PM,\nand checkout is before 12:00 PM"
+    ],
+    "comment": {
+      "name": "Мурад Сарафанов",
+      "text": "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплементы повару — никто не жаловался из соседей."
+    },
+    "submit": "submit",
+    "reset": "reset",
+    "controlLabel": "control buttons"
+  },
+  "cards": {
+    "title": "Cards"
+  },
+  "headersAndFooters": {
+    "title": "Headers & Footers"
+  }
+}

@@ -1,0 +1,31 @@
+@use '../../styles/text' as text;
+
+.error-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - var(--header-height));
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-md);
+    transform: translateY(calc(-1 * var(--header-height) / 2));
+  }
+
+  &__icon {
+    color: var(--color-error);
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__message {
+    @include text.p-text;
+    text-align: center;
+  }
+}

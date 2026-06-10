@@ -1,0 +1,11 @@
+@use '../../styles/text' as text;
+
+.empty-state {
+  width: 100%;
+
+  &__description {
+    @include text.p-text();
+
+    margin-bottom: var(--gap-md);
+  }
+}

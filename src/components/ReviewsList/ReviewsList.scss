@@ -1,0 +1,50 @@
+@use '../../styles/text' as text;
+
+.reviews-list {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__counter {
+    @include text.text-normal;
+
+    color: var(--fc-muted);
+    font-size: var(--fz-p);
+    text-align: right;
+  }
+
+  &__container {
+    display: flex;
+    width: calc(100% + var(--gap-md));
+    flex-direction: column;
+    gap: var(--gap-md);
+    max-height: 40rem;
+    padding-inline: var(--gap-md) var(--gap-sm);
+    overflow-y: scroll;
+
+    scroll-behavior: smooth;
+
+    transform: translateX(calc(0px - var(--gap-md)));
+
+    &::-webkit-scrollbar {
+      width: 0.25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--interactive-border);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-shadow);
+    }
+  }
+
+  &__loader-wrapper {
+    position: relative;
+    margin-inline: auto;
+    margin-top: 3rem;
+  }
+}

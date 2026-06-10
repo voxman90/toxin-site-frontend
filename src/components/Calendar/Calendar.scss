@@ -1,0 +1,366 @@
+@use 'sass:color' as color;
+@use '../../styles/text' as text;
+
+.calendar {
+  --calendar-month-cell-size: 2.5rem;
+  --calendar-month-table-rows: 7;
+  --calendar-month-table-cols: 7;
+  --calendar-table-w: calc(var(--calendar-month-cell-size) * var(--calendar-month-table-cols));
+  --calendar-table-h: calc(var(--calendar-month-cell-size) * var(--calendar-month-table-rows));
+  --calendar-year-cell-size: 3.5rem;
+  --calendar-year-cell-padding: 0.4375rem;
+  --calendar-year-table-w: calc(var(--calendar-year-cell-size) * 4);
+  --calendar-trace-color: rgb(from var(--color-primary) r g b / 0.25);
+  --calendar-trace-color-accent: rgb(from var(--color-primary-accent) r g b / 0.25);
+
+  position: relative;
+  min-width: var(--field-width-md);
+  width: 100%;
+  max-width: var(--field-width-lg);
+
+  &__head {
+    margin-bottom: 0.5rem;
+  }
+
+  &__output-separate {
+    display: flex;
+    gap: var(--gap-md);
+  }
+
+  &__output {
+    @include text.p-text;
+
+    position: relative;
+    width: 100%;
+    height: var(--field-height);
+    padding-left: var(--field-padding-left);
+    padding-bottom: var(--field-padding-bottom);
+    border: var(--field-border-w) solid var(--interactive-border);
+    overflow: hidden;
+
+    line-height: var(--field-height);
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+    border-radius: var(--field-border-radius);
+    background-color: var(--color-bg);
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:hover {
+      border-color: var(--interactive-border-hover);
+
+      & > .calendar__icon-expand {
+        color: var(--interactive-icon-hover);
+      }
+    }
+
+    &--active {
+      color: var(--fc-standard);
+      border-color: var(--interactive-border-hover);
+    }
+
+    &--filled {
+      color: var(--fc-standard);
+    }
+
+    &--from .calendar__icon-expand,
+    &--to .calendar__icon-expand {
+      right: 0;
+    }
+
+    &--invalid {
+      border-color: var(--color-error);
+    }
+  }
+
+  &__icon-expand {
+    position: absolute;
+    top: 0;
+    right: var(--field-border-w);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--field-height);
+    height: var(--field-height);
+
+    color: var(--interactive-icon);
+    background-color: transparent;
+  }
+
+  &__body {
+    position: absolute;
+    display: none;
+    min-width: calc(var(--calendar-table-w) + 2 * var(--field-border-w) + 1rem);
+    width: 100%;
+    max-width: var(--field-width-lg);
+    border: var(--field-border-w) solid var(--interactive-border);
+    border-radius: var(--field-border-radius);
+
+    background-color: var(--color-surface);
+    box-shadow: var(--card-shadow);
+
+    &--expanded {
+      display: block;
+    }
+  }
+
+  &__content-wrapper {
+    width: var(--calendar-table-w);
+    margin: auto;
+  }
+
+  &__controls {
+    display: flow-root;
+    height: var(--icon-size-sm);
+    margin: var(--field-margin-md) 0;
+
+    text-align: center;
+  }
+
+  &__title {
+    @include text.text-bold;
+
+    padding: 0;
+    margin: 0;
+    border: none;
+
+    font-size: 1.1875rem;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--color-foreground);
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &--month {
+      white-space: nowrap;
+
+      &:hover {
+        color: var(--fc-standard);
+      }
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__btn-prev,
+  &__btn-next {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+
+    color: var(--color-primary);
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:hover {
+      color: var(--color-primary-hover);
+    }
+  }
+
+  &__btn-prev {
+    float: left;
+  }
+
+  &__btn-next {
+    float: right;
+  }
+
+  &__content {
+    position: relative;
+    height: var(--calendar-table-h);
+    margin-top: var(--field-margin-lg);
+    overflow: hidden;
+
+    background-color: var(--color-bg);
+  }
+
+  &__sheet-container {
+    height: 100%;
+  }
+
+  &__table {
+    position: relative;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    &--month {
+      @include text.p-text(var(--color-foreground-25));
+
+      width: var(--calendar-month-table-w);
+
+      font-size: var(--fz-label);
+
+      & tr {
+        height: var(--calendar-month-cell-size);
+      }
+
+      & th,
+      td {
+        width: var(--calendar-month-cell-size);
+      }
+    }
+
+    &--year {
+      @include text.label-text(var(--color-foreground-25));
+
+      width: var(--calendar-year-table-w);
+      margin: auto;
+
+      font-size: 0.8rem;
+
+      & tr {
+        height: var(--calendar-year-cell-size);
+      }
+
+      & th,
+      td {
+        width: var(--calendar-year-cell-size);
+      }
+    }
+  }
+
+  &__td {
+    position: relative;
+    height: 100%;
+
+    text-align: center;
+    text-transform: none;
+
+    &:hover {
+      color: var(--color-foreground-50);
+      cursor: pointer;
+    }
+
+    &--current {
+      color: var(--color-foreground-75);
+    }
+
+    &:focus-visible,
+    &--focused {
+      outline: none;
+      box-shadow: var(--focus-shadow-inset);
+    }
+
+    &:focus-visible[data-focus-silent='true'] {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  &__fixed-header {
+    position: absolute;
+    z-index: 100;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: var(--calendar-table-w);
+    height: var(--calendar-month-cell-size);
+
+    background-color: var(--color-bg);
+  }
+
+  &__month-table-header-tr {
+    @include text.label-text(var(--color-primary));
+
+    text-transform: none;
+  }
+
+  &__trace {
+    position: absolute;
+    inset: 0;
+    z-index: var(--calendar-trace-z-index);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+  }
+
+  &__trace-layer {
+    position: absolute;
+    inset: 0;
+
+    &--from {
+      border-radius: 50% 0 0 50%;
+    }
+
+    &--to {
+      border-radius: 0 50% 50% 0;
+    }
+
+    &--from#{&}--to {
+      border-radius: 50%;
+    }
+
+    &--selected {
+      background: linear-gradient(
+        180deg,
+        var(--calendar-trace-color),
+        var(--calendar-trace-color-accent)
+      );
+    }
+
+    &--preview {
+      background: rgb(from var(--color-primary) r g b / 0.15);
+      border-top: 1px dashed rgb(from var(--color-primary) r g b / 0.3);
+      border-bottom: 1px dashed rgb(from var(--color-primary) r g b / 0.3);
+    }
+  }
+
+  &__trace-today {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+    background: var(--lg-secondary);
+  }
+
+  &__trace-endpoint {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+    background: var(--lg-primary);
+
+    &--preview {
+      opacity: 0.5;
+    }
+  }
+
+  &__cell {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    &--today,
+    &--endpoint {
+      @include text.text-bold;
+      color: white;
+
+      :root[data-theme='dark'] & {
+        color: var(--color-foreground);
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-block: var(--field-margin-md);
+  }
+}

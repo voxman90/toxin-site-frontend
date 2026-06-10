@@ -1,0 +1,57 @@
+@use '../../styles/text' as text;
+
+.ui-kit {
+  & header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--gap-md);
+    height: var(--header-height);
+    padding-inline: var(--layout-gutter-clamp);
+    border-bottom: 1px solid var(--fc-placeholder);
+  }
+
+  & main {
+    padding-top: 2.5rem;
+    padding-inline: var(--layout-gutter-clamp);
+  }
+
+  & h1 {
+    @include text.h1-text;
+
+    padding-bottom: var(--gap-md);
+  }
+
+  &__pages {
+    @include text.p-text;
+
+    display: flex;
+    gap: var(--gap-md);
+    flex-wrap: wrap;
+
+    font-size: 1rem;
+    color: var(--fc-standard);
+
+    & li {
+      flex-shrink: 0;
+      display: flex;
+      align-items: stretch;
+      height: var(--field-height);
+      border: var(--field-border-w) solid var(--fc-muted);
+
+      border-radius: var(--field-border-radius);
+      line-height: var(--field-height);
+      color: var(--fc-standard);
+
+      &:hover {
+        border-color: var(--fc-standard);
+        color: var(--fc-standard);
+        cursor: pointer;
+      }
+
+      & a {
+        padding-inline: 1rem;
+      }
+    }
+  }
+}

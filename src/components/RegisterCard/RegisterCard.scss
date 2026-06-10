@@ -1,0 +1,28 @@
+@use '../../styles/text' as text;
+
+.register-card {
+  min-width: var(--card-width-min);
+  width: 100%;
+  max-width: var(--card-width-max);
+
+  &__heading {
+    margin-top: var(--gap-sm);
+    margin-bottom: var(--gap-md);
+  }
+
+  &__gender-btns {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap-md);
+  }
+
+  &__login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__login-text {
+    @include text.p-text;
+  }
+}

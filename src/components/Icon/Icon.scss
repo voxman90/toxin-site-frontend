@@ -1,0 +1,23 @@
+@use '../../styles/text' as text;
+
+.icon {
+  &--font-material {
+    @include text.material-icons(var(--icon-size-sm));
+  }
+
+  &--font-awesome {
+    width: 100%;
+    height: 100%;
+
+    &::before {
+      @include text.awesome-icons(var(--icon-size-sm));
+
+      content: attr(data-icon-name);
+      display: inline-block;
+    }
+  }
+
+  &--size-lg {
+    font-size: var(--icon-size-lg);
+  }
+}

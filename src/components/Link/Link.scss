@@ -1,0 +1,50 @@
+@use '../../styles/text' as text;
+
+.link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-shadow);
+  }
+
+  &:hover > &__text,
+  &:focus-visible > &__text,
+  &:active > &__text {
+    color: transparent;
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    @include text.text-normal;
+
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    padding-inline-end: 0.5px;
+    white-space: nowrap;
+
+    color: var(--fc-muted);
+    transition: opacity var(--anim-standard);
+
+    &::after {
+      @include text.text-bold;
+
+      content: attr(data-text);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      visibility: hidden;
+      opacity: 0;
+
+      color: var(--fc-standard);
+    }
+  }
+}

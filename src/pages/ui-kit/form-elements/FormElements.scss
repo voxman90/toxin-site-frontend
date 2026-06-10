@@ -1,0 +1,84 @@
+.form-elements {
+  background-color: var(--color-surface);
+
+  & > header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: var(--gap-md);
+    height: var(--header-height);
+    width: 100vw;
+    padding-inline: var(--layout-gutter-clamp);
+  }
+
+  &__logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+
+  & main {
+    padding: 140px var(--layout-gutter-clamp);
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    justify-items: start;
+    justify-content: center;
+    column-gap: 30px;
+    row-gap: 70px;
+    padding-bottom: 70px;
+
+    @media screen and (max-width: 1024px) {
+      justify-items: center;
+    }
+  }
+
+  &__range-slider {
+    display: flex;
+    width: var(--field-width-md);
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  &__reviews {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+    max-width: 720px;
+  }
+
+  &__dropdown-facilities {
+    min-height: 280px;
+  }
+
+  &__dropdown-guests-exp,
+  &__dropdown-guests-dirty {
+    min-height: 240px;
+  }
+
+  &__plug {
+    display: inline-block;
+    width: 20px;
+  }
+
+  &__radio-buttons {
+    display: flex;
+    width: 220px;
+    justify-content: space-between;
+
+    & > * {
+      flex-basis: 100px;
+    }
+  }
+
+  &__exp-checkbox-lists {
+    position: relative;
+    top: -14px;
+  }
+}

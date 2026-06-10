@@ -1,0 +1,98 @@
+@use '../../styles/text' as text;
+
+.pagination {
+  display: grid;
+  grid-template-columns: repeat(3, min-content) auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'prev  positions next    ...    '
+    '....  caption   caption caption';
+  row-gap: var(--gap-sm);
+  width: max-content;
+
+  transform: translateX(calc(0px - var(--btn-height)));
+
+  &__items {
+    grid-area: positions;
+    display: flex;
+  }
+
+  &__ellipsis,
+  &__item,
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--btn-height);
+    height: var(--btn-height);
+
+    border-radius: 50%;
+  }
+
+  &__ellipsis,
+  &__item {
+    @include text.p-text(var(--fc-muted));
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:hover {
+      color: var(--fc-standard);
+    }
+
+    &--current {
+      font-weight: bold;
+      color: var(--color-bg);
+      background: var(--lg-primary);
+
+      &:hover {
+        color: var(--color-bg);
+        background: var(--lg-primary-hover);
+      }
+    }
+  }
+
+  &__btn {
+    @include text.material-icons;
+
+    color: var(--color-bg);
+    background: var(--lg-secondary);
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:hover {
+      background: var(--lg-secondary-hover);
+    }
+
+    &--prev {
+      grid-area: prev;
+
+      transform: rotate(180deg);
+    }
+
+    &--next {
+      grid-area: next;
+    }
+
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+
+  &__caption {
+    @include text.p-text(var(--fc-standard));
+
+    grid-area: caption;
+    justify-self: left;
+    display: inline-block;
+    height: 1.5rem;
+  }
+}

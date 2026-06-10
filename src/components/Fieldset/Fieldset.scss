@@ -1,0 +1,26 @@
+@use '../../styles/text' as text;
+
+.fieldset {
+  &__legend {
+    display: inline-block;
+
+    @include text.label-text;
+    text-align: left;
+
+    cursor: default;
+
+    &--indent {
+      &-xs {
+        margin-bottom: var(--gap-xs);
+      }
+
+      &-sm {
+        margin-bottom: var(--gap-sm);
+      }
+
+      &-md {
+        margin-bottom: var(--gap-md);
+      }
+    }
+  }
+}

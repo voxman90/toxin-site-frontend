@@ -1,0 +1,45 @@
+@use '../../styles/shared' as *;
+
+.subscription-field {
+  min-width: var(--field-width-sm);
+  width: 100%;
+  max-width: var(--field-width-md);
+
+  &__input {
+    position: relative;
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--field-height);
+    height: var(--field-height);
+    border: none;
+
+    border-radius: 0 var(--field-border-radius) var(--field-border-radius) 0;
+    background: var(--lg-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &:disabled {
+      @extend %disabled;
+    }
+
+    &:not(:disabled):hover {
+      background: var(--lg-primary-hover);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+  }
+}

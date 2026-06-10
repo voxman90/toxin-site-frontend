@@ -1,0 +1,5 @@
+@use '../../styles/text' as text;
+
+.copyright {
+  @include text.p-text(var(--fc-standard));
+}

@@ -1,0 +1,123 @@
+@use '../../styles/text' as text;
+@use '../../styles/shared' as *;
+
+.room-card {
+  min-width: var(--room-card-width-min);
+  width: 100%;
+  max-width: var(--room-card-width-max);
+  height: 16.5rem;
+
+  border-radius: var(--field-border-radius);
+  background-color: var(--color-surface);
+  box-shadow: var(--room-card-shadow-c);
+
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-shadow);
+  }
+
+  &__carousel {
+    position: relative;
+    aspect-ratio: var(--room-card-img-ar);
+
+    overflow: hidden;
+    border-radius: var(--field-border-radius) var(--field-border-radius) 0 0;
+  }
+
+  &__body {
+    padding-block: 1.25rem;
+    padding-inline: 1.25rem 1rem;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__room-info {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__number-symbol {
+    @include text.h1-text();
+
+    font-size: var(--fz-p);
+  }
+
+  &__luxe {
+    @include text.label-text();
+
+    color: var(--color-primary);
+    font-size: var(--fz-label);
+
+    transform: translate(2px, 1px);
+  }
+
+  &__price-per-day {
+    @include text.p-text();
+
+    font-size: var(--fz-widget);
+    color: var(--fc-muted);
+  }
+
+  &__price-bold {
+    font-size: var(--fz-p);
+    font-weight: bold;
+  }
+
+  &__price-text {
+    font-size: var(--fz-label);
+  }
+
+  &__hr {
+    width: calc(100% - 3px);
+    margin: 0.625rem auto 0.5rem;
+    border-bottom: 1px solid rgba(from var(--color-foreground) r g b / 0.1);
+  }
+
+  &__rating-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__reviews {
+    @include text.p-text();
+
+    color: var(--fc-muted);
+  }
+
+  &--skeleton {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &__skeleton-text {
+    position: relative;
+    height: 1rem;
+
+    &--title {
+      width: 30%;
+      height: 1.75rem;
+      margin-bottom: 0.125rem;
+    }
+
+    &--price {
+      width: 45%;
+      height: 1.5rem;
+    }
+
+    &--rate {
+      width: 120px;
+      height: 1.5rem;
+    }
+
+    &--reviews {
+      width: 80px;
+    }
+  }
+}

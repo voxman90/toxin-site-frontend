@@ -1,0 +1,11 @@
+@use '../../styles/service.module' as service;
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+
+  &__item {
+    width: 100%;
+  }
+}

@@ -1,0 +1,42 @@
+.headers-and-footers {
+  position: relative;
+  width: 100%;
+
+  background-color: #cbcbcb;
+
+  :root[data-theme='dark'] & {
+    background-color: var(--color-bg);
+  }
+
+  & > header {
+    display: flex;
+    height: var(--header-height);
+    gap: var(--gap-md);
+    padding-inline: var(--layout-gutter-clamp);
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+
+  &__header {
+    z-index: 10;
+  }
+
+  &__footer {
+    z-index: 5;
+  }
+}

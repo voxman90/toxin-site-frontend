@@ -1,0 +1,31 @@
+.footer-creative {
+  width: 100%;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: clamp(320px, 100%, 768px);
+    margin-inline: auto;
+    padding-block: 7.5rem;
+
+    text-align: center;
+    background: var(--color-surface);
+    box-shadow: var(--card-shadow);
+  }
+
+  &__logo {
+    width: fit-content;
+    margin-bottom: var(--gap-md);
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-shadow);
+    }
+  }
+
+  &__social-follow {
+    margin-top: 25px;
+  }
+}

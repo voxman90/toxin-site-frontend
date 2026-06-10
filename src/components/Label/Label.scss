@@ -1,0 +1,47 @@
+@use '../../styles/text' as text;
+
+.label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: var(--label-gap);
+    width: 100%;
+    max-width: 100%;
+    min-height: var(--label-height);
+    margin-bottom: var(--label-margin-bottom);
+
+    &--large-margin {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__text {
+    @include text.label-text;
+
+    min-width: 0;
+    flex-shrink: 1;
+    white-space: nowrap;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+  &__appendix {
+    @include text.label-appendix-text;
+
+    min-width: 0;
+    max-width: 45%;
+    flex-shrink: 2;
+    white-space: nowrap;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    text-align: right;
+  }
+}

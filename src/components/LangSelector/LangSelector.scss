@@ -1,0 +1,50 @@
+@use '../../styles/text' as text;
+
+.lang-selector {
+  --ls-array-height: 6px;
+  --ls-array-width: 5px;
+  --ls-padding-for-array: 1.75rem;
+
+  position: relative;
+  display: inline-block;
+  width: max-content;
+
+  &__select {
+    @include text.p-text;
+
+    appearance: none;
+    height: 1.75rem;
+    border: var(--field-border-w) solid var(--fc-muted);
+    padding-inline: 0.5rem var(--ls-padding-for-array);
+
+    border-radius: var(--field-border-radius);
+    background-color: var(--color-bg);
+    font-size: 0.875rem;
+    color: var(--color-foreground);
+
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--fc-standard);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-shadow);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: calc((var(--ls-padding-for-array) - var(--ls-array-width)) / 2 - 1px);
+    top: 50%;
+    transform: translateY(-50%);
+
+    border-left: var(--ls-array-width) solid transparent;
+    border-right: var(--ls-array-width) solid transparent;
+    border-top: var(--ls-array-height) solid var(--color-foreground);
+
+    pointer-events: none;
+  }
+}

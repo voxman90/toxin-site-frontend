@@ -1,0 +1,174 @@
+@use '../../../styles/text' as text;
+
+$colors-map: (
+  foreground-05: var(--color-foreground-05),
+  foreground-25: var(--color-foreground-25),
+  foreground-50: var(--color-foreground-50),
+  foreground-75: var(--color-foreground-75),
+  foreground: var(--color-foreground),
+  primary: var(--color-primary),
+  secondary: var(--color-secondary),
+);
+
+.colors-and-types {
+  position: relative;
+  height: 100vh;
+
+  &__logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+
+  &__theme-toggle {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-rows: 145px auto 145px;
+    grid-template-columns: 10% 1fr 5% 1fr 10%;
+    grid-template-areas:
+      '..... .....  ..... ..... .....'
+      '..... colors ..... types .....'
+      '..... .....  ..... ..... .....';
+    align-items: start;
+    min-height: 100%;
+
+    @media (width <= 1200px) {
+      & {
+        grid-template-rows: 145px auto 60px auto 145px;
+        grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
+        grid-template-areas:
+          '..... .....  .....'
+          '..... colors .....'
+          '..... .....  .....'
+          '..... types  .....'
+          '..... .....  .....';
+      }
+    }
+  }
+
+  &__color-palette {
+    grid-area: colors;
+  }
+
+  &__types {
+    grid-area: types;
+  }
+}
+
+.color-palette {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__sample {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+
+    border-radius: 6px;
+
+    @each $name, $color in $colors-map {
+      &--color-#{$name} {
+        background-color: $color;
+      }
+    }
+  }
+
+  &__descr {
+    @include text.widget-text;
+
+    line-height: 1.75rem;
+  }
+
+  &__code {
+    @include text.text-normal;
+  }
+}
+
+.types {
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 3.125rem;
+
+  @media (width <= 1200px) {
+    & {
+      justify-self: start;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-items: baseline;
+    gap: 1.875rem;
+  }
+
+  &__label {
+    flex-shrink: 0;
+    vertical-align: top;
+    width: 2.5rem;
+
+    text-align: right;
+
+    &--type-h1 {
+      @include text.label-appendix-text(var(--color-foreground-25));
+
+      font-size: var(--fz-h1);
+    }
+
+    &--type-widget {
+      @include text.label-appendix-text(var(--color-foreground-25));
+
+      font-size: var(--fz-widget);
+    }
+
+    &--type-label {
+      @include text.label-appendix-text(var(--color-foreground-25));
+
+      font-size: var(--fz-label);
+    }
+
+    &--type-p {
+      @include text.label-appendix-text(var(--color-foreground-25));
+
+      font-size: var(--fz-p);
+      text-transform: none;
+    }
+  }
+
+  &__descr {
+    display: inline-block;
+    max-width: var(--card-width-max);
+    vertical-align: top;
+
+    text-align: left;
+
+    &--type-h1 {
+      @include text.h1-text;
+    }
+
+    &--type-widget {
+      @include text.widget-text;
+    }
+
+    &--type-label {
+      @include text.label-text;
+    }
+
+    &--type-p {
+      @include text.p-text;
+    }
+  }
+}

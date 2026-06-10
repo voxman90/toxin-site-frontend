@@ -1,0 +1,312 @@
+{
+  "additionalServices": {
+    "dinner": "Завтрак",
+    "desk": "Письменный стол",
+    "highchair": "Стул для кормления",
+    "crib": "Кроватка",
+    "TV": "Телевизор",
+    "shampoo": "Шампунь"
+  },
+  "accessibility": {
+    "wideCorridor": "Широкий коридор",
+    "wideCorridorDescription": "Ширина коридора в номере не менее 91 см.",
+    "assistant": "Помощник для инвалидов",
+    "assistantDescription": "На 1 этаже вас встретит специалист  и проводит до номера."
+  },
+  "auth": {
+    "logout": "выйти",
+    "login": "войти",
+    "register": "зарегистрироваться",
+    "profileMenu": "Меню пользователя",
+    "user": "Пользователь",
+    "profile": "Мой профиль"
+  },
+  "bookingCard": {
+    "luxe": "ЛЮКС",
+    "arrivalLabel": "прибытие",
+    "departureLabel": "выезд",
+    "guestsLabel": "гости",
+    "additionalServiceFee": "Сбор за дополнительные услуги",
+    "serviceFee": "Сбор за услуги",
+    "discount": "скидка",
+    "perDay": "в сутки",
+    "days_one": "сутки",
+    "days_few": "суток",
+    "days_many": "суток",
+    "total": "Итого",
+    "btnSubmit": "забронировать"
+  },
+  "carousel": {
+    "movePrev": "Предыдущий слайд",
+    "moveNext": "Следующий слайд",
+    "jumpTo": "Перейти к слайду",
+    "navPanel": "Навигация по слайдам"
+  },
+  "calendar": {
+    "description": "выбор дат",
+    "month": "месяц",
+    "year": "год",
+    "prev": "Следующий период",
+    "next": "Предыдущий период",
+    "zoomOutHint": "Нажмите, чтобы переключиться на выбор месяцев",
+    "month0": "Январь",
+    "month1": "Февраль",
+    "month2": "Март",
+    "month3": "Апрель",
+    "month4": "Май",
+    "month5": "Июнь",
+    "month6": "Июль",
+    "month7": "Август",
+    "month8": "Сентябрь",
+    "month9": "Октябрь",
+    "month10": "Ноябрь",
+    "month11": "Декабрь",
+    "day0": "Пн",
+    "day1": "Вт",
+    "day2": "Ср",
+    "day3": "Чт",
+    "day4": "Пт",
+    "day5": "Сб",
+    "day6": "Вс",
+    "clear": "очистить",
+    "apply": "применить",
+    "ddmPlaceholder": "ДД.ММ",
+    "ddmmyyyyPlacecholder": "ДД.ММ.ГГГГ"
+  },
+  "copyright": {
+    "text": "Copyright © {{year}} Toxin отель. Все права защищены."
+  },
+  "dropdown": {
+    "apply": "применить",
+    "clear": "очистить",
+    "increase": "Прибавить к опции {{option}}",
+    "decrease": "Убавить от опции {{option}}",
+    "output": "Значение опции {{option}}"
+  },
+  "dropdownAmenities": {
+    "default": "Выберите удобства",
+    "bedroom_one": "{{count}} спальня",
+    "bedroom_few": "{{count}} спальни",
+    "bedroom_many": "{{count}} спален",
+    "bedroom_genitive_plural": "спальни",
+    "bed_one": "{{count}} кровать",
+    "bed_few": "{{count}} кровати",
+    "bed_many": "{{count}} кроватей",
+    "bed_genitive_plural": "кровати",
+    "bathroom_one": "{{count}} ванная комната",
+    "bathroom_few": "{{count}} ванные комнаты",
+    "bathroom_many": "{{count}} ванных комнат",
+    "bathroom_genitive_plural": "ванные комнаты"
+  },
+  "dropdownGuests": {
+    "default": "Сколько гостей",
+    "adult_one": "{{count}} взрослый",
+    "adult_few": "{{count}} взрослых",
+    "adult_many": "{{count}} взрослых",
+    "adult_genitive_plural": "взрослые",
+    "child_one": "{{count}} ребенок",
+    "child_few": "{{count}} ребенка",
+    "child_many": "{{count}} детей",
+    "child_genitive_plural": "дети",
+    "baby_one": "{{count}} младенец",
+    "baby_few": "{{count}} младенца",
+    "baby_many": "{{count}} младенцев",
+    "baby_genitive_plural": "младенцы",
+    "guest_one": "{{count}} гость",
+    "guest_few": "{{count}} гостя",
+    "guest_many": "{{count}} гостей",
+    "guest_genitive_plural": "гости"
+  },
+  "errors": {
+    "loginRequired": "Логин не указан",
+    "emailInvalid": "Неверный электронный адрес",
+    "emailTaken": "Электронный адрес уже зарегестрирован",
+    "emailRequired": "Не указан электронный адрес",
+    "firstNameRequired": "Не указано имя",
+    "lastNameRequired": "Не указана фамилия",
+    "birthDateRequired": "Не указана дата рождения",
+    "birthDateMinor": "Вам должно быть не менее 18 лет",
+    "passwordRequired": "Пароль не указан",
+    "passwordMustContainLowercaseLetter": "Пароль должен включать строчную букву",
+    "passwordMustContainUppercaseLetter": "Пароль должен включать заглавную букву",
+    "passwordMustContainNumber": "Пароль должен включать число",
+    "passwordMustContainSpecialSymbol": "Пароль должен включать специальный символ",
+    "passwordMismatch": "Пароли не совпадают",
+    "arrivalRequired": "Не указано прибытие",
+    "departureRequired": "Не указано отбытие",
+    "guestsRequired": "Не указано количество гостей",
+    "unknownError": "Неизвестная ошибка",
+    "maxCapacityExceeded": "Вместимость этой комнаты: {{maxCapacity}} гостей"
+  },
+  "errorBoudary": {
+    "defaultFallback": {
+      "title": "Что-то пошло не так",
+      "message": "Произошла непредвиденная ошибка. Пожалуйста, вернитесь на главную страницу.",
+      "btnText": "На главную"
+    },
+    "serverError": {
+      "title": "Ошибка 500",
+      "description": "На сервере произошла ошибка и он не смог обработать Ваш запрос, пожалуйста, попробуйте снова.",
+      "btnText": "Повторить запрос"
+    },
+    "idError": {
+      "title": "Ошибка 404",
+      "description": "Комната не найдена, пожалуйста, выберите комнату на странице поиска.",
+      "btnText": "Вернуться на главную"
+    }
+  },
+  "miniErrorPlaceholder": {
+    "onRetry": "Повторить попытку"
+  },
+  "footer": {
+    "idea": "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»",
+    "logo": "Toxin Hotel Домашняя страница",
+    "navNav": "Навигация",
+    "navNavAbout": "О нас",
+    "navNavNews": "Новости",
+    "navNavSupport": "Служба поддержки",
+    "navNavServices": "Услуги",
+    "navAbout": "О нас",
+    "navAboutService": "О сервисе",
+    "navAboutTeam": "Наша команда",
+    "navAboutCareers": "Вакансии",
+    "navAboutInvestors": "Инвесторы",
+    "navSupport": "Служба поддержки",
+    "navSupportAgreements": "Соглашения",
+    "navSupportCommunities": "Сообщества",
+    "navSupportContact": "Связь с нами",
+    "subscriptionHeading": "Подписка",
+    "subscriptionText": "Получайте специальные предложения и новости сервиса"
+  },
+  "header": {
+    "logo": "Toxin Hotel Домашняя страница"
+  },
+  "likeButton": {
+    "label": "лайк",
+    "likes_one": "{{count}} лайк",
+    "likes_few": "{{count}} лайка",
+    "likes_many": "{{count}} лайков"
+  },
+  "maskedFieldDate": {
+    "placeholder": "ДД.ММ.ГГГГ"
+  },
+  "navbar": {
+    "aboutUs": "О нас",
+    "services": "Услуги",
+    "servicesSeason": "Сезонные предложения",
+    "servicesBusiness": "Бизнес-пакеты",
+    "servicesLeisure": "Индивидуальный подбор досуга",
+    "careers": "Вакансии",
+    "news": "Новости",
+    "agreements": "Соглашения",
+    "agreementsServices": "Гостиничные услуги",
+    "agreementsUser": "Обработка данных",
+    "main": "Главная навигация",
+    "toggleMenu": "Развернуть меню",
+    "toggleSubmenu": "Развернуть подменю: {{name}}"
+  },
+  "pagination": {
+    "label": "Навигация по страницам",
+    "prev": "Перейти на предыдущую страницу",
+    "next": "Перейти на следующую страницу",
+    "toPage": "Перейти на страницу {{number}}"
+  },
+  "rateButton": {
+    "rate_one": "{{count}} звёзда",
+    "rate_few": "{{count}} звёзды",
+    "rate_many": "{{count}} звёзд"
+  },
+  "ratingChart": {
+    "heading": "Впечатления от номера",
+    "vote_one": "голов",
+    "vote_few": "голоса",
+    "vote_many": "голосов",
+    "legend": {
+      "excellent": "великолепно",
+      "good": "хорошо",
+      "satisfactory": "удовлетворительно",
+      "disappointing": "разочарован"
+    }
+  },
+  "reviewList": {
+    "heading": "Отзывы посетителей номера",
+    "counter_one": "{{count}} Отзыв",
+    "counter_few": "{{count}} Отзыва",
+    "counter_many": "{{count}} Отзывов"
+  },
+  "roomCard": {
+    "label": "карточка комнаты",
+    "luxe": "люкс",
+    "perNight": "в сутки",
+    "roomPhotoAlt": "фото комнаты",
+    "review_one": "Отзыв",
+    "review_few": "Отзыва",
+    "review_many": "Отзывов",
+    "review_genitive_plural": "Отзывы"
+  },
+  "roomGallery": {
+    "roomView": "Фото комнаты"
+  },
+  "roomSearchCard": {
+    "heading": "Найдём номера под ваши пожелания",
+    "arrivalLabel": "прибытие",
+    "departureLabel": "выезд",
+    "guestsLabel": "гости",
+    "btnSubmit": "подобрать номер"
+  },
+  "searchSidebar": {
+    "accessibilityLegend": "доступность",
+    "additionalServicesLegend": "дополнительные услуги",
+    "amenitiesLabelText": "удобства номера",
+    "dateFilterLabelText": "даты пребывания в отеле",
+    "guestsLabelText": "гости",
+    "priceLabelText": "диапазон цены",
+    "priceCaption": "Стоимость за сутки пребывания в номере",
+    "rulesLegend": "правила дома"
+  },
+  "rules": {
+    "smokeAllowed": "Можно курить",
+    "petsAllowed": "Можно с питомцами",
+    "guestsAllowed": "Можно пригласить гостей\n(до 10 человек)"
+  },
+  "socialFollow": {
+    "label": "Ссылки на социальные сети"
+  },
+  "langSelector": {
+    "select": "Выберите язык"
+  },
+  "loginCard": {
+    "heading": "Войти",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Пароль",
+    "btnSubmit": "Войти",
+    "hasNotAccount": "Нет аккаунта на Toxin?",
+    "btnRegister": "Создать"
+  },
+  "registerCard": {
+    "heading": "Регистрация аккаунта",
+    "firstNamePlaceholder": "Имя",
+    "lastNamePlaceholder": "Фамилия",
+    "genderSelection": "Выбор пола",
+    "genderMale": "Мужчина",
+    "genderFemale": "Женщина",
+    "birthdateLabel": "Дата рождения",
+    "birthdatePlaceholder": "ДД.ММ.ГГГГ",
+    "credentialsLabel": "Данные для входа в сервисе",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Пароль",
+    "passwordConfirmPlaceholder": "Подтверждение пароля",
+    "subscription": "Получать спецпредложения",
+    "btnSubmit": "Зарегистрироваться",
+    "hasAccount": "Уже есть аккаунт на Toxin",
+    "btnLogin": "Войти"
+  },
+  "subscriptionField": {
+    "placeholder": "Email",
+    "submit": "Подписаться"
+  },
+  "themeToggle": {
+    "setLight": "Включить светлую тему",
+    "setDark": "Включить тёмную тему"
+  }
+}

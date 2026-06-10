@@ -1,0 +1,69 @@
+@use '../../styles/text' as text;
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  @include text.p-text;
+
+  width: 100%;
+  height: var(--field-height);
+  padding: 0 var(--field-padding-left);
+  border: var(--field-border-w) solid var(--interactive-border);
+
+  background-color: var(--color-bg);
+  border-radius: var(--field-border-radius);
+
+  &:focus-visible {
+    box-shadow: var(--focus-shadow);
+  }
+
+  &:hover {
+    border-color: var(--interactive-border-hover);
+  }
+
+  &::placeholder {
+    color: var(--fc-placeholder);
+    opacity: 1;
+  }
+
+  &--invalid {
+    border-color: var(--color-error);
+
+    &:hover {
+      border-color: var(--color-error);
+    }
+  }
+
+  &--has-error-text {
+    &:not(:focus) {
+      color: transparent;
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    &:focus + .input__error-text {
+      display: none;
+    }
+  }
+
+  &__error-text {
+    @include text.p-text;
+
+    position: absolute;
+    top: 50%;
+    left: var(--field-padding-left);
+    width: calc(100% - (var(--field-padding-left) * 2));
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color-error);
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+}

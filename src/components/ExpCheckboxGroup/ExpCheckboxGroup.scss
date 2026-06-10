@@ -1,0 +1,56 @@
+@use '../../styles/text' as text;
+
+.exp-checkbox-group {
+  position: relative;
+  width: var(--field-width-md);
+
+  &__legend {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 30px;
+    height: var(--field-height);
+  }
+
+  &__heading {
+    overflow: hidden;
+    padding-bottom: 1px;
+  }
+
+  &__expand-btn {
+    flex-shrink: 0;
+    width: var(--field-height);
+    height: var(--icon-size-sm);
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    text-align: center;
+    color: var(--color-foreground-50);
+    background-color: transparent;
+    transition: transform var(--anim-standard);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-foreground-75);
+    }
+
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+    }
+
+    &--active {
+      color: var(--color-foreground-75);
+      transform: rotate(180deg);
+    }
+  }
+
+  &__content {
+    display: none;
+
+    &--expanded {
+      display: block;
+      padding-top: 3px;
+    }
+  }
+}

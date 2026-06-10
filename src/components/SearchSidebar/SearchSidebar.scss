@@ -1,0 +1,13 @@
+@use '../../styles/text' as text;
+
+.search-sidebar {
+  box-sizing: content-box;
+  width: var(--field-width-md);
+
+  &__price-caption {
+    @include text.p-text();
+
+    font-size: var(--fz-label);
+    color: var(--fc-muted);
+  }
+}

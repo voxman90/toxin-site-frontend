@@ -1,0 +1,40 @@
+@use '../../styles/text' as text;
+
+.bullet-list {
+  --bl-dot-size: 0.625rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  max-width: var(--field-width-lg);
+
+  &--align-with-text {
+    & > li {
+      transform: translateX(calc(0px - var(--gap-sm) - var(--bl-dot-size)));
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--gap-sm);
+    overflow: hidden;
+  }
+
+  &__marker {
+    flex-shrink: 0;
+    width: var(--bl-dot-size);
+    height: var(--bl-dot-size);
+
+    border-radius: 50%;
+    background-color: var(--color-foreground-25);
+  }
+
+  &__text {
+    @include text.p-text(var(--fc-standard));
+
+    vertical-align: top;
+
+    white-space: pre-wrap;
+  }
+}

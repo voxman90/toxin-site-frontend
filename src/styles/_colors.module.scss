@@ -1,0 +1,51 @@
+:root {
+  --color-foreground: #1f2041;
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-tooltip: #ffffff;
+  --color-primary: #bc9cff;
+  --color-primary-accent: #8ba4f9;
+  --color-secondary: #6fcf97;
+  --color-secondary-accent: #66d2ea;
+  --color-error: #d32f2f;
+  --color-disabled: color-mix(in srgb, var(--color-foreground), var(--color-bg) 50%);
+
+  --color-foreground-05: rgb(from var(--color-foreground) r g b / 0.05);
+  --color-foreground-10: rgb(from var(--color-foreground) r g b / 0.1);
+  --color-foreground-12: rgb(from var(--color-foreground) r g b / 0.12);
+  --color-foreground-25: rgb(from var(--color-foreground) r g b / 0.25);
+  --color-foreground-50: rgb(from var(--color-foreground) r g b / 0.5);
+  --color-foreground-75: rgb(from var(--color-foreground) r g b / 0.75);
+
+  --color-primary-hover: color-mix(in srgb, var(--color-primary), #000 20%);
+  --color-primary-accent-hover: color-mix(in srgb, var(--color-primary-accent), #000 20%);
+  --color-secondary-hover: color-mix(in srgb, var(--color-secondary), #000 20%);
+  --color-secondary-accent-hover: color-mix(in srgb, var(--color-secondary-accent), #000 20%);
+
+  --color-excellent: #ffe39c;
+  --color-excellent-accent: #ffe39c;
+  --color-disappointing: #909090;
+  --color-disappointing-accent: #3d4975;
+  --color-good: var(--color-secondary);
+  --color-good-accent: var(--color-secondary-accent);
+  --color-satisfactory: var(--color-primary);
+  --color-satisfactory-accent: var(--color-primary-accent);
+}
+
+:root[data-theme='dark'] {
+  --color-foreground: #e0e0e0;
+  --color-bg: #1e1e1e;
+  --color-surface: #151515;
+  --color-tooltip: #e0e0e0;
+  --color-primary: #bc9cff;
+  --color-primary-accent: #8ba4f9;
+  --color-secondary: #6fcf97;
+  --color-secondary-accent: #66d2ea;
+  --color-error: #f87171;
+  --color-disabled: color-mix(in srgb, var(--color-foreground), var(--color-bg) 50%);
+
+  --color-primary-hover: color-mix(in srgb, var(--color-primary), #fff 30%);
+  --color-primary-accent-hover: color-mix(in srgb, var(--color-primary-accent), #fff 30%);
+  --color-secondary-hover: color-mix(in srgb, var(--color-secondary), #fff 30%);
+  --color-secondary-accent-hover: color-mix(in srgb, var(--color-secondary-accent), #fff 30%);
+}

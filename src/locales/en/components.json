@@ -1,0 +1,303 @@
+{
+  "accessibility": {
+    "wideCorridor": "Wide corridor",
+    "wideCorridorDescription": "The corridor width in the room is at least 91 cm.",
+    "assistant": "Assistant for the disabled",
+    "assistantDescription": "A specialist will meet you on the 1st floor and escort you to your room."
+  },
+  "additionalServices": {
+    "dinner": "Dinner",
+    "desk": "Desk",
+    "highchair": "Highchair",
+    "crib": "Crib",
+    "TV": "TV",
+    "shampoo": "Shampoo"
+  },
+  "auth": {
+    "logout": "logout",
+    "login": "Sign In",
+    "user": "User",
+    "register": "Sign Up",
+    "profileMenu": "User menu",
+    "profile": "My profile"
+  },
+  "bookingCard": {
+    "luxe": "LUXE",
+    "arrivalLabel": "arrival",
+    "departureLabel": "departure",
+    "guestsLabel": "guests",
+    "additionalServiceFee": "Additional service fee",
+    "serviceFee": "Service fee",
+    "discount": "discount",
+    "perDay": "per day",
+    "days_one": "day",
+    "days_other": "days",
+    "total": "total",
+    "btnSubmit": "book a room"
+  },
+  "carousel": {
+    "movePrev": "Previous slide",
+    "moveNext": "Next slide",
+    "jumpTo": "Go to slide",
+    "navPanel": "Slide navigation"
+  },
+  "calendar": {
+    "description": "date selection",
+    "month": "month",
+    "year": "year",
+    "prev": "Previous period",
+    "next": "Next period",
+    "zoomOutHint": "Click to switch to month table",
+    "month0": "January",
+    "month1": "February",
+    "month2": "March",
+    "month3": "April",
+    "month4": "May",
+    "month5": "June",
+    "month6": "July",
+    "month7": "August",
+    "month8": "September",
+    "month9": "October",
+    "month10": "November",
+    "month11": "December",
+    "day0": "Mon",
+    "day1": "Tue",
+    "day2": "Wed",
+    "day3": "Thu",
+    "day4": "Fri",
+    "day5": "Sat",
+    "day6": "Sun",
+    "clear": "clear",
+    "apply": "apply",
+    "ddmPlaceholder": "DD.MM",
+    "ddmmyyyyPlacecholder": "DD.MM.YYYY"
+  },
+  "copyright": {
+    "text": "Copyright © {{year}} Toxin Hotel. All rights reserved."
+  },
+  "dropdown": {
+    "apply": "apply",
+    "clear": "clear",
+    "increase": "Increase {{option}}",
+    "decrease": "Decrease {{option}}",
+    "output": "Value of {{option}}"
+  },
+  "dropdownAmenities": {
+    "default": "Select amenities",
+    "bedroom_one": "{{count}} bedroom",
+    "bedroom_other": "{{count}} bedrooms",
+    "bedroom_genitive_plural": "bedrooms",
+    "bed_one": "{{count}} bed",
+    "bed_other": "{{count}} beds",
+    "bed_genitive_plural": "beds",
+    "bathroom_one": "{{count}} bathroom",
+    "bathroom_other": "{{count}} bathrooms",
+    "bathroom_genitive_plural": "bathrooms"
+  },
+  "dropdownGuests": {
+    "default": "How many guests",
+    "adult_one": "{{count}} adult",
+    "adult_other": "{{count}} adults",
+    "adult_genitive_plural": "adults",
+    "child_one": "{{count}} child",
+    "child_other": "{{count}} children",
+    "child_genitive_plural": "children",
+    "baby_one": "{{count}} baby",
+    "baby_other": "{{count}} babies",
+    "baby_genitive_plural": "babies",
+    "guest_one": "{{count}} guest",
+    "guest_other": "{{count}} guests",
+    "guest_genitive_plural": "guests"
+  },
+  "emptyState": {
+    "title": "Nothing found",
+    "description": "Try changing your dates, expanding your price range, or removing some filters."
+  },
+  "errors": {
+    "loginRequired": "Login is required",
+    "emailInvalid": "Invalid email address",
+    "emailTaken": "Email address registered to another account",
+    "emailRequired": "Email address is required",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "birthDateRequired": "Birth date is required",
+    "birthDateMinor": "You must be at least 18 years old",
+    "passwordRequired": "A password is required",
+    "passwordMustContainLowercaseLetter": "Password must contain at least one lowercase letter",
+    "passwordMustContainUppercaseLetter": "Password must contain at least one uppercase letter",
+    "passwordMustContainNumber": "Password must contain at least one number",
+    "passwordMustContainSpecialSymbol": "Password must contain at least one special character",
+    "passwordMismatch": "Passwords do not match",
+    "arrivalRequired": "Arrival is required",
+    "departureRequired": "Departure is required",
+    "guestsRequired": "Number of guests not specified",
+    "unknownError": "Unknown error",
+    "maxCapacityExceeded": "This room has a capacity of {{maxCapacity}} guests"
+  },
+  "errorBoudary": {
+    "defaultFallback": {
+      "title": "Something go wrong...",
+      "message": "An unexpected error has occurred. Please return to the main page.",
+      "btnText": "Back to home"
+    },
+    "serverError": {
+      "title": "Error",
+      "description": "Something went wrong, please try again",
+      "btnText": "Retry"
+    },
+    "idError": {
+      "title": "Error",
+      "description": "Room ID is not specified, please select a room on the search page",
+      "btnText": "Return home"
+    }
+  },
+  "miniErrorPlaceholder": {
+    "onRetry": "retry"
+  },
+  "footer": {
+    "idea": "Booking a room at the best hotel of 2019 according to the «Hotel Views» association",
+    "logo": "Toxin Hotel Home Page",
+    "navNav": "Navigation",
+    "navNavAbout": "About us",
+    "navNavNews": "News",
+    "navNavSupport": "Support",
+    "navNavServices": "Services",
+    "navAbout": "About us",
+    "navAboutService": "About service",
+    "navAboutTeam": "Our Team",
+    "navAboutCareers": "Careers",
+    "navAboutInvestors": "Investors",
+    "navSupport": "Support",
+    "navSupportAgreements": "Agreements",
+    "navSupportCommunities": "Communities",
+    "navSupportContact": "Contact us",
+    "subscriptionHeading": "Subscription",
+    "subscriptionText": "Receive special offers and service news"
+  },
+  "header": {
+    "logo": "Toxin Hotel Home"
+  },
+  "likeButton": {
+    "label": "like",
+    "likes_one": "like: {{count}}",
+    "likes_other": "likes: {{count}}"
+  },
+  "maskedFieldDate": {
+    "placeholder": "DD.MM.YYYY"
+  },
+  "navbar": {
+    "aboutUs": "About Us",
+    "services": "Services",
+    "servicesSeason": "Seasonal Offers",
+    "servicesBusiness": "Business Packages",
+    "servicesLeisure": "Customized Leisure Activities",
+    "careers": "Careers",
+    "news": "News",
+    "agreements": "Agreements",
+    "agreementsServices": "Hotel Services",
+    "agreementsUser": "User Agreement",
+    "main": "Main navigation",
+    "toggleMenu": "Toggle menu",
+    "toggleSubmenu": "Toggle submenu: {{name}}"
+  },
+  "pagination": {
+    "label": "Pagination Navigation",
+    "prev": "Go to previous page",
+    "next": "Go to next page",
+    "toPage": "Go to page {{number}}"
+  },
+  "rateButton": {
+    "rate_one": "{{count}} star",
+    "rate_other": "{{count}} stars"
+  },
+  "reviewList": {
+    "heading": "Visitor reviews",
+    "counter_one": "{{count}} review",
+    "counter_other": "{{count}} reviews"
+  },
+  "ratingChart": {
+    "heading": "Impressions of the room",
+    "vote_one": "vote",
+    "vote_other": "votes",
+    "legend": {
+      "excellent": "excellent",
+      "good": "good",
+      "satisfactory": "satisfactory",
+      "disappointing": "disappointing"
+    }
+  },
+  "roomCard": {
+    "label": "Room card",
+    "luxe": "luxe",
+    "perNight": "per night",
+    "roomPhotoAlt": "room photo",
+    "review_one": "Review",
+    "review_other": "Reviews",
+    "review_genitive_plural": "reviews"
+  },
+  "roomGallery": {
+    "roomView": "Room view"
+  },
+  "roomSearchCard": {
+    "heading": "We'll find rooms to suit your needs",
+    "arrivalLabel": "arrival",
+    "departureLabel": "departure",
+    "guestsLabel": "guests",
+    "btnSubmit": "find a room"
+  },
+  "searchSidebar": {
+    "accessibilityLegend": "accessibility",
+    "additionalServicesLegend": "additional services",
+    "amenitiesLabelText": "room amenities",
+    "dateFilterLabelText": "stay dates",
+    "guestsLabelText": "guests",
+    "priceLabelText": "price range",
+    "priceCaption": "room price per night",
+    "rulesLegend": "house rules"
+  },
+  "rules": {
+    "smokeAllowed": "Smoking allowed",
+    "petsAllowed": "Pets allowed",
+    "guestsAllowed": "Guests allowed\n(up to 10 people)"
+  },
+  "socialFollow": {
+    "label": "Social media links"
+  },
+  "langSelector": {
+    "select": "Select language"
+  },
+  "loginCard": {
+    "heading": "Sign In",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "btnSubmit": "Login",
+    "hasNotAccount": "Don't have a Toxin account?",
+    "btnRegister": "Create"
+  },
+  "registerCard": {
+    "heading": "Account Registration",
+    "firstNamePlaceholder": "First Name",
+    "lastNamePlaceholder": "Last Name",
+    "genderSelection": "Gender selection",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "birthdateLabel": "Date of Birth",
+    "birthdatePlaceholder": "DD/MM/YYYY",
+    "credentialsLabel": "Login Credentials",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "passwordConfirmPlaceholder": "Confirm Password",
+    "subscription": "Receive special offers",
+    "btnSubmit": "Register",
+    "hasAccount": "Already have an account on Toxin",
+    "btnLogin": "Log in"
+  },
+  "subscriptionField": {
+    "placeholder": "Email",
+    "submit": "Subscribe"
+  },
+  "themeToggle": {
+    "setLight": "Switch to light theme",
+    "setDark": "Switch to dark theme"
+  }
+}
