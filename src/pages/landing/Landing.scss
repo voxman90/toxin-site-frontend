@@ -3,9 +3,9 @@
 .landing {
   &__main {
     position: relative;
-    height: calc(100vh - var(--header-height));
+    height: max(660px, calc(100vh - var(--header-height)));
 
-    background-image: url('/images/bg-landing-w1440.jpg');
+    background-image: var(--bg-image);
     background-repeat: no-repeat;
     background-position: right;
     background-size: cover;

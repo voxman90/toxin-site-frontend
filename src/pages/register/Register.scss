@@ -1,5 +1,5 @@
 .register {
-  background: url('/images/bg-register-w1440.jpg');
+  background-image: var(--bg-image);
   background-size: clamp(1440px, 100vw, 1920px) auto;
   background-position: center center;
   background-repeat: no-repeat;
