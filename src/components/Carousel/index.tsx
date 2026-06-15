@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { motion } from 'motion/react';
 import type { Transition } from 'motion/react';
+import { motion } from 'motion/react';
 import React, { memo, useCallback, useImperativeHandle, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -8,6 +8,7 @@ import Icon from '../Icon/Icon';
 
 import './Carousel.scss';
 import CarouselItem from './CarouselItem';
+import CarouselNavTrack from './CarouselNavTrack';
 import { useCarousel } from './useCarousel';
 
 export type Direction = 'left' | 'right';
@@ -34,37 +35,34 @@ interface CarouselProps {
   isFocusable?: boolean;
 }
 
+const DEFAULT_TRANSITION = {
+  duration: 0.4,
+  ease: 'easeInOut',
+} as const;
+
+const NOOP = () => {};
+
 const STATIC_VARIANT = {
   initial: { transform: 'translateX(0%)' },
   animate: { transform: 'translateX(0%)' },
 };
 
-const DEFAULT_TRANSITION = {
-  duration: 0.4,
-  ease: 'easeInOut',
-} as const;
-const NOOP = () => {};
-
-const getSlideFromPositions = (direction: Direction) => {
-  const finalPos = direction === 'right' ? '-100%' : '100%';
-
-  return {
-    initial: { transform: 'translateX(0%)' },
-    animate: { transform: `translateX(${finalPos})` },
-  };
+const FROM_VARIANT = {
+  initial: { transform: 'translateX(0%)' },
+  animate: (direction: Direction) => ({
+    transform: `translateX(${direction === 'right' ? '-100%' : '100%'})`,
+  }),
 };
 
-const getSlideToPositions = (slidingDirection: Direction) => {
-  const initialPos = slidingDirection === 'right' ? '100%' : '-100%';
-
-  return {
-    initial: { transform: `translateX(${initialPos})` },
-    animate: { transform: 'translateX(0%)' },
-  };
+const TO_VARIANT = {
+  initial: (direction: Direction) => ({
+    transform: `translateX(${direction === 'right' ? '100%' : '-100%'})`,
+  }),
+  animate: { transform: 'translateX(0%)' },
 };
 
-const isNavItem = (elem: unknown): elem is HTMLButtonElement & { dataset: { id: string } } =>
-  elem instanceof HTMLButtonElement && elem.dataset.id !== undefined;
+const isNavItem = (elem: unknown): elem is HTMLElement & { dataset: { id: string } } =>
+  elem instanceof HTMLElement && elem.dataset.id !== undefined;
 
 const Carousel = memo(
   ({
@@ -130,25 +128,18 @@ const Carousel = memo(
             const isTo = i === state.slidingTo;
             const isActive = i === state.activeItemIndex && !state.isSliding;
 
-            if (!isFrom && !isTo && !isActive) {
-              return null;
-            }
+            if (!isFrom && !isTo && !isActive) return null;
 
-            let variants = { initial: {}, animate: {} };
-            if (isFrom) {
-              variants = getSlideFromPositions(state.slidingDirection);
-            } else if (isTo) {
-              variants = getSlideToPositions(state.slidingDirection);
-            } else {
-              variants = STATIC_VARIANT;
-            }
+            const variants = isFrom ? FROM_VARIANT : isTo ? TO_VARIANT : STATIC_VARIANT;
 
             return (
               <motion.div
                 key={i}
-                initial={variants.initial}
-                animate={variants.animate}
-                exit={variants.initial}
+                custom={state.slidingDirection}
+                variants={variants}
+                initial="initial"
+                animate="animate"
+                exit="initial"
                 transition={transition}
                 onAnimationComplete={isTo ? handleAnimationEnd : undefined}
               >
@@ -189,35 +180,18 @@ const Carousel = memo(
         )}
 
         {showNav && (
-          <div
-            className="carousel__nav"
-            onClick={handleNavClick}
-            role="group"
-            aria-label={t('navPanel')}
-          >
-            {React.Children.map(children, (_, i) => {
-              const isActive = i === state.activeItemIndex;
-
-              return (
-                <button
-                  key={i}
-                  type="button"
-                  tabIndex={isFocusable ? 0 : -1}
-                  className={clsx('carousel__nav-item', {
-                    'carousel__nav-item--active': isActive,
-                  })}
-                  data-id={i}
-                  aria-disabled={state.isSliding}
-                  aria-current={isActive ? 'true' : 'false'}
-                  aria-label={`${t('jumpTo')} ${i + 1}`}
-                />
-              );
-            })}
-          </div>
+          <CarouselNavTrack
+            itemCount={itemCount}
+            activeIndex={state.slidingTo !== null ? state.slidingTo : state.activeItemIndex}
+            onNavClick={handleNavClick}
+            transition={transition}
+          />
         )}
       </div>
     );
   },
 );
+
+Carousel.displayName = 'Carousel';
 
 export default Carousel;

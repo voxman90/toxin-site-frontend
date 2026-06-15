@@ -460,7 +460,7 @@ export const useCalendar = <T extends FieldValues>({
 
     setTrace(() => ({ ...getInitialTraceState(), today }));
 
-    focusController.send('CLEARED');
+    focusController.send('CLEARED', { nextDate: today });
   }, [isAnimated, fieldFrom, fieldTo, focusController, trace.today]);
 
   const handleApply = useCallback(() => {

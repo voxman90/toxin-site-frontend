@@ -11,7 +11,7 @@ export type ExpandableNavItem = NavItem & {
 };
 
 export const getNavItems = (t: TFunction<'components', 'navbar'>) => [
-  { text: t('aboutUs'), href: '#' },
+  { text: 'UI-kit', href: '/ui-kit' },
   {
     text: t('services'),
     href: '#',

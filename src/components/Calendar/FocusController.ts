@@ -203,10 +203,18 @@ class FocusController {
       }
     };
 
-    requestAnimationFrame(() => {
+    queueMicrotask(() => {
+      if (signal.aborted) return;
+
+      window.addEventListener('focus', cleanup, { once: true, capture: true, signal });
+    });
+
+    setTimeout(() => {
+      if (signal.aborted) return;
+
       window.addEventListener('keydown', cleanup, { once: true, capture: true, signal });
       window.addEventListener('mousedown', cleanup, { once: true, capture: true, signal });
-    });
+    }, 0);
   }
 
   private executeGridFocus(date: Date, show = true): void {

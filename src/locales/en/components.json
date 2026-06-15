@@ -38,8 +38,7 @@
   "carousel": {
     "movePrev": "Previous slide",
     "moveNext": "Next slide",
-    "jumpTo": "Go to slide",
-    "navPanel": "Slide navigation"
+    "navPanelStatus": "Navigation panel. Slide {{current}} of {{total}}"
   },
   "calendar": {
     "description": "date selection",

@@ -72,6 +72,15 @@ const Cards = () => {
                 ))}
               </Carousel>
             </div>
+            <div className="cards__carousel">
+              <Carousel isFocusable hasControlButtons hasNavPanel>
+                {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                  <CarouselItem key={i}>
+                    <div className="cards__carousel-item" data-id={i % 4} />
+                  </CarouselItem>
+                ))}
+              </Carousel>
+            </div>
           </div>
         </div>
       </div>

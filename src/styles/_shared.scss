@@ -16,6 +16,11 @@
   pointer-events: none;
 }
 
+%focus-outline {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}
+
 @keyframes shimmer {
   from {
     background-position: 200% 0;

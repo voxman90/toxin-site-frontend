@@ -39,8 +39,7 @@
   "carousel": {
     "movePrev": "Предыдущий слайд",
     "moveNext": "Следующий слайд",
-    "jumpTo": "Перейти к слайду",
-    "navPanel": "Навигация по слайдам"
+    "navPanelStatus": "Панель навигации. Слайд {{current}} из {{total}}"
   },
   "calendar": {
     "description": "выбор дат",

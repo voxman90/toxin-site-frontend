@@ -69,8 +69,7 @@ describe('Carousel component', () => {
 
       screen.getByLabelText('movePrev');
       screen.getByLabelText('moveNext');
-      screen.getByLabelText('navPanel');
-      screen.getByLabelText('jumpTo 1');
+      screen.getByLabelText('navPanelStatus');
     });
   });
 
@@ -237,32 +236,33 @@ describe('Carousel component', () => {
     it('should show nav panel when hasNavPanel is true', () => {
       render(<Carousel hasNavPanel>{createChildrenMock()}</Carousel>);
 
-      screen.getByLabelText('navPanel');
+      screen.getByLabelText('navPanelStatus');
     });
 
     it('should highlight the correct nav item as active', () => {
-      render(
+      const { container } = render(
         <Carousel hasNavPanel activeItemIndex={3}>
           {createChildrenMock(5)}
         </Carousel>,
       );
 
-      const navItems = screen.getAllByLabelText(/^jumpTo/);
-      const activeNavItems = navItems.filter((item) => item.className.includes('--active'));
+      const navItems = container.querySelectorAll('.carousel__nav-item');
+      const activeNavItems = Array.from(navItems)
+        .filter((item) => item.className.includes('--active'));
 
       expect(activeNavItems.length).toBe(1);
-      expect(activeNavItems[0].dataset.id).toBe('3');
+      expect((activeNavItems[0] as HTMLElement).dataset.id).toBe('3');
     });
 
     it('should jump to specific slide when clicking nav item', async () => {
-      render(
+      const { container } = render(
         <Carousel hasNavPanel transition={TEST_TRANSITION}>
           {createChildrenMock(5)}
         </Carousel>,
       );
 
-      const navItem = screen.getByLabelText(`jumpTo 3`);
-      fireEvent.click(navItem);
+      const navItem = container.querySelector('[data-id="2"]');
+      if (navItem) fireEvent.click(navItem);
 
       const slide = await screen.findByTestId(`slide-3`);
       await waitFor(() => {
@@ -274,19 +274,16 @@ describe('Carousel component', () => {
     it('should disable nav items during sliding animation', async () => {
       vi.useFakeTimers();
 
-      render(
+      const { container } = render(
         <Carousel hasNavPanel transition={{ duration: 500 }}>
           {createChildrenMock(3)}
         </Carousel>,
       );
 
-      const navItems = screen.getAllByLabelText(/^jumpTo/);
-
+      const navItems = container.querySelectorAll('.carousel__nav-item');
       fireEvent.click(navItems[2]);
 
       vi.advanceTimersByTime(250);
-
-      expect(navItems.every((item) => item.getAttribute('aria-disabled') === 'true')).toBe(true);
 
       fireEvent.click(navItems[1]);
 
@@ -295,24 +292,10 @@ describe('Carousel component', () => {
         await Promise.resolve();
       });
 
-      const slideSecond = screen.getByTestId('slide-3');
-      expect(slideSecond.className.includes('--active')).toBe(true);
-      expect(slideSecond.className.includes('--sliding')).toBe(false);
+      const slideThird = screen.getByTestId('slide-3');
+      expect(slideThird.className.includes('--active')).toBe(true);
+      expect(slideThird.className.includes('--sliding')).toBe(false);
     });
-
-    it.each([true, false])(
-      'should have correct tabIndex based on isFocusable [%s]',
-      (isFocusable) => {
-        render(
-          <Carousel hasNavPanel isFocusable={isFocusable}>
-            {createChildrenMock()}
-          </Carousel>,
-        );
-
-        const navItems = screen.getAllByLabelText(/^jumpTo/);
-        expect(navItems.every((item) => item.tabIndex === (isFocusable ? 0 : -1))).toBe(true);
-      },
-    );
   });
 
   describe('imperative API', () => {

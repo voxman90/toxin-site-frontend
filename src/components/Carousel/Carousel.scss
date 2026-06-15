@@ -1,8 +1,14 @@
+@use '../../styles/shared' as *;
+
 .carousel {
   --carousel-z-shadow: 5;
   --carousel-z-controls: 10;
   --carousel-btn-size: 2.75rem;
-  --carousel-nav-item-size: 0.5rem;
+  --carousel-nav-gap: calc(var(--carousel-nav-item-size) / 2);
+  --carousel-color-controls: #ffffff;
+  --carousel-color-controls-bg: rgba(0, 0, 0, 0.15);
+  --carousel-color-disabled: rgba(255, 255, 255, 0.3);
+  --carousel-color-disabled-solid: rgba(255, 255, 255, 0.4);
 
   position: relative;
   width: 100%;
@@ -103,7 +109,7 @@
 
     line-height: var(--carousel-btn-size);
     text-align: center;
-    color: white;
+    color: var(--carousel-color-controls);
     cursor: pointer;
     transform: translateY(-50%);
     opacity: 0;
@@ -133,17 +139,37 @@
     }
 
     &[aria-disabled='true'] {
-      color: var(--fc-muted);
+      color: var(--carousel-color-disabled);
     }
   }
 
   &__nav {
     position: absolute;
     z-index: var(--carousel-z-controls);
-    bottom: calc(var(--carousel-nav-item-size) * 2);
-    right: calc(var(--carousel-nav-item-size) * 2);
+    bottom: calc(var(--carousel-nav-item-size) * 1.5);
+    right: calc(var(--carousel-nav-item-size) * 1.5);
     display: flex;
-    gap: calc(var(--carousel-nav-item-size) / 2);
+    align-items: center;
+    width: calc(
+      (var(--carousel-nav-item-size) * var(--carousel-nav-visible-count)) +
+      (var(--carousel-nav-gap) * (var(--carousel-nav-visible-count) - 1)) +
+      (var(--carousel-nav-gap) * 2)
+    );
+    padding: var(--carousel-nav-gap);
+
+    border-radius: calc(var(--carousel-nav-item-size) * 3);
+    background: var(--carousel-color-controls-bg);
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+    overflow: hidden;
+  }
+
+  &__nav-track {
+    display: flex;
+    gap: var(--carousel-nav-gap);
+    align-items: center;
+
+    will-change: transform;
   }
 
   &__nav-item {
@@ -153,26 +179,23 @@
     height: var(--carousel-nav-item-size);
     margin: 0;
     padding: 0;
-    border: 1px solid white;
+    border: 1px solid var(--carousel-color-controls);
 
     font-size: 0;
     border-radius: 50%;
+    transition: background-color var(--anim-standard), border-color var(--anim-standard);
     cursor: pointer;
 
     &--active {
-      background-color: white;
+      background-color: var(--carousel-color-controls);
 
       &[aria-disabled='true'] {
-        background-color: var(--fc-muted);
+        background-color: var(--carousel-color-disabled-solid);
       }
     }
 
-    &:focus-visible {
-      box-shadow: var(--focus-shadow);
-    }
-
     &[aria-disabled='true'] {
-      border-color: var(--fc-muted);
+      border-color: var(--carousel-color-disabled);
     }
   }
 }

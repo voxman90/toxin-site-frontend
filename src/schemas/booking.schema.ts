@@ -22,7 +22,9 @@ export const getBookingSchema = (
         })
         .optional()
         .default({ adult: 0, child: 0, baby: 0 })
-        .test('sum-not-zero', t('guestsRequired'), (obj) => Object.values(obj).some((x) => x !== 0))
+        .test('sum-not-zero', t('guestsRequired'), (obj) => {
+          return obj.adult + obj.child > 0;
+        })
         .test('max-capacity', t('maxCapacityExceeded', { maxCapacity }), (obj) => {
           const totalGuests = (obj.adult || 0) + (obj.child || 0);
           return totalGuests <= maxCapacity;
