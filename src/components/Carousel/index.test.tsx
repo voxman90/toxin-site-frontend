@@ -247,8 +247,9 @@ describe('Carousel component', () => {
       );
 
       const navItems = container.querySelectorAll('.carousel__nav-item');
-      const activeNavItems = Array.from(navItems)
-        .filter((item) => item.className.includes('--active'));
+      const activeNavItems = Array.from(navItems).filter((item) =>
+        item.className.includes('--active'),
+      );
 
       expect(activeNavItems.length).toBe(1);
       expect((activeNavItems[0] as HTMLElement).dataset.id).toBe('3');

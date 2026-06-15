@@ -152,15 +152,15 @@
     align-items: center;
     width: calc(
       (var(--carousel-nav-item-size) * var(--carousel-nav-visible-count)) +
-      (var(--carousel-nav-gap) * (var(--carousel-nav-visible-count) - 1)) +
-      (var(--carousel-nav-gap) * 2)
+        (var(--carousel-nav-gap) * (var(--carousel-nav-visible-count) - 1)) +
+        (var(--carousel-nav-gap) * 2)
     );
     padding: var(--carousel-nav-gap);
 
     border-radius: calc(var(--carousel-nav-item-size) * 3);
     background: var(--carousel-color-controls-bg);
     -webkit-backdrop-filter: blur(4px);
-            backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
     overflow: hidden;
   }
 
@@ -183,7 +183,9 @@
 
     font-size: 0;
     border-radius: 50%;
-    transition: background-color var(--anim-standard), border-color var(--anim-standard);
+    transition:
+      background-color var(--anim-standard),
+      border-color var(--anim-standard);
     cursor: pointer;
 
     &--active {

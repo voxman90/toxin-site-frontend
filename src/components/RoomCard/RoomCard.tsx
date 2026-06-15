@@ -5,7 +5,7 @@ import type { IRoom } from '../../@types/data';
 import noImageAvailable from '../../assets/img/no_image_placeholder.jpg';
 import { formatCurrency, getImageUrl } from '../../utils/utils';
 import type { CarouselRef } from '../Carousel';
-import Carousel from '../Carousel';
+import Carousel, { CAROUSEL_CONTROLS_SELECTOR } from '../Carousel';
 import CarouselItem from '../Carousel/CarouselItem';
 import ImgWithSkeleton from '../ImgWithSkeleton/ImgWithSkeleton';
 import RateButton from '../RateButton/RateButton';
@@ -45,16 +45,24 @@ const RoomCard = memo(
       }
     };
 
+    const handleCardClick = (e: React.MouseEvent<HTMLElement>) => {
+      const target = e.target as HTMLElement;
+
+      if (target.closest(CAROUSEL_CONTROLS_SELECTOR)) return;
+
+      onClick(id);
+    };
+
     return (
       <article
         className="room-card"
         role="link"
         tabIndex={0}
-        onClick={() => onClick(id)}
+        onClick={handleCardClick}
         onKeyDown={handleKeyDown}
         aria-label={`${t('label')} ${roomNumber}`}
       >
-        <div className="room-card__carousel" onClick={(e) => e.stopPropagation()}>
+        <div className="room-card__carousel">
           <Carousel ref={carouselRef} hasControlButtons hasNavPanel isFocusable={false}>
             {images.map((image, i) => (
               <CarouselItem key={`${roomNumber}-${i}`}>

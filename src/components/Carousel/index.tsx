@@ -35,6 +35,8 @@ interface CarouselProps {
   isFocusable?: boolean;
 }
 
+export const CAROUSEL_CONTROLS_SELECTOR = '.carousel__button, .carousel__nav, .carousel__shadow';
+
 const DEFAULT_TRANSITION = {
   duration: 0.4,
   ease: 'easeInOut',
