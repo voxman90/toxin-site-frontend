@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import type { BookingFilters } from '../@types/api/booking.api';
 import { ADDITIONAL_SERVICES } from '../constants/constants';
 
-import { extractDateString } from './shared';
+import { extractDateString, isCheckOutAfterCheckIn } from './shared';
 
 export const getBookingSchema = (
   t: TFunction<'components', 'errors'>,
@@ -13,7 +13,11 @@ export const getBookingSchema = (
   yup
     .object({
       checkIn: extractDateString(t('arrivalRequired')),
-      checkOut: extractDateString(t('departureRequired')),
+      checkOut: extractDateString(t('departureRequired')).test(
+        'is-after-arrival',
+        t('isAfterArrival'),
+        isCheckOutAfterCheckIn,
+      ),
       guests: yup
         .object({
           adult: yup.number().required(),

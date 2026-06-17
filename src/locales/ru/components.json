@@ -132,6 +132,7 @@
     "passwordMustContainSpecialSymbol": "Пароль должен включать специальный символ",
     "passwordMismatch": "Пароли не совпадают",
     "arrivalRequired": "Не указано прибытие",
+    "isAfterArrival": "Должно быть позже прибытия",
     "departureRequired": "Не указано отбытие",
     "guestsRequired": "Не указано количество гостей",
     "unknownError": "Неизвестная ошибка",

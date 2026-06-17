@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import type { SearchRoomsFilters } from '../@types/api/room.api';
 import { ACCESSIBILITY, ADDITIONAL_SERVICES, RULES } from '../constants/constants';
 
-import { extractDateString } from './shared';
+import { extractDateString, isCheckOutAfterCheckIn } from './shared';
 
 export const getSearchSchema = (
   t: TFunction<'components', 'errors'>,
@@ -12,7 +12,11 @@ export const getSearchSchema = (
   yup
     .object({
       checkIn: extractDateString(t('arrivalRequired')),
-      checkOut: extractDateString(t('departureRequired')),
+      checkOut: extractDateString(t('departureRequired')).test(
+        'is-after-arrival',
+        t('isAfterArrival'),
+        isCheckOutAfterCheckIn,
+      ),
       guests: yup
         .object({
           adult: yup.number().required(),
