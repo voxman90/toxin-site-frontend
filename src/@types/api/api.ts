@@ -632,7 +632,7 @@ export interface paths {
                     };
                     accessibility?: ("wideCorridor" | "assistant")[];
                     rules?: ("smokeAllowed" | "petsAllowed" | "guestsAllowed")[];
-                    sort?: "price" | "roomNumber" | "avgRating" | "reviewsCount" | "createAt";
+                    sort?: "price" | "roomNumber" | "avgRating" | "reviewsCount" | "capacity" | "createAt";
                     /** @description 1 for ASC, -1 for DESC */
                     order?: number;
                     limit?: number;
