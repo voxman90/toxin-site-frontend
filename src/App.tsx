@@ -38,9 +38,30 @@ function App() {
           <Route path={ROUTES.FORM_ELEMENTS} element={<FormElements />} />
         </Route>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Landing />} />
-          <Route path={ROUTES.LOGIN} element={<Login />} />
-          <Route path={ROUTES.REGISTER} element={<Register />} />
+          <Route
+            path="/"
+            element={
+              <AppErrorBoundary>
+                <Landing />
+              </AppErrorBoundary>
+            }
+          />
+          <Route
+            path={ROUTES.LOGIN}
+            element={
+              <AppErrorBoundary>
+                <Login />
+              </AppErrorBoundary>
+            }
+          />
+          <Route
+            path={ROUTES.REGISTER}
+            element={
+              <AppErrorBoundary>
+                <Register />
+              </AppErrorBoundary>
+            }
+          />
           <Route
             path={ROUTES.SEARCH}
             element={
