@@ -4,1159 +4,1159 @@
  */
 
 export interface paths {
-  '/api/v1/auth/login': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/api/v1/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Authenticate user and get token */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["LoginRequestBody"];
+                };
+            };
+            responses: {
+                /** @description User authenticated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["LoginResponse"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Invalid credentials */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /** Authenticate user and get token */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody: {
-        content: {
-          'application/json': components['schemas']['LoginRequestBody'];
+    "/api/v1/auth/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      responses: {
-        /** @description User authenticated successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['LoginResponse'];
-          };
+        get?: never;
+        put?: never;
+        /** Register a new user */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["RegisterRequestBody"];
+                };
+            };
+            responses: {
+                /** @description User registered successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Email already exists */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
         };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Invalid credentials */
-        401: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/auth/register': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/api/v1/bookings/{roomId}/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Get booking price preview */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    roomId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["BookingRequestBody"];
+                };
+            };
+            responses: {
+                /** @description Price preview calculated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PriceSummary"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Room not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /** Register a new user */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody: {
-        content: {
-          'application/json': components['schemas']['RegisterRequestBody'];
+    "/api/v1/bookings/{roomId}/confirm": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      responses: {
-        /** @description User registered successfully */
-        201: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
+        get?: never;
+        put?: never;
+        /** Confirm and create room booking */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    roomId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["BookingRequestBody"];
+                };
+            };
+            responses: {
+                /** @description Booking created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Booking"];
+                    };
+                };
+                /** @description Validation or overlapping error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Room not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
         };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Email already exists */
-        409: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/bookings/{roomId}/preview': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/api/v1/ratings/{roomId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get room rating summary and score breakdown */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    roomId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Rating summary retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["RatingSummary"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /** Create or update room rating */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    roomId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateRatingRequestBody"];
+                };
+            };
+            responses: {
+                /** @description Rating saved successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Unauthorized access */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /** Get booking price preview */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          roomId: string;
+    "/api/v1/reviews": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        cookie?: never;
-      };
-      requestBody: {
-        content: {
-          'application/json': components['schemas']['BookingRequestBody'];
+        get?: never;
+        put?: never;
+        /** Create a new review for a room */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateReviewRequestBody"];
+                };
+            };
+            responses: {
+                /** @description Review created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Unauthorized access */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
         };
-      };
-      responses: {
-        /** @description Price preview calculated successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['PriceSummary'];
-          };
-        };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Room not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/bookings/{roomId}/confirm': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/api/v1/reviews/{roomId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get paginated reviews for a room (Optional Auth)
+         * @description Public endpoint. If Bearer token is provided, isLiked field will reflect current user status.
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Page number */
+                    page?: number;
+                    /** @description Items per page */
+                    limit?: number;
+                    sort?: "text" | "likes" | "createAt";
+                    /** @description 1 for ASC, -1 for DESC */
+                    order?: number;
+                };
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    roomId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Paginated reviews list retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PaginatedReviews"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /** Confirm and create room booking */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          roomId: string;
+    "/api/v1/reviews/{reviewId}/toggle-like": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        cookie?: never;
-      };
-      requestBody: {
-        content: {
-          'application/json': components['schemas']['BookingRequestBody'];
+        get?: never;
+        /** Toggle like status on a review */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    reviewId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Like status toggled successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ToggleLikeResponse"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Unauthorized access */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
         };
-      };
-      responses: {
-        /** @description Booking created successfully */
-        201: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['Booking'];
-          };
-        };
-        /** @description Validation or overlapping error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Room not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/ratings/{roomId}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/api/v1/rooms/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search for available rooms based on criteria */
+        get: {
+            parameters: {
+                query: {
+                    checkIn: string;
+                    checkOut: string;
+                    minPrice?: number;
+                    maxPrice?: number;
+                    guests?: {
+                        /** @default 0 */
+                        adult?: number;
+                        /** @default 0 */
+                        child?: number;
+                        /** @default 0 */
+                        baby?: number;
+                    };
+                    amenities?: {
+                        /** @default 0 */
+                        bed?: number;
+                        /** @default 0 */
+                        bedroom?: number;
+                        /** @default 0 */
+                        bathroom?: number;
+                    };
+                    accessibility?: ("wideCorridor" | "assistant")[];
+                    rules?: ("smokeAllowed" | "petsAllowed" | "guestsAllowed")[];
+                    sort?: "price" | "roomNumber" | "avgRating" | "reviewsCount" | "createAt";
+                    /** @description 1 for ASC, -1 for DESC */
+                    order?: number;
+                    limit?: number;
+                    page?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Paginated available rooms list retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PaginatedRooms"];
+                    };
+                };
+                /** @description Validation error or incorrect date range */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Get room rating summary and score breakdown */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          roomId: string;
+    "/api/v1/rooms/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description Rating summary retrieved successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['RatingSummary'];
-          };
+        /** Get room profile details by ID */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Room details retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Room"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description Room not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
         };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    put?: never;
-    /** Create or update room rating */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          roomId: string;
+    "/api/v1/users/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        cookie?: never;
-      };
-      requestBody: {
-        content: {
-          'application/json': components['schemas']['CreateRatingRequestBody'];
+        /** Get current authorized user profile */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Current user profile data */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["User"];
+                    };
+                };
+                /** @description Unauthorized access */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
         };
-      };
-      responses: {
-        /** @description Rating saved successfully */
-        201: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Unauthorized access */
-        401: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/reviews': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/api/v1/users/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get user profile by ID */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description MongoDB ObjectId hex string */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description User profile data retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["User"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ValidationErrorResponse"];
+                    };
+                };
+                /** @description User not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BaseMessageResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /** Create a new review for a room */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody: {
-        content: {
-          'application/json': components['schemas']['CreateReviewRequestBody'];
-        };
-      };
-      responses: {
-        /** @description Review created successfully */
-        201: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Unauthorized access */
-        401: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/reviews/{roomId}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get paginated reviews for a room (Optional Auth)
-     * @description Public endpoint. If Bearer token is provided, isLiked field will reflect current user status.
-     */
-    get: {
-      parameters: {
-        query?: {
-          /** @description Page number */
-          page?: number;
-          /** @description Items per page */
-          limit?: number;
-          sort?: 'text' | 'likes' | 'createAt';
-          /** @description 1 for ASC, -1 for DESC */
-          order?: number;
-        };
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          roomId: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description Paginated reviews list retrieved successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['PaginatedReviews'];
-          };
-        };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/reviews/{reviewId}/toggle-like': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    /** Toggle like status on a review */
-    put: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          reviewId: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description Like status toggled successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ToggleLikeResponse'];
-          };
-        };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Unauthorized access */
-        401: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
-    };
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/rooms/search': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Search for available rooms based on criteria */
-    get: {
-      parameters: {
-        query: {
-          checkIn: string;
-          checkOut: string;
-          minPrice?: number;
-          maxPrice?: number;
-          guests?: {
-            /** @default 0 */
-            adult?: number;
-            /** @default 0 */
-            child?: number;
-            /** @default 0 */
-            baby?: number;
-          };
-          amenities?: {
-            /** @default 0 */
-            bed?: number;
-            /** @default 0 */
-            bedroom?: number;
-            /** @default 0 */
-            bathroom?: number;
-          };
-          accessibility?: ('wideCorridor' | 'assistant')[];
-          rules?: ('smokeAllowed' | 'petsAllowed' | 'guestsAllowed')[];
-          sort?: 'price' | 'roomNumber' | 'avgRating' | 'reviewsCount' | 'createAt';
-          /** @description 1 for ASC, -1 for DESC */
-          order?: number;
-          limit?: number;
-          page?: number;
-        };
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description Paginated available rooms list retrieved successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['PaginatedRooms'];
-          };
-        };
-        /** @description Validation error or incorrect date range */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/rooms/{id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get room profile details by ID */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          id: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description Room details retrieved successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['Room'];
-          };
-        };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description Room not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/users/me': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get current authorized user profile */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description Current user profile data */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['User'];
-          };
-        };
-        /** @description Unauthorized access */
-        401: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/users/{id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get user profile by ID */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description MongoDB ObjectId hex string */
-          id: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description User profile data retrieved successfully */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['User'];
-          };
-        };
-        /** @description Validation error */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['ValidationErrorResponse'];
-          };
-        };
-        /** @description User not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-        /** @description Internal server error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['BaseMessageResponse'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    LoginResponse: {
-      /** @example User logged in successfully */
-      message: string;
-      /** @example eyJhbGciOiJIUzI1NiIsIn... */
-      token: string;
-      user: components['schemas']['User'];
+    schemas: {
+        LoginResponse: {
+            /** @example User logged in successfully */
+            message: string;
+            /** @example eyJhbGciOiJIUzI1NiIsIn... */
+            token: string;
+            user: components["schemas"]["User"];
+        };
+        User: {
+            /** @example 5d7a4c2e8b1f6a390e4d2c1b */
+            id: string;
+            /** @example John */
+            firstName: string;
+            /** @example Doe */
+            lastName: string;
+            /** @example male */
+            gender: string;
+            /** @example 1995-05-15 */
+            birthdate: string;
+            /**
+             * Format: email
+             * @example john.doe@example.com
+             */
+            email: string;
+            specialOffer: boolean;
+            /** @example https://example.com */
+            avatarUrl: string;
+            /**
+             * @example user
+             * @enum {string}
+             */
+            role: "user" | "admin";
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            updatedAt: string;
+        };
+        ValidationErrorResponse: {
+            /** @example Bad request */
+            message: string;
+            /** @example fail */
+            status: string;
+            errors: {
+                /** @example checkOut */
+                field: string;
+                /** @example Check-out date must be after check-in date */
+                message: string;
+            }[];
+        };
+        BaseMessageResponse: {
+            /** @example Invalid credentials */
+            message: string;
+        };
+        LoginRequestBody: {
+            email: string;
+            password: string;
+        };
+        RegisterRequestBody: {
+            firstName: string;
+            lastName: string;
+            gender: string;
+            birthdate: string;
+            email: string;
+            password: string;
+            /** @default false */
+            specialOffer: boolean;
+        };
+        PriceSummary: {
+            /** @example 6 */
+            nights: number;
+            /** @example 0 */
+            discount: number;
+            /** @example 5000 */
+            pricePerNight: number;
+            /** @example 30000 */
+            basePrice: number;
+            /** @example 1000 */
+            servicePrice: number;
+            /** @example 1500 */
+            additionalServicePrice: number;
+            additionalServiceSummary: {
+                dinner?: number;
+                desk?: number;
+                highchair?: number;
+                crib?: number;
+                TV?: number;
+                shampoo?: number;
+            };
+            /** @example 32500 */
+            totalPrice: number;
+        };
+        BookingRequestBody: {
+            /**
+             * Format: date-time
+             * @example 2026-06-06T12:00:00.000Z
+             */
+            checkIn: string;
+            /**
+             * Format: date-time
+             * @example 2026-06-06T12:00:00.000Z
+             */
+            checkOut: string;
+            /** @default [] */
+            additionalServices: ("dinner" | "desk" | "highchair" | "crib" | "TV" | "shampoo")[];
+            /**
+             * @default {
+             *       "adult": 0,
+             *       "child": 0,
+             *       "baby": 0
+             *     }
+             */
+            guests: {
+                /** @default 0 */
+                adult: number;
+                /** @default 0 */
+                child: number;
+                /** @default 0 */
+                baby: number;
+            };
+        };
+        Booking: {
+            /**
+             * @description MongoDB ObjectId virtual id
+             * @example 5d7a4c2e8b1f6a390e4d2c1b
+             */
+            id: string;
+            /**
+             * @description User ObjectId ref
+             * @example 5d7a4c2e8b1f6a390e4d2c1b
+             */
+            user: string;
+            /**
+             * @description Room ObjectId ref
+             * @example 5d7a4c2e8b1f6a390e4d2c1b
+             */
+            room: string;
+            /**
+             * Format: date-time
+             * @example 2026-06-01T12:00:00.000Z
+             */
+            checkIn: string;
+            /**
+             * Format: date-time
+             * @example 2026-06-07T12:00:00.000Z
+             */
+            checkOut: string;
+            guests: {
+                /** @default 0 */
+                adult: number;
+                /** @default 0 */
+                child: number;
+                /** @default 0 */
+                baby: number;
+            };
+            additionalServices: ("dinner" | "desk" | "highchair" | "crib" | "TV" | "shampoo")[];
+            priceSummary: components["schemas"]["PriceSummary"];
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            updatedAt: string;
+        };
+        CreateRatingRequestBody: {
+            score: number;
+        };
+        RatingSummary: {
+            /** @example 12 */
+            totalCount: number;
+            /** @example 4.5 */
+            avgScore: number;
+            /**
+             * @example {
+             *       "1": 0,
+             *       "2": 1,
+             *       "3": 2,
+             *       "4": 4,
+             *       "5": 5
+             *     }
+             */
+            scoreBreakdown: {
+                1?: number;
+                2?: number;
+                3?: number;
+                4?: number;
+                5?: number;
+            };
+        };
+        CreateReviewRequestBody: {
+            text: string;
+            /**
+             * @description MongoDB ObjectId hex string
+             * @example 5d7a4c2e8b1f6a390e4d2c1b
+             */
+            roomId: string;
+        };
+        PaginatedReviews: {
+            docs: components["schemas"]["Review"][];
+            /** @example 42 */
+            totalDocs: number;
+            /** @example 10 */
+            limit: number;
+            /** @example 1 */
+            page: number;
+            /** @example 5 */
+            totalPages: number;
+            /** @example 1 */
+            pagingCounter: number;
+            hasPrevPage: boolean;
+            hasNextPage: boolean;
+            prevPage: number | null;
+            nextPage: number | null;
+        };
+        Review: {
+            /** @example 5d7a4c2e8b1f6a390e4d2c1b */
+            id: string;
+            /** @example Ivan Ivanov */
+            authorName: string;
+            /** @example https://example.com */
+            avatarUrl: string | null;
+            /** @example Great room, very clean! */
+            text: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** @example 5 */
+            likeCount: number;
+            /** @description True if current user liked this review */
+            isLiked: boolean;
+        };
+        ToggleLikeResponse: {
+            /** @example 5d7a4c2e8b1f6a390e4d2c1b */
+            reviewId: string;
+            /** @example 6 */
+            likeCount: number;
+            /** @description The new like status for the current user */
+            isLiked: boolean;
+        };
+        PaginatedRooms: {
+            docs: components["schemas"]["Room"][];
+            /** @example 42 */
+            totalDocs: number;
+            /** @example 10 */
+            limit: number;
+            /** @example 1 */
+            page: number;
+            /** @example 5 */
+            totalPages: number;
+            /** @example 1 */
+            pagingCounter: number;
+            hasPrevPage: boolean;
+            hasNextPage: boolean;
+            prevPage: number | null;
+            nextPage: number | null;
+        };
+        Room: {
+            /** @example 5d7a4c2e8b1f6a390e4d2c1b */
+            id: string;
+            /** @example 840 */
+            roomNumber: number;
+            isLuxe: boolean;
+            /** @example 5000 */
+            price: number;
+            /** @example 4 */
+            capacity: number;
+            /** @example 2 */
+            bed: number;
+            /** @example 1 */
+            bedroom: number;
+            /** @example 1 */
+            bathroom: number;
+            isAvailable: boolean;
+            /** @example 4.5 */
+            avgRating: number;
+            /** @example 12 */
+            reviewsCount: number;
+            images: string[];
+            accessibility: ("wideCorridor" | "assistant")[];
+            rules: ("smokeAllowed" | "petsAllowed" | "guestsAllowed")[];
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            updatedAt: string;
+        };
     };
-    User: {
-      /** @example 5d7a4c2e8b1f6a390e4d2c1b */
-      id: string;
-      /** @example John */
-      firstName: string;
-      /** @example Doe */
-      lastName: string;
-      /** @example male */
-      gender: string;
-      /** @example 1995-05-15 */
-      birthdate: string;
-      /**
-       * Format: email
-       * @example john.doe@example.com
-       */
-      email: string;
-      specialOffer: boolean;
-      /** @example https://example.com */
-      avatarUrl: string;
-      /**
-       * @example user
-       * @enum {string}
-       */
-      role: 'user' | 'admin';
-      /** Format: date-time */
-      createdAt: string;
-      /** Format: date-time */
-      updatedAt: string;
-    };
-    ValidationErrorResponse: {
-      /** @example Bad request */
-      message: string;
-      /** @example fail */
-      status: string;
-      errors: {
-        /** @example checkOut */
-        field: string;
-        /** @example Check-out date must be after check-in date */
-        message: string;
-      }[];
-    };
-    BaseMessageResponse: {
-      /** @example Invalid credentials */
-      message: string;
-    };
-    LoginRequestBody: {
-      email: string;
-      password: string;
-    };
-    RegisterRequestBody: {
-      firstName: string;
-      lastName: string;
-      gender: string;
-      birthdate: string;
-      email: string;
-      password: string;
-      /** @default false */
-      specialOffer: boolean;
-    };
-    PriceSummary: {
-      /** @example 6 */
-      nights: number;
-      /** @example 0 */
-      discount: number;
-      /** @example 5000 */
-      pricePerNight: number;
-      /** @example 30000 */
-      basePrice: number;
-      /** @example 1000 */
-      servicePrice: number;
-      /** @example 1500 */
-      additionalServicePrice: number;
-      additionalServiceSummary: {
-        dinner?: number;
-        desk?: number;
-        highchair?: number;
-        crib?: number;
-        TV?: number;
-        shampoo?: number;
-      };
-      /** @example 32500 */
-      totalPrice: number;
-    };
-    BookingRequestBody: {
-      /**
-       * Format: date-time
-       * @example 2026-06-06T12:00:00.000Z
-       */
-      checkIn: string;
-      /**
-       * Format: date-time
-       * @example 2026-06-06T12:00:00.000Z
-       */
-      checkOut: string;
-      /** @default [] */
-      additionalServices: ('dinner' | 'desk' | 'highchair' | 'crib' | 'TV' | 'shampoo')[];
-      /**
-       * @default {
-       *       "adult": 0,
-       *       "child": 0,
-       *       "baby": 0
-       *     }
-       */
-      guests: {
-        /** @default 0 */
-        adult: number;
-        /** @default 0 */
-        child: number;
-        /** @default 0 */
-        baby: number;
-      };
-    };
-    Booking: {
-      /**
-       * @description MongoDB ObjectId virtual id
-       * @example 5d7a4c2e8b1f6a390e4d2c1b
-       */
-      id: string;
-      /**
-       * @description User ObjectId ref
-       * @example 5d7a4c2e8b1f6a390e4d2c1b
-       */
-      user: string;
-      /**
-       * @description Room ObjectId ref
-       * @example 5d7a4c2e8b1f6a390e4d2c1b
-       */
-      room: string;
-      /**
-       * Format: date-time
-       * @example 2026-06-01T12:00:00.000Z
-       */
-      checkIn: string;
-      /**
-       * Format: date-time
-       * @example 2026-06-07T12:00:00.000Z
-       */
-      checkOut: string;
-      guests: {
-        /** @default 0 */
-        adult: number;
-        /** @default 0 */
-        child: number;
-        /** @default 0 */
-        baby: number;
-      };
-      additionalServices: ('dinner' | 'desk' | 'highchair' | 'crib' | 'TV' | 'shampoo')[];
-      priceSummary: components['schemas']['PriceSummary'];
-      /** Format: date-time */
-      createdAt: string;
-      /** Format: date-time */
-      updatedAt: string;
-    };
-    CreateRatingRequestBody: {
-      score: number;
-    };
-    RatingSummary: {
-      /** @example 12 */
-      totalCount: number;
-      /** @example 4.5 */
-      avgScore: number;
-      /**
-       * @example {
-       *       "1": 0,
-       *       "2": 1,
-       *       "3": 2,
-       *       "4": 4,
-       *       "5": 5
-       *     }
-       */
-      scoreBreakdown: {
-        1?: number;
-        2?: number;
-        3?: number;
-        4?: number;
-        5?: number;
-      };
-    };
-    CreateReviewRequestBody: {
-      text: string;
-      /**
-       * @description MongoDB ObjectId hex string
-       * @example 5d7a4c2e8b1f6a390e4d2c1b
-       */
-      roomId: string;
-    };
-    PaginatedReviews: {
-      docs: components['schemas']['Review'][];
-      /** @example 42 */
-      totalDocs: number;
-      /** @example 10 */
-      limit: number;
-      /** @example 1 */
-      page: number;
-      /** @example 5 */
-      totalPages: number;
-      /** @example 1 */
-      pagingCounter: number;
-      hasPrevPage: boolean;
-      hasNextPage: boolean;
-      prevPage: number | null;
-      nextPage: number | null;
-    };
-    Review: {
-      /** @example 5d7a4c2e8b1f6a390e4d2c1b */
-      id: string;
-      /** @example Ivan Ivanov */
-      authorName: string;
-      /** @example https://example.com */
-      avatarUrl: string | null;
-      /** @example Great room, very clean! */
-      text: string;
-      /** Format: date-time */
-      createdAt: string;
-      /** @example 5 */
-      likeCount: number;
-      /** @description True if current user liked this review */
-      isLiked: boolean;
-    };
-    ToggleLikeResponse: {
-      /** @example 5d7a4c2e8b1f6a390e4d2c1b */
-      reviewId: string;
-      /** @example 6 */
-      likeCount: number;
-      /** @description The new like status for the current user */
-      isLiked: boolean;
-    };
-    PaginatedRooms: {
-      docs: components['schemas']['Room'][];
-      /** @example 42 */
-      totalDocs: number;
-      /** @example 10 */
-      limit: number;
-      /** @example 1 */
-      page: number;
-      /** @example 5 */
-      totalPages: number;
-      /** @example 1 */
-      pagingCounter: number;
-      hasPrevPage: boolean;
-      hasNextPage: boolean;
-      prevPage: number | null;
-      nextPage: number | null;
-    };
-    Room: {
-      /** @example 5d7a4c2e8b1f6a390e4d2c1b */
-      id: string;
-      /** @example 840 */
-      roomNumber: number;
-      isLuxe: boolean;
-      /** @example 5000 */
-      price: number;
-      /** @example 4 */
-      capacity: number;
-      /** @example 2 */
-      bed: number;
-      /** @example 1 */
-      bedroom: number;
-      /** @example 1 */
-      bathroom: number;
-      isAvailable: boolean;
-      /** @example 4.5 */
-      avgRating: number;
-      /** @example 12 */
-      reviewsCount: number;
-      images: string[];
-      accessibility: ('wideCorridor' | 'assistant')[];
-      rules: ('smokeAllowed' | 'petsAllowed' | 'guestsAllowed')[];
-      /** Format: date-time */
-      createdAt: string;
-      /** Format: date-time */
-      updatedAt: string;
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export type operations = Record<string, never>;
