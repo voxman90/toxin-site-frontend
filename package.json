@@ -11,8 +11,7 @@
     "format": "prettier --write .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "generate:api-types": "openapi-typescript ../toxin-site-backend/openapi.json -o ./src/@types/api/api.ts"
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
@@ -61,7 +60,6 @@
     "globals": "^17.6.0",
     "happy-dom": "^20.10.1",
     "jsdom": "^29.1.1",
-    "openapi-typescript": "^7.13.0",
     "prettier": "^3.8.3",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.60.1",
