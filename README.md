@@ -1,69 +1,430 @@
-# React + TypeScript + Vite
+# Toxin Hotel Booking Platform (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Фронтенд-приложение платформы бронирования отелей, разработанное на базе **React 19**, **TypeScript 6**, **Vite 8** и **Framer Motion**. В основе проекта лежит кастомный UI-Kit, реализованный без использования сторонних библиотек компонентов.
 
-Currently, two official plugins are available:
+🌐 **[Демо-стенд приложения](https://toxin-site-frontend.onrender.com)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Инструкция по развертыванию
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Клонирование репозитория
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+git clone https://github.com/voxman90/toxin-site-frontend
+cd toxin-site-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Установка зависимостей
 
-```js
-// eslint.config.js
-import reactDom from 'eslint-plugin-react-dom';
-import reactX from 'eslint-plugin-react-x';
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
 ```
+
+## Скрипты
+
+### Запуск в режиме локальной разработки
+
+```bash
+npm run dev
+```
+
+### Запуск линтера
+
+```bash
+npm run lint
+```
+С исправлением ошибок:
+```bash
+npm run lint:fix
+```
+
+### Запуск тестов (Vitest)
+```bash
+npm run test
+```
+В режиме наблюдения:
+```bash
+npm run test:watch
+```
+
+### Запуск форматирования (Prettier)
+
+```bash
+npm run format
+```
+
+---
+
+## I. Подробное описание
+
+### 1. Общий подход
+
+Фронт использует TypeScript, React, Redux, SCSS, Vite. Бэк использует TypeScript, Express, Mongoose, MongoDB. Репозитории для фронта и бэка раздельны.
+
+Фронт структурно разделён на две части - страницы бизнес-логики (лэндинг, страницы регистрации и логина, продвинутого поиска и букинга) и выделенную песочницу для ручного тестирования интерфейса (цвета и шрифты, карточки, футеры и хедеры, компоненты форм).
+
+### 2. Качество кода
+
+Чистоту обеспечивает eslint со строгими настройками линтинга, стилистическое единообразие -- prettier, отсутствие критических ошибок -- статическая типизация TypeScript, схемы валидации Yup, unit и интеграционные тесты Vitest, соблюдение контракта -- openapi и Github actions, а для сложноуловимых ошибок песочница с развёрнутым Ui-Kit.
+
+#### 1. Контракт
+
+Контракт со стороны фронта первично валидируется через статическую типизацию TypeScript. Типы генерирует бек и передаёт их через гитхаб экшен на фронт. (Бек генерирует контракт на основе Zod схем и описания эндпоинтов с помощью @asteasolutions/zod-to-openapi, а с помощью openapi-typescript генерирует типы на основе контракта.)
+
+На фронте типы извлекаются из сгенерированного api.ts и используются для типизации Yup схем и соответствующих сущностей (комнаты, пользователи, обзоры, правила, сервисы и т.д.) и путей.
+
+#### 2. Тестирование
+
+Для тестов используется Vitest с Node средой по умолчанию, js-dom для тестирования с user-events и happy-dom для браузерного окружения. Используются моки, стабы, подложные таймеры и прочий арсенал для изоляции логики и ускорения асинхронных операций.
+
+Для компонентов, по возможности, используется методы screen для проверки доступности.
+
+#### 3. Принципы
+
+Принципы DRY, SOLID или YAGNI используются как ориентиры (DAMP для тестирования).
+
+Главный критерий -- читаемость (самодокументируемость), изоляция логики (возведение барьеров абстракции, MVP, паттерны), тестируемость (чистота, иммутабельность, идемпотентность).
+
+Глобальный стейт лежит в слайсах Redux Toolkit, сетевые запросы вынесены в асинхронные экшены (санки), для хранения и устройчивости query запросов используется URL как SSOT (единый источник правды). Для разгрузки компонент или вынесения переиспользуемой логики используются кастомные хуки. Для стилизации используются CSS-переменные, слои, нестинг, функции и миксины (SCSS) и т.д.
+
+#### 4. Безопасность
+
+Реализована сквозная валидация: на фронте формы проверяются через схемы Yup, а на бэке входящие запросы фильтруются с помощью Zod. Перед обработкой бизнес-логикой все query-параметры проходят через кастомный парсер, который приводит строки к примитивам исключая аномалии типов.
+
+Аутентификация построена на JWT, который хранится в localStorage и подмешивается к запросам через интерцептор Axios. Пароли хэшируются через bcryptjs перед записью в базу данных.
+
+Сетевой слой бэка защищен базовыми заголовками helmet и мидлварой express-rate-limit для ограничения частоты запросов. Настроен CORS (с ограничением по методам и для списка разрешенных доменов из переменной окружения).
+
+#### 5. Доступность
+
+Интерфейс опирается на семантические теги и управляется с клавиатуры. Кастомные компоненты (такие как дропдауны, календарь, range-слайдер, карусель, пагинация и т.д.) снабжены aria-атрибутами.
+
+Для контроля фокуса используется @react-aria, например, для создания ловушки фокуса (focus trap) или для изменения поведения фокуса для реактивного дропдауна и дропдауна с контрольной панелью. Нативное поведение фокуса предпочтительнее, во избежание потенциального рассинхрона с состоянием React, но пока не добавят флаг для программного focus-visible - приходится использовать обходные пути.
+
+#### 6. Обработка ошибок
+
+Страницы обёрнуты в ErrorBoundary.
+
+Часть ошибок локализуются внутри страниц и, в зависимости от характера ошибки, выводится соответствующая заглужка или диалоговое окно (например, с информацией об ошибке и кнопками "Вернуться на главную" или "Повторить запрос").
+
+На уровне формы ошибки отлавливаются с помощью схем валидации yup. Эти схемы используются и для предотвращения запросов с невалидными данными (когда те берутся из URL) к беку.
+
+Часть ошибок, например, неудача при попытке лайнуть пост - выводится с помощью тостера.
+
+#### 7. Стили
+
+Стили написаны с ориентацией на методологию БЭМ и реализованы преимущественно через возможности современного CSS. Для управления специфичностью и разделения глобального контекста используются слои (reset, utilities). Основаная часть переиспользуемых величин вынесена в переменные.
+
+Адаптивность обеспечиваются использованием брейкпоинтов, медиа-запросов, clamp, условных единиц, актуальных способов центрирования и огранизации раскладки (grid, flex, flow-root) и т.д.
+
+SCSS используется как надстройка для задач, которые не решаются нативным CSS (или соответствующие методы пока широко не поддерживается в браузерах). Например, миксины для типографики и динамической подстановки шрифтов, и плейсхолдеры (%shimmer, %disabled) для переиспользования анимаций и состояний интерфейса.
+
+#### 8. Интернационализация
+
+Представлены две локали -- русская и английская. Реализована интернационализация на базе i18next с разделением переводов по пространствам имен (components, pages, ui-kit) и затрагивает как тексты компонент, так и содержимое aria-атрибутов, как статические строки, так и динамические -- через встроенную плюрализацию и интерполяцию i18next.
+
+Переводы типизированы, что не позволяет использовать невалидные ключи на этапе компиляции.
+
+Вывод относительного времени динамически форматируется через библиотеку date-fns.
+
+#### 9. Оптимизация
+
+Никакой преждевременной оптимизации. В остальном - мемоизация для React компонент (memo, useMemo, useCallback, стабильные ссылки, инкапсуляция логики в подкомпоненты, уплощение объектов в списке зависимостей), сознательное невмешательство в работу JIT-компилятора, чанкование, ленивая загрузка, использование более лёгких и быстрых альтернатив (пакетов, алгоритмов и т.д.), избирательные импорты (для эффективного tree shaking), борьба с утечками памяти через abort контроллеры, удаление "мёртвых" слушателей и т.д.
+
+#### 10. UX
+
+Для исключения визуального шума и мигания элементов во время загрузки данных сетка страниц замещается компонентами-скелетонами. Для отдельных запросов добавлена минимальная задержка при ответе (на стороне фронта), для предотвращения мигания лоадеров. Даже если данные не изменились, через скелетоны или блюр (в зависимости от того, есть ли отображаемые элементы до запроса или нет) отображается процесс запроса, чтобы пользователь понимал, что форма сработала.
+
+Интенсивный ввод пользователя защищен дебаунсом (работающим для конкретных полей, например, ползунка цен, в том числе при взаимодейсвтии с клавиатурой, где режим повторных срабатываний включается не сразу). Повторные нажатия чекбоксов не приводят к мерцанию набора карточек, так как промежуточные запросы - абортируются. Формы подсвечивают невалидные поля, выводят информацию об ошибках и переводят на них фокус и т.д.
+
+Параметры интерфейса на странице поиска и букинга (фильтры, пагинация) синхронизированы с URL-адресом, что позволяет пользователю бесшовно использовать навигацию "Назад/Вперед" в браузере, обновлять страницу, делиться страницей по ссылке.
+
+## 3. Ключевые компоненты
+
+### 1 Range-slider
+
+#### Описание
+
+Рендж-слайдер с двумя ползунками для задания диапазона значений. Реализован в соответствии с паттерном MVP (Model-View-Presenter): бизнес-логика и математика расчетов инкапсулированы в изолированном классе, а синхронизация с состоянием форм React выполняется через кастомный хук-адаптер.
+
+#### Схема
+
+```mermaid
+    graph TD
+        subgraph View_Layer [Интерфейс]
+            V[RangeSliderView]
+        end
+
+        subgraph Presenter_Layer [Логика и Синхронизация]
+            P[RangeSliderPresenter]
+            A[useFormRangeAdapter]
+        end
+
+        subgraph Model_Layer [Бизнес-логика]
+            M[Range Class / ООП Модель]
+            S[Subject / Observer]
+        end
+
+        subgraph External_Layer [Внешнее состояние]
+            RHF[React Hook Form / useController]
+        end
+
+        V <--> |Mouse & Key Events| P
+        P --> |Рендерит с пропсами| V
+        P <--> |Получает стейт| A
+        
+        A <--> |Двусторонняя синхронизация| RHF
+        
+        A --> |Вызовы сеттеров: setFrom, setTo, setRange| M
+        M --> |Мутирует состояние| S
+        S --> |Notify / Подписка| A
+
+        style V fill:white,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style P fill:white,stroke:orange,stroke-width:4px,color:#1e293b
+        style A fill:white,stroke:orange,stroke-width:4px,color:#1e293b
+        style M fill:white,stroke:forestgreen,stroke-width:4px,color:#1e293b
+        style S fill:white,stroke:forestgreen,stroke-width:4px,color:#1e293b
+        style RHF fill:white,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+```
+
+#### Пропсы
+
+| Свойство | Тип | Обязательный | По умолчанию | Описание |
+| :--- | :--- | :---: | :---: | :--- |
+| `nameFrom` | `Path<T>` | **Да** | — | Имя поля формы для нижнего значения интервала (`from`). |
+| `nameTo` | `Path<T>` | **Да** | — | Имя поля формы для верхнего значения интервала (`to`). |
+| `control` | `Control<T>` | **Да** | — | Объект `control` из инстанса `react-hook-form`. |
+| `config` | `Partial<RangeState>` | Нет | — | Конфигурация для инициализации модели. |
+| `orientation` | `'horizontal' \| 'vertical'` | Нет | `'horizontal'` | Визуальная ориентация слайдера. |
+| `isRangeDraggable`| `boolean` | Нет | `false` | Разрешает перетаскивание интервала за трек. |
+| `disabled` | `boolean` | Нет | `false` | Блокирует события мыши и навигацию с клавиатуры. |
+| `onMouseDown` | `(end: Ends \| 'range') => void` | Нет | — | Колбэк при нажатии мыши на ползунок или трек. |
+| `onKeyDown` | `(e: KeyEvent, end: Ends \| 'range') => void` | Нет | — | Колбэк при нажатии клавиши на активном элементе. |
+| `onKeyUp` | `(e: KeyEvent, end: Ends \| 'range') => void` | Нет | — | Колбэк при отпускании клавиши на активном элементе. |
+
+### 2 Карусель
+
+#### Описание
+
+Компонент реализует циклическую карусель на базе анимаций framer-motion, с возможностью императивного контроля.
+
+Рендеринг: Компонент не рендерит все слайды одновременно. На основе флагов состояния в DOM монтируются строго 1, либо 2 элемента (текущий статичный слайд, уходящий slidingFrom и приходящий slidingTo).
+
+Логика состояний: Кастомный хук инкапсулирует стейт-машину сдвигов. Завершение анимации финализируется на уровне микротасок. Случай зависания анимации обрабатывается с помощью таймера (safetyTimerRef), принудительно завершающего фазу анимации по истечении таймаута.
+
+Циклический расчет: Математический хелпер рассчитывает кратчайшую траекторию движения при прыжках через несколько слайдов на основе остатка от деления.
+
+Динамический трек навигации: Реализует паттерн скользящего окна. Если количество слайдов превышает 5, трек смещается по горизонтали, а крайние видимые точки сжимаются в размерах, визуально имитируя бесконечную ленту. Для оптимизации кликов используется делегирование событий на общем контейнере трека.
+
+#### Схема
+
+```mermaid
+    graph TD
+        Ref[Parent Ref / Императивный API] <--> |next / prev / jumpTo| C[Carousel / Корень]
+
+        subgraph UI [Слой интерфейса]
+            C --> |1-2 активных слайда| CI[CarouselItem]
+            C --> |Делегирование кликов| NT[CarouselNavTrack]
+            C --> |Анимация сдвига| FM[motion.div]
+        end
+
+        subgraph Logic [Слой логики]
+            C <--> |move / jumpTo / State| UC[useCarousel Hook]
+        end
+
+        subgraph Guards [Защитные механизмы]
+            FM --> |onAnimationComplete| UC
+            UC -.-> |Предохранитель таймаута| ST[safetyTimerRef / setTimeout]
+        end
+
+        style Ref fill:#fff,stroke:#1e293b,stroke-width:4px,color:#1e293b
+        
+        style CI fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style NT fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style FM fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+
+        style C fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style UC fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+
+        style ST fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+```
+
+#### Пропсы
+
+| Свойство | Тип | Обязательный | По умолчанию | Описание |
+| :--- | :--- | :---: | :---: | :--- |
+| `children` | `CarouselChildren` | **Да** | — | Дети, строго `CarouselItem`. |
+| `activeItemIndex`| `number` | Нет | `0` | Индекс активного слайда при инициализации. |
+| `hasControlButtons`| `boolean` | Нет | `false` | Флаг отображения боковых кнопок Prev/Next. |
+| `hasNavPanel` | `boolean` | Нет | `false` | Флаг отображения навигационной панели. |
+| `isFocusable` | `boolean` | Нет | `false` | Включает фокус на боковых кнопках. |
+| `transition` | `Transition` | Нет | `duration: 0.4` | Конфигурация кривой и длительности анимации для `framer-motion`. |
+| `onAnimationEnd` | `(index: number) => void` | Нет | `NOOP` | Колбэк, вызываемый по завершении сдвига слайдов. |
+
+#### Императивный интерфейс
+
+Передаётся через ref родительскому компоненту:
+
+| Метод | Сигнатура | Описание |
+| :--- | :--- | :--- |
+| `next` | `() => void` | Переключить на следующий слайд. |
+| `prev` | `() => void` | Переключить на предыдущий слайд. |
+| `jumpTo` | `(to: number) => void` | Перейти на указанный слайд. |
+| `getElement` | `() => HTMLDivElement \| null` | Возвращает ссылку на корневой DOM-контейнер карусели. |
+
+### 3. Дропдаун
+
+#### Описание
+
+Компонент с выпадающим окном для выбора количественных параметров. Работает в режиме транзакционного (с контрольной панелью), либо реактивного состояния. Расширяется обертками (DropdownGuests, DropdownAmenities) через передачу конфигурации и колбэка getDisplayedValue, возвращающего отображаемое значение в триггере.
+
+Транзакционное\реактивное состояние: Поведение компонента регулируется флагом hasControls. При его активации изменения временно изолируются в локальном черновике. Клик на кнопку "Применить" синхронизирует черновик с react-hook-form. Кнопка "Очистить" сбрасывает данные кально.
+
+При отсутствии контрольной панели значения обновляются реактивно, при каждом нажатии на кнопки опций.
+
+Управление фокусом: Для интеграции с RHF передаёт через ref focusApi. Для программного фокуса обеспечивается обводка. В транзакционном режиме включает ловушку фокуса для модального окна, а для реактивного - обеспечивает его скрытие при табуляции вне.
+
+Чтобы фокус не застревал при деактивации кнопок опций (например, при достижении максимума диапазона), фокус принудительно переносится на соседний интерактивный элемент.
+
+#### Схема
+
+```mermaid
+    graph TD
+        subgraph Wrapper_Layer [Полиморфные обертки]
+            DG[DropdownGuests]
+            DA[DropdownAmenities]
+        end
+
+        DG --> |hasControls: true + getDisplayedValue| D
+        DA --> |hasControls: false + getDisplayedValue| D
+
+        subgraph UI_Layer [Интерфейс и Доступность]
+            D[Dropdown / Root Component] --> |role: dialog/region| DB[Dropdown__bar Container]
+            DB --> |role: group| DOR[DropdownOptionRow]
+            DB --> |onApply / onClear| DC[DropdownControls]
+        end
+
+        subgraph Logic_Layer [Управление Стейтом и Фокусом]
+            D <--> |useExpandable| EX[Состояние раскрытия и ID]
+            D <--> |isProgrammaticFocus| PF[Программный фокус триггера]
+            DB <--> |FocusScope contain autoFocus| FS[react-aria/focus]
+            DOR <--> |focusNext| FM[useFocusManager]
+        end
+
+        subgraph External_Layer [Внешнее состояние]
+            D <--> |useController / field.onChange| RHF[React Hook Form]
+        end
+
+        style DG fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style DA fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style DB fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style DOR fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style DC fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        
+        style D fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style EX fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style PF fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style FS fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style FM fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+
+        style RHF fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+```
+
+#### Пропсы
+
+| Свойство | Тип | Обязательный | По умолчанию | Описание |
+| :--- | :--- | :---: | :---: | :--- |
+| `name` | `Path<T>` | **Да** | — | Имя поля формы для объекта опций. |
+| `control` | `Control<T>` | **Да** | — | Объект `control` из инстанса `react-hook-form`. |
+| `options` | `DropdownOption[]` | **Да** | — | Массив конфигураций опций (имя, описание, диапазон min/max). |
+| `getDisplayedValue`| `(state: DropdownValues) => string` | **Да** | — | Функция для вычисления и локализации итоговой строки триггера. |
+| `labelText` | `string` | Нет | `''` | Текст заголовка компонента. |
+| `labelAppendix` | `string` | Нет | `''` | Дополнительный текст (аппендикс) заголовка (отображается справа от основного текста). |
+| `isExpanded` | `boolean` | Нет | `false` | Начальное состояние раскрытия списка при монтировании. |
+| `isExpandingDisabled`| `boolean` | Нет | `false` | Флаг блокирующий раскрытие\скрытие выпадающего списка. |
+| `hasControls` | `boolean` | Нет | `false` | Включает режим черновика (транзакционного стейта) и рендерит кнопки Применить/Очистить. |
+| `size` | `'md' \| 'lg'` | Нет | `'lg'` | Управляет фиксированной шириной компонента. |
+| `ref` | `RefObject<DropdownRef \| null>` | Нет | — | Реф для императивного вызова метода `focus()` (например, при ошибках валидации). |
+
+### 4. Календарь
+
+#### Описание
+
+Календарь с бесконечной горизонтальной прокруткой листов, зумом (переключения режима месяц/год) и строгим управлением клавиатурным фокусом.
+
+Управление состоянием: До момента нажатия кнопки "Применить" выбранные даты изолируются в буфере trace, не затрагивая форму. При закрытии календаря состояние синхронизируется обратно. Через useEffect развернут таймер-планировщик, который каждую полночь автоматически обновляет today и аннулирует просроченные даты прямо в открытом интерфейсе.
+
+Смена листов и режима месяц\год: Календарь поддерживает два формата отображения: месяц и год. Переключение между ними (зум) анимировано через framer-motion. Смена листов календаря осуществляется через компонент Carousel.
+
+Работа с фокусом: Фокус управляется через класс-контроллер, представляющий из себя конечный автомат с императивным управлением. Он синхронизирует фокус в DOM со стейтом через реф-геттер () => statusRef.current, исключая лишние ререндеры. Контроллер обрабатывает очередь отложенного фокуса для асинхронных анимаций карусели, возвращает фокус на триггер и т.д.
+
+Навигация по ячейкам календаря осуществляется с помощью паттерна roving index. Фокус удерживается в модальном окне (focus trap).
+
+#### Схема
+
+```mermaid
+    graph TD
+        subgraph UI_Layer [Слой отображения]
+            C[Calendar / Root Component] --> |Разметка вывода: range / separate| CO[CalendarOutput]
+            C --> |Модальный контейнер| CB[calendar__body]
+            CB --> |Карусель| CS[CalendarSheet]
+            CS --> |Полиморфная таблица| ST[SheetTable]
+            ST --> |Сетки: 7x6 / 4x5| T[MonthTable / YearTable]
+        end
+
+        subgraph Logic_Layer [Презентер и Навигация]
+            C <--> |Состояние, сдвиги и транзакции| UC[useCalendar Hook]
+            UC <--> |Расчет шагов стрелок и Focus Trap| UKN[useKeyboardNavigation Hook]
+        end
+
+        subgraph External_State [Внешнее состояние]
+            UC <--> |field.onChange| RHF[React Hook Form / useController]
+        end
+
+        subgraph Focus_Machine [Конечный автомат фокуса]
+            UC <--> |Реф-мост: statusRef| UFM[useFocusManager Hook]
+            UFM <--> |Диспетчеризация событий| FC[FocusController Class]
+            FC -.-> |Очередь отложенного фокуса| PD[pendingDate]
+            FC -.-> |Ленивый сброс обводки| AC[attachCleanup / AbortController]
+        end
+
+        style CO fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style CB fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style CS fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style ST fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        style T fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+        
+        style C fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style UC fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style UKN fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        style UFM fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        
+        style FC fill:#fff,stroke:forestgreen,stroke-width:4px,color:#1e293b
+        style PD fill:#fff,stroke:forestgreen,stroke-width:4px,color:#1e293b
+        style AC fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+
+        style RHF fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+```
+
+#### Пропсы
+
+| Свойство | Тип | Обязательный | По умолчанию | Описание |
+| :--- | :--- | :---: | :---: | :--- |
+| `nameFrom` | `Path<T>` | **Да** | — | Имя поля формы для даты прибытия (`from`). |
+| `nameTo` | `Path<T>` | **Да** | — | Имя поля формы для даты отбытия (`to`). |
+| `control` | `Control<T>` | **Да** | — | Объект `control` из инстанса `react-hook-form`. |
+| `outputFormat` | `'range' \| 'separate' \| 'hidden'` | **Да** | — | Формат рендеринга инпутов шапки. |
+| `sheetFormat` | `'month' \| 'year'` | Нет | `'month'` | Режим сетки при открытии. |
+| `isExpanded` | `boolean` | Нет | `false` | Начальное состояние раскрытия календаря при монтировании. |
+| `label` | `string` | Нет* | `''` | Заголовок поля. Обязателен только при `outputFormat: 'range'`. |
+| `labelFrom` | `string` | Нет* | `''` | Заголовок даты заезда. Обязателен только при `outputFormat: 'separate'`. |
+| `labelTo` | `string` | Нет* | `''` | Заголовок даты выезда. Обязателен только при `outputFormat: 'separate'`. |
+| `ref` | `RefObject<CalendarRef \| null>` | Нет | — | Внешний императивный реф для фокуса полей. |
+
+#### Императивный интерфейс
+
+| Путь метода | Сигнатура | Описание |
+| :--- | :--- | :--- |
+| `from.focus` | `() => void` | Программный фокус инпута прибытия. |
+| `to.focus` | `() => void` | Программный фокус инпута отбытия. |
