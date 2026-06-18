@@ -100,7 +100,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["BaseMessageResponse"];
+                        "application/json": components["schemas"]["RegisterResponse"];
                     };
                 };
                 /** @description Validation error */
@@ -926,6 +926,13 @@ export interface components {
         LoginRequestBody: {
             email: string;
             password: string;
+        };
+        RegisterResponse: {
+            /** @example User registered successfully */
+            message: string;
+            /** @example eyJhbGciOiJIUzI1NiIsIn... */
+            token: string;
+            user: components["schemas"]["User"];
         };
         RegisterRequestBody: {
             firstName: string;
