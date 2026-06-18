@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ROUTES } from '../../routes';
 import { getLoginSchema } from '../../schemas/login.schemas';
 import { clearError } from '../../slices/auth';
-import { getErrorMessage } from '../../utils/utils';
+import { handleFormServerError } from '../../utils/handleFormServerError';
 import Button from '../Button';
 import CardFrame from '../CardFrame/CardFrame';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -39,6 +39,8 @@ const LoginCard = () => {
     register,
     handleSubmit,
     setFocus,
+    control,
+    setError,
     formState: { errors },
   } = methods;
 
@@ -67,7 +69,14 @@ const LoginCard = () => {
         toast.success(t('success'));
         navigate(fromPage, { replace: true });
       })
-      .catch((err) => toast.error(getErrorMessage(err, tErr('unknownError'))));
+      .catch((err) => {
+        handleFormServerError({
+          err,
+          setError,
+          control,
+          defaultErrorMessage: tErr('unknownError'),
+        });
+      });
   };
 
   return (

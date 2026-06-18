@@ -13,7 +13,7 @@ const IconItem = ({ name, heading, description }: IconItemProps) => {
   return (
     <div className="icon-item">
       <div className="icon-item__icon">
-        <Icon name={name} isSizeLg />
+        <Icon name={name} size="lg" />
       </div>
       <div className="icon-item__info">
         <Heading type="h4">{heading}</Heading>

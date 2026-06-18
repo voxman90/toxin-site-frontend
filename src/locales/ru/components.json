@@ -36,6 +36,24 @@
     "total": "Итого",
     "btnSubmit": "забронировать"
   },
+  "bookingSuccessCard": {
+    "title": "Бронирование подтверждено!",
+    "subtitle": "Чек успешно сформирован.",
+    "roomLabel": "Номер проживания",
+    "datesLabel": "Даты прибытия и отбытия",
+    "nightsCount": "Количество ночей",
+    "days_one": "сутки",
+    "days_few": "{{count}} суток",
+    "days_many": "{{count}} суток",
+    "days_other": "{{count}} суток",
+    "basePrice": "Стоимость проживания",
+    "serviceFeeWithDiscount": "Скидка на услуги",
+    "additionalServices": "Дополнительные услуги",
+    "total": "Итого",
+    "btnPrint": "Печать",
+    "canPrint": "Вы можете распечатать чек для отчетности",
+    "btnHome": "На главную"
+  },
   "carousel": {
     "movePrev": "Предыдущий слайд",
     "moveNext": "Следующий слайд",

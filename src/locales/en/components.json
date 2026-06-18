@@ -35,6 +35,22 @@
     "total": "total",
     "btnSubmit": "book a room"
   },
+  "bookingSuccessCard": {
+    "title": "Booking Confirmed!",
+    "subtitle": "Your receipt has been generated successfully.",
+    "roomLabel": "Accommodation room",
+    "datesLabel": "Arrival & Departure dates",
+    "nightsCount": "Number of nights",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "basePrice": "Accommodation cost",
+    "serviceFeeWithDiscount": "Service fee discount",
+    "additionalServices": "Additional services",
+    "total": "Total",
+    "canPrint": "You can print receipt for your records",
+    "btnPrint": "Print",
+    "btnHome": "Go to home"
+  },
   "carousel": {
     "movePrev": "Previous slide",
     "moveNext": "Next slide",

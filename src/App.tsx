@@ -3,10 +3,12 @@ import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 
 import { initialize } from './actions/auth.actions';
 import AppErrorBoundary from './components/AppErrorBoundary/AppErrorBoundary';
+import { AppToast } from './components/AppToast/AppToast';
 import { BookingErrorFallback } from './components/BookingErrorFallback/BookingErrorFallback';
 import ErrorBoundaryLayout from './components/ErrorBoundaryLayout/ErrorBoundaryLayout';
 import MainLayout from './components/MainLayout/MainLayout';
 import { useAppDispatch } from './hooks';
+import BookingSuccess from './pages/booking-success/BookingSuccess';
 import Booking from './pages/booking/Booking';
 import Landing from './pages/landing/Landing';
 import Login from './pages/login/Login';
@@ -18,7 +20,6 @@ import ColorsAndTypes from './pages/ui-kit/colors-and-types/ColorsAndTypes';
 import FormElements from './pages/ui-kit/form-elements/FormElements';
 import HeadersAndFooters from './pages/ui-kit/headers-and-footers/HeadersAndFooters';
 import { ROUTES } from './routes';
-import { AppToast } from './components/AppToast/AppToast';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -53,6 +54,7 @@ function App() {
             }
           />
         </Route>
+        <Route path={ROUTES.BOOKING_SUCCESS} element={<BookingSuccess />} />
       </Routes>
       <AppToast />
     </BrowserRouter>

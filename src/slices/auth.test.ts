@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { LoginResponse } from '../@types/api/auth.api';
+import type { LoginResponse, RegisterResponse } from '../@types/api/auth.api';
 import { createUserMock, knownErrorMock } from '../__tests__/fixtures/fixtures';
 import { initialize, login, register } from '../actions/auth.actions';
 
@@ -128,7 +128,12 @@ describe('auth', () => {
     });
 
     it('should set isLoading to false when register is fullfiled', () => {
-      const action = { type: register.fulfilled.type };
+      const payload: RegisterResponse = {
+        message: 'Success',
+        token: 'new-token',
+        user: createUserMock(),
+      };
+      const action = { type: register.fulfilled.type, payload };
       const state = authReducer(createInitialState({ isLoading: true }), action);
 
       expect(state.isLoading).toBe(false);

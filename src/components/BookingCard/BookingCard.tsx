@@ -3,8 +3,7 @@ import clsx from 'clsx';
 import { memo, useEffect, useMemo } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import type { AdditionalService, IRoom } from '../../@types/data';
 import { createBooking } from '../../actions/booking.actions';
@@ -12,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useSearchFilters } from '../../hooks/useSearchFilters';
 import { ROUTES } from '../../routes';
 import { getBookingSchema } from '../../schemas/booking.schema';
+import { handleFormServerError } from '../../utils/handleFormServerError';
 import { formatCurrency } from '../../utils/utils';
 import Button from '../Button';
 import CardFrame from '../CardFrame/CardFrame';
@@ -37,6 +37,7 @@ const BookingCard = ({ roomId, room, isRoomLoading }: BookingCardProps) => {
   const { t: tErr } = useTranslation('components', { keyPrefix: 'errors' });
   const { t: tAddService } = useTranslation('components', { keyPrefix: 'additionalServices' });
   const navigate = useNavigate();
+  const location = useLocation();
   const { filters, applyFilters } = useSearchFilters();
 
   const {
@@ -65,6 +66,8 @@ const BookingCard = ({ roomId, room, isRoomLoading }: BookingCardProps) => {
     setFocus,
     trigger,
     getValues,
+    clearErrors,
+    setError,
     formState: { isValid },
   } = useForm({
     resolver: yupResolver(schema),
@@ -96,6 +99,8 @@ const BookingCard = ({ roomId, room, isRoomLoading }: BookingCardProps) => {
     const data = schema.cast(getValues());
 
     applyFilters(data);
+
+    clearErrors(['checkIn', 'checkOut', 'guests']);
   }, [checkIn, checkOut, guestsStr, applyFilters, getValues, schema]);
 
   const onSubmit = async () => {
@@ -109,14 +114,19 @@ const BookingCard = ({ roomId, room, isRoomLoading }: BookingCardProps) => {
       }),
     )
       .unwrap()
-      .then(() => toast.success('Room booking was successful'))
+      .then((responseData) => {
+        navigate(ROUTES.BOOKING_SUCCESS, {
+          state: { booking: responseData, room: room?.roomNumber },
+        });
+      })
       .catch((reason) => {
-        if (reason?.status === 401) {
-          navigate(ROUTES.LOGIN, { state: { from: location.pathname } });
-          return;
-        }
-
-        toast.error(reason?.message || tErr('unknownError'));
+        handleFormServerError({
+          err: reason,
+          setError,
+          control,
+          defaultErrorMessage: tErr('unknownError'),
+          onUnauthorized: () => navigate(ROUTES.LOGIN, { state: { from: location.pathname } }),
+        });
       });
   };
 

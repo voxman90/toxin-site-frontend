@@ -22,6 +22,10 @@ const formatNumberWithSpaces = (x: number) => {
 
 export const formatCurrency = (value: number) => `${formatNumberWithSpaces(value)} ₽`;
 
+export const formatISOString = (date: string) => {
+  return `${new Date(date).toLocaleDateString()}`;
+};
+
 export const handleKeyDown = (callback: MouseEventHandler) => (e: React.KeyboardEvent) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();

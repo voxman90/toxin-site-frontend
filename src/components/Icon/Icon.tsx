@@ -5,10 +5,12 @@ import './Icon.scss';
 
 export type FantasyFont = 'awesome' | 'material';
 
+export type IconSize = 'sm' | 'lg' | 'xl';
+
 interface IconProps extends React.HTMLAttributes<HTMLElement> {
   name: string;
   font?: FantasyFont;
-  isSizeLg?: boolean;
+  size?: IconSize;
   className?: string;
   as?: React.ElementType;
 }
@@ -17,7 +19,7 @@ const Icon = ({
   name,
   as: Tag = 'i',
   font = 'material',
-  isSizeLg = false,
+  size = 'sm',
   className,
   ...props
 }: IconProps) => {
@@ -26,9 +28,13 @@ const Icon = ({
   return (
     <Tag
       {...props}
-      className={clsx('icon', `icon--font-${font}`, 'u-non-selectable', className, {
-        'icon--size-lg': isSizeLg,
-      })}
+      className={clsx(
+        'icon',
+        `icon--font-${font}`,
+        `icon--size-${size}`,
+        'u-non-selectable',
+        className,
+      )}
       {...(isAwesome ? { 'data-icon-name': name } : {})}
     >
       {!isAwesome && name}

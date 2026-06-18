@@ -17,7 +17,7 @@ const MiniErrorPlaceholder = ({ message, className, onRetry }: MiniErrorPlacehol
   return (
     <div className={clsx('mini-error-placeholder', className)}>
       <div className="mini-error-placeholder__content">
-        <Icon name="report_problem" className="mini-error-placeholder__icon" isSizeLg />
+        <Icon name="report_problem" className="mini-error-placeholder__icon" size="lg" />
         <p className="mini-error-placeholder__message">{message}</p>
         <Button size="content" variant="text" type="button" onClick={onRetry}>
           {t('onRetry')}

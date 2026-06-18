@@ -44,5 +44,8 @@
     },
     "reviewsFetchError": "Не удалось загрузить отзывы.",
     "summaryFetchError": "Не удалось загрузить рейтинг."
+  },
+  "bookingSuccess": {
+    "title": "Бронирование подтверждено!"
   }
 }

@@ -51,16 +51,20 @@
       width: 100%;
       height: 100%;
 
+      &[data-id='0'] {
+        background: deepskyblue;
+      }
+
       &[data-id='1'] {
-        background: red;
+        background: lightcoral;
       }
 
       &[data-id='2'] {
-        background: green;
+        background: seagreen;
       }
 
       &[data-id='3'] {
-        background: cyan;
+        background: lightcyan;
       }
     }
   }

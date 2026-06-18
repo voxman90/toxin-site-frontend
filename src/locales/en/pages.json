@@ -44,5 +44,8 @@
     },
     "reviewsFetchError": "Failed to load reviews.",
     "summaryFetchError": "Failed to load rating."
+  },
+  "bookingSuccess": {
+    "title": "Booking Confirmed!"
   }
 }

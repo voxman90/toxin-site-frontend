@@ -1,13 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { createRoomMock } from '../../../__tests__/fixtures/fixtures';
+import type { CreateBookingResponse } from '../../../@types/api/booking.api';
+import { createBookingMock, createRoomMock } from '../../../__tests__/fixtures/fixtures';
 import BookingCard from '../../../components/BookingCard/BookingCard';
+import BookingSuccessCard from '../../../components/BookingSuccessCard/BookingSuccessCard';
 import Carousel from '../../../components/Carousel';
 import CarouselItem from '../../../components/Carousel/CarouselItem';
 import LangSelector from '../../../components/LangSelector/LangSelector';
 import LoginCard from '../../../components/LoginCard/LoginCard';
 import Logo from '../../../components/Logo/Logo';
+import MiniErrorPlaceholder from '../../../components/MiniErrorPlaceholder/MiniErrorPlaceholder';
 import RegisterCard from '../../../components/RegisterCard/RegisterCard';
 import RoomBasicSearchCard from '../../../components/RoomBasicSearchCard/RoomBasicSearchCard';
 import RoomCard from '../../../components/RoomCard/RoomCard';
@@ -18,6 +21,8 @@ import './Cards.scss';
 
 const Cards = () => {
   const { t } = useTranslation('ui-kit', { keyPrefix: 'cards' });
+
+  const bookingData: CreateBookingResponse = createBookingMock();
 
   return (
     <div className="cards">
@@ -34,6 +39,7 @@ const Cards = () => {
           <div className="cards__column">
             <RoomBasicSearchCard />
             <LoginCard />
+            <BookingSuccessCard bookingData={bookingData} roomNumber={999} />
           </div>
           <div className="cards__column">
             <BookingCard
@@ -80,6 +86,12 @@ const Cards = () => {
                   </CarouselItem>
                 ))}
               </Carousel>
+            </div>
+            <div className="cards_error">
+              <MiniErrorPlaceholder
+                message="Something went wrong, please try again"
+                onRetry={() => {}}
+              />
             </div>
           </div>
         </div>

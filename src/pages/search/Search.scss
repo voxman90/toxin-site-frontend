@@ -11,7 +11,7 @@
     height: 100%;
   }
 
-  &__empty- &__rooms {
+  &__rooms {
     display: grid;
     grid-template-columns: repeat(auto-fill, var(--room-card-width-min));
     justify-content: start;

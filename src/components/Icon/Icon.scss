@@ -1,23 +1,35 @@
 @use '../../styles/text' as text;
 
 .icon {
-  &--font-material {
-    @include text.material-icons(var(--icon-size-sm));
-  }
+  &--font {
+    &-material {
+      @include text.material-icons();
+    }
 
-  &--font-awesome {
-    width: 100%;
-    height: 100%;
+    &-awesome {
+      width: 100%;
+      height: 100%;
 
-    &::before {
-      @include text.awesome-icons(var(--icon-size-sm));
+      &::before {
+        @include text.awesome-icons();
 
-      content: attr(data-icon-name);
-      display: inline-block;
+        content: attr(data-icon-name);
+        display: inline-block;
+      }
     }
   }
 
-  &--size-lg {
-    font-size: var(--icon-size-lg);
+  &--size {
+    &-sm {
+      font-size: var(--icon-size-sm);
+    }
+
+    &-lg {
+      font-size: var(--icon-size-lg);
+    }
+
+    &-xl {
+      font-size: var(--icon-size-xl);
+    }
   }
 }

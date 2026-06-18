@@ -19,7 +19,7 @@ const ErrorView = ({ title, message, onRetry, btnText, className }: ErrorViewPro
   return (
     <main className="error-view">
       <CardFrame as="section" className={clsx('error-view__card', className)}>
-        <Icon name="error_outline" className="error-view__icon" isSizeLg />
+        <Icon name="error_outline" className="error-view__icon" size="lg" />
         <Heading type="h2" style={{ marginBottom: 0 }}>
           {title}
         </Heading>

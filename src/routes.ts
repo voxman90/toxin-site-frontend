@@ -5,6 +5,7 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   BOOKING_PATTERN: '/booking/:roomId',
+  BOOKING_SUCCESS: '/booking/success',
   BOOKING: (roomId: string) => `/booking/${roomId}`,
   SEARCH: '/search',
   UI_KIT,

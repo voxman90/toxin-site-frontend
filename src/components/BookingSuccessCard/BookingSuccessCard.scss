@@ -1,0 +1,138 @@
+@use '../../styles/text' as text;
+
+.booking-success-card {
+  display: flex;
+  justify-content: center;
+
+  &__content {
+    padding: var(--gap-md) var(--gap-sm);
+    border: 1px dashed var(--color-foreground-12);
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--gap-md);
+
+    text-align: center;
+  }
+
+  &__icon {
+    margin-bottom: var(--gap-sm);
+
+    color: var(--color-primary);
+  }
+
+  &__subtitle {
+    @include text.p-text();
+
+    margin-top: var(--gap-xs);
+
+    color: var(--fc-muted);
+  }
+
+  &__receipt {
+    @include text.p-text();
+
+    margin-bottom: var(--gap-lg);
+
+    line-height: 1.125rem;
+  }
+
+  &__room-title {
+    @include text.widget-text();
+
+    font-size: var(--fz-p);
+  }
+
+  &__invoice-item {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-bottom: var(--gap-sm);
+
+    &--header {
+      grid-template-columns: 100%;
+      margin-bottom: var(--gap-md);
+      padding-bottom: var(--gap-sm);
+      border-bottom: 1px dashed var(--color-foreground-12);
+    }
+  }
+
+  &__dates {
+    font-weight: bold;
+    text-align: left;
+  }
+
+  &__info-price {
+    text-align: right;
+  }
+
+  &__services-section {
+    margin-block: var(--gap-md) var(--gap-md);
+    padding-block: var(--gap-sm);
+    border-block: 1px dashed var(--color-foreground-12);
+  }
+
+  &__services-title {
+    margin-bottom: var(--gap-sm);
+
+    color: var(--fc-muted);
+  }
+
+  &__add-service-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+  }
+
+  &__add-service-item {
+    display: flex;
+    justify-content: stretch;
+    align-items: baseline;
+    gap: 4px;
+
+    color: var(--fc-muted);
+  }
+
+  &__add-service-label {
+    white-space: nowrap;
+  }
+
+  &__add-service-divider {
+    flex-grow: 1;
+    border-bottom: 1px dotted var(--fc-placeholder);
+
+    transform: translateY(1px);
+  }
+
+  &__add-service-price {
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  &__total {
+    display: flex;
+    height: 1.5rem;
+    align-items: baseline;
+    gap: 0.25rem;
+    width: 100%;
+  }
+
+  &__total-divider {
+    flex-grow: 1;
+    border-bottom: 1px dotted var(--fc-muted);
+
+    transform: translateY(1px);
+  }
+
+  &__print {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__print-text {
+    @include text.p-text;
+  }
+}

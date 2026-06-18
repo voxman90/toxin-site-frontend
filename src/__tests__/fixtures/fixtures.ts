@@ -71,7 +71,7 @@ export const createBookingMock = (overrides: Partial<IBooking> = {}): IBooking =
   user: '6a260600916f6f81cd61f75e',
   room: '6a2639996399ba83814fbbe9',
   checkIn: '2030-07-01T00:00:00Z',
-  checkOut: '2030-07-01T00:00:00Z',
+  checkOut: '2030-07-02T00:00:00Z',
   guests: {
     adult: 1,
     child: 0,
@@ -80,7 +80,7 @@ export const createBookingMock = (overrides: Partial<IBooking> = {}): IBooking =
   additionalServices: [],
   priceSummary: createPriceSummaryMock(),
   createdAt: '2030-07-01T00:00:00Z',
-  updatedAt: '2030-07-02T00:00:00Z',
+  updatedAt: '2030-07-01T00:00:00Z',
   ...overrides,
 });
 

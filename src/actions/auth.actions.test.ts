@@ -75,7 +75,7 @@ describe('authActions', () => {
     };
 
     it('should dispatch fulfilled when register is successful', async () => {
-      const payload: RegisterResponse = { message: 'Success' };
+      const payload: RegisterResponse = { message: 'Success', user: createUserMock(), token: 'user-token' };
 
       vi.mocked(api.post).mockResolvedValueOnce({ data: payload });
       const dispatch = vi.fn();

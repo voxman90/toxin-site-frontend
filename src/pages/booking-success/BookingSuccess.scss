@@ -1,0 +1,43 @@
+@use '../../styles/text' as text;
+
+.booking-success {
+  display: flex;
+  justify-content: center;
+  padding-block: 160px;
+}
+
+@media print {
+  header,
+  footer,
+  .booking-success__actions {
+    display: none !important;
+  }
+
+  .booking-success {
+    padding: 0;
+    background: white !important;
+    color: black !important;
+
+    &__content {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    &__icon {
+      border: 2px solid black;
+      color: black !important;
+      background: transparent !important;
+    }
+
+    &__add-service-divider,
+    &__total-divider {
+      border-bottom: 1px dotted black !important;
+    }
+  }
+
+  .card-frame {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+}
