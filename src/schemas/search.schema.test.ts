@@ -8,7 +8,7 @@ const mockT = (key: string) => key;
 
 const getMockData = (overrides: Partial<SearchRoomsQuery> = {}) => ({
   checkIn: '2030-07-01T00:00:00Z',
-  checkOut: '2030-07-01T00:00:00Z',
+  checkOut: '2030-07-02T00:00:00Z',
   minPrice: 1000,
   maxPrice: 5000,
   guests: { adult: 2, child: 0, baby: 0 },
@@ -28,7 +28,18 @@ describe('Search Validation Schema', () => {
     expect(isValid).toBe(true);
   });
 
-  it('should fail if checkIn or checkOut are empty strings', () => {
+  it('should fail when with fully valid data', () => {
+    const isValid = schema.isValidSync(
+      getMockData({
+        checkIn: '2030-07-01T00:00:00Z',
+        checkOut: '2030-07-01T00:00:00Z',
+      }),
+    );
+
+    expect(isValid).toBe(false);
+  });
+
+  it('should fail when checkIn or checkOut are empty strings', () => {
     const invalidDatesData = getMockData({
       checkIn: '2030-07-01T00:00:00Z',
       checkOut: '',

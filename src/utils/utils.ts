@@ -41,6 +41,20 @@ export const isKnownError = (error: unknown): error is KnownError => {
   );
 };
 
+export const getErrorMessage = (err: unknown, defaultMessage: string): string => {
+  if (!isKnownError(err)) {
+    return defaultMessage;
+  }
+
+  const errorData = err.data;
+
+  if ('errors' in errorData && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+    return errorData.errors.map((fieldErr) => fieldErr.message).join(', ');
+  }
+
+  return errorData.message || defaultMessage;
+};
+
 export const sleep = async <T>(promise: Promise<T>, ms: number): Promise<T> => {
   const [result] = await Promise.all([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
 

@@ -156,24 +156,30 @@ const Search = () => {
           )}
 
           {!isUrlValid && (
-            <EmptyState title={t('invalidUrlTitle')} description={t('invalidUrlDescription')} />
+            <div className="search__rooms-full-width">
+              <EmptyState title={t('invalidUrlTitle')} description={t('invalidUrlDescription')} />
+            </div>
           )}
 
           {isRoomsNotFound && (
-            <EmptyState title={t('notFoundTitle')} description={t('notFoundDescription')} />
+            <div className="search__rooms-full-width">
+              <EmptyState title={t('notFoundTitle')} description={t('notFoundDescription')} />
+            </div>
           )}
 
           {hasServerError && (
-            <MiniErrorPlaceholder
-              message={t('serverErrorDescription', {
-                status: roomsError.status ?? 500,
-                message: roomsError.data.message ?? tErr('unknownError'),
-              })}
-              onRetry={() => {
-                dispatch(clearSearch());
-                handleRefetch();
-              }}
-            />
+            <div className="search__rooms-full-width">
+              <MiniErrorPlaceholder
+                message={t('serverErrorDescription', {
+                  status: roomsError.status ?? 500,
+                  message: roomsError.data.message ?? tErr('unknownError'),
+                })}
+                onRetry={() => {
+                  dispatch(clearSearch());
+                  handleRefetch();
+                }}
+              />
+            </div>
           )}
 
           {shouldShowRoomsGrid && (

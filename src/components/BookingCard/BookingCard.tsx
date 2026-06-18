@@ -3,18 +3,21 @@ import clsx from 'clsx';
 import { memo, useEffect, useMemo } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import type { AdditionalService, IRoom } from '../../@types/data';
 import { createBooking } from '../../actions/booking.actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useSearchFilters } from '../../hooks/useSearchFilters';
+import { ROUTES } from '../../routes';
 import { getBookingSchema } from '../../schemas/booking.schema';
 import { formatCurrency } from '../../utils/utils';
 import Button from '../Button';
 import CardFrame from '../CardFrame/CardFrame';
 import DropdownDate from '../DropdownDate/DropdownDate';
 import DropdownGuests from '../DropdownGuests/DropdownGuests';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Field from '../Field/Field';
 import Heading from '../Heading/Heading';
 import Tooltip from '../Tooltip/Tooltip';
@@ -33,6 +36,7 @@ const BookingCard = ({ roomId, room, isRoomLoading }: BookingCardProps) => {
   const { t } = useTranslation('components', { keyPrefix: 'bookingCard' });
   const { t: tErr } = useTranslation('components', { keyPrefix: 'errors' });
   const { t: tAddService } = useTranslation('components', { keyPrefix: 'additionalServices' });
+  const navigate = useNavigate();
   const { filters, applyFilters } = useSearchFilters();
 
   const {
@@ -106,7 +110,14 @@ const BookingCard = ({ roomId, room, isRoomLoading }: BookingCardProps) => {
     )
       .unwrap()
       .then(() => toast.success('Room booking was successful'))
-      .catch((reason) => toast.error(reason?.message || tErr('unknownError')));
+      .catch((reason) => {
+        if (reason?.status === 401) {
+          navigate(ROUTES.LOGIN, { state: { from: location.pathname } });
+          return;
+        }
+
+        toast.error(reason?.message || tErr('unknownError'));
+      });
   };
 
   if (isRoomLoading || !room) {
@@ -199,6 +210,10 @@ const BookingCard = ({ roomId, room, isRoomLoading }: BookingCardProps) => {
             <div className="booking-card__total-divider" />
             <Heading type="h2">{formatCurrency(totalPrice)}</Heading>
           </div>
+          <ErrorMessage
+            className="booking-card__preview-error"
+            message={error.preview?.data.message}
+          />
           <Button type="submit" size="long" variant="filled" disabled={isBlurred} hasArrow>
             {t('btnSubmit')}
           </Button>

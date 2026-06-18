@@ -39,8 +39,11 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(register.fulfilled, (state) => {
+      .addCase(register.fulfilled, (state, { payload }) => {
+        localStorage.setItem('token', payload.token);
         state.isLoading = false;
+        state.user = payload.user;
+        state.token = payload.token;
       })
       .addCase(register.rejected, (state, { payload }) => {
         state.isLoading = false;

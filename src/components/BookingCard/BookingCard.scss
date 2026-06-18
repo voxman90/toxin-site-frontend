@@ -113,6 +113,10 @@
     }
   }
 
+  &__preview-error {
+    transform: translateY(calc(-1 * var(--error-reserved-space)));
+  }
+
   &__total {
     display: flex;
     height: 1.5rem;

@@ -1,19 +1,19 @@
 import type { ReactNode } from 'react';
+import type { ErrorBoundaryPropsWithComponent, FallbackProps } from 'react-error-boundary';
 import { ErrorBoundary } from 'react-error-boundary';
-import type { FallbackProps } from 'react-error-boundary';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { ROUTES } from '../../routes';
 import ErrorView from '../ErrorView/ErrorView';
 
 const DefaultFallback = ({ resetErrorBoundary }: FallbackProps) => {
   const { t } = useTranslation('components', { keyPrefix: 'errorBoudary.defaultFallback' });
-  const navigate = useNavigate();
 
   const handleGoHome = () => {
     resetErrorBoundary();
-    navigate(ROUTES.LANDING);
+
+    window.location.href = ROUTES.LANDING;
   };
 
   return (
@@ -26,14 +26,25 @@ const DefaultFallback = ({ resetErrorBoundary }: FallbackProps) => {
   );
 };
 
-interface AppErrorBoundaryProps {
+type AppErrorBoundaryProps = {
   children: ReactNode;
   FallbackComponent?: React.ComponentType<FallbackProps>;
-}
+} & Omit<ErrorBoundaryPropsWithComponent, 'FallbackComponent'>;
 
-const AppErrorBoundary = ({ children, FallbackComponent }: AppErrorBoundaryProps) => {
+const AppErrorBoundary = ({
+  children,
+  FallbackComponent,
+  resetKeys = [],
+  ...rest
+}: AppErrorBoundaryProps) => {
+  const location = useLocation();
+
   return (
-    <ErrorBoundary FallbackComponent={FallbackComponent || DefaultFallback}>
+    <ErrorBoundary
+      FallbackComponent={FallbackComponent || DefaultFallback}
+      resetKeys={[location.pathname, ...resetKeys]}
+      {...rest}
+    >
       {children}
     </ErrorBoundary>
   );

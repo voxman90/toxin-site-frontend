@@ -145,6 +145,11 @@
       "description": "Something went wrong, please try again",
       "btnText": "Retry"
     },
+    "badRequest": {
+      "title": "Bad request",
+      "description": "It looks like you've selected incorrect dates or booking conditions. Please adjust your search parameters.",
+      "btnText": "Back to home"
+    },
     "idError": {
       "title": "Error",
       "description": "Room ID is not specified, please select a room on the search page",
@@ -268,6 +273,7 @@
   },
   "loginCard": {
     "heading": "Sign In",
+    "success": "Login successful!",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
     "btnSubmit": "Login",
@@ -276,6 +282,7 @@
   },
   "registerCard": {
     "heading": "Account Registration",
+    "success": "Registration and login successful!",
     "firstNamePlaceholder": "First Name",
     "lastNamePlaceholder": "Last Name",
     "genderSelection": "Gender selection",

@@ -39,7 +39,6 @@ const Booking = () => {
     isLoading: { room: isRoomLoading, ratingSummary: isSummaryLoading },
     error: { room: roomError, reviews: reviewsError, ratingSummary: summaryError },
   } = useAppSelector((state) => state.roomDetails);
-  const { error: bookingError } = useAppSelector((state) => state.booking);
 
   useEffect(() => {
     return () => {
@@ -49,7 +48,7 @@ const Booking = () => {
   }, [dispatch]);
 
   const isRoomNotFound = !roomId || roomError?.status === 404;
-  const hasOtherCriticalError = !!(roomError || bookingError.preview);
+  const hasOtherCriticalError = !!roomError;
 
   if (isRoomNotFound) {
     throw createKnownError({
@@ -60,8 +59,8 @@ const Booking = () => {
 
   if (hasOtherCriticalError) {
     throw createKnownError({
-      message: 'Server critical error',
-      status: roomError?.status || bookingError.preview?.status || 500,
+      message: roomError?.data.message || 'Server critical error',
+      status: roomError?.status || 500,
     });
   }
 
@@ -91,7 +90,9 @@ const Booking = () => {
   }, [dispatch, stableBookingFields, bookingSchema, roomId]);
 
   useEffect(() => {
-    if (roomId) dispatch(initRoomDetails(roomId));
+    if (roomId) {
+      dispatch(initRoomDetails(roomId));
+    }
   }, [dispatch, roomId]);
 
   return (

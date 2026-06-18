@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { initialize } from './actions/auth.actions';
 import AppErrorBoundary from './components/AppErrorBoundary/AppErrorBoundary';
 import { BookingErrorFallback } from './components/BookingErrorFallback/BookingErrorFallback';
+import ErrorBoundaryLayout from './components/ErrorBoundaryLayout/ErrorBoundaryLayout';
 import MainLayout from './components/MainLayout/MainLayout';
 import { useAppDispatch } from './hooks';
 import Booking from './pages/booking/Booking';
@@ -38,38 +39,12 @@ function App() {
           <Route path={ROUTES.FORM_ELEMENTS} element={<FormElements />} />
         </Route>
         <Route element={<MainLayout />}>
-          <Route
-            path="/"
-            element={
-              <AppErrorBoundary>
-                <Landing />
-              </AppErrorBoundary>
-            }
-          />
-          <Route
-            path={ROUTES.LOGIN}
-            element={
-              <AppErrorBoundary>
-                <Login />
-              </AppErrorBoundary>
-            }
-          />
-          <Route
-            path={ROUTES.REGISTER}
-            element={
-              <AppErrorBoundary>
-                <Register />
-              </AppErrorBoundary>
-            }
-          />
-          <Route
-            path={ROUTES.SEARCH}
-            element={
-              <AppErrorBoundary>
-                <Search />
-              </AppErrorBoundary>
-            }
-          />
+          <Route element={<ErrorBoundaryLayout />}>
+            <Route path="/" element={<Landing />} />
+            <Route path={ROUTES.LOGIN} element={<Login />} />
+            <Route path={ROUTES.REGISTER} element={<Register />} />
+            <Route path={ROUTES.SEARCH} element={<Search />} />
+          </Route>
           <Route
             path={ROUTES.BOOKING_PATTERN}
             element={

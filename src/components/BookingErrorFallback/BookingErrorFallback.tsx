@@ -21,9 +21,10 @@ export const BookingErrorFallback = ({ error, resetErrorBoundary }: FallbackProp
   const { roomId } = useParams<{ roomId: string }>();
 
   const handleReturn = () => {
-    resetErrorBoundary();
-
     navigate(ROUTES.LANDING);
+
+    dispatch(resetBooking());
+    dispatch(resetRoomDetails());
   };
 
   const handleRetry = () => {
@@ -37,13 +38,26 @@ export const BookingErrorFallback = ({ error, resetErrorBoundary }: FallbackProp
     resetErrorBoundary();
   };
 
-  if (!roomId || (isKnownError(error) && error.status === 404)) {
+  const isKnown = isKnownError(error);
+
+  if (!roomId || (isKnown && error.status === 404)) {
     return (
       <ErrorView
         title={t('idError.title')}
         message={t('idError.description')}
         onRetry={handleReturn}
         btnText={t('idError.btnText')}
+      />
+    );
+  }
+
+  if (isKnown && error.status === 400) {
+    return (
+      <ErrorView
+        title={t('badRequest.title')}
+        message={t('badRequest.description')}
+        onRetry={handleReturn}
+        btnText={t('badRequest.btnText')}
       />
     );
   }

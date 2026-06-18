@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import type { LoginRequest } from '../../@types/api/auth.api';
@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ROUTES } from '../../routes';
 import { getLoginSchema } from '../../schemas/login.schemas';
 import { clearError } from '../../slices/auth';
-import { isKnownError } from '../../utils/utils';
+import { getErrorMessage } from '../../utils/utils';
 import Button from '../Button';
 import CardFrame from '../CardFrame/CardFrame';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -26,6 +26,7 @@ const LoginCard = () => {
   const { isLoading, error: serverError } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation('components', { keyPrefix: 'loginCard' });
   const { t: tErr } = useTranslation('components', { keyPrefix: 'errors' });
 
@@ -40,6 +41,8 @@ const LoginCard = () => {
     setFocus,
     formState: { errors },
   } = methods;
+
+  const fromPage = (location.state as { from?: string })?.from || ROUTES.LANDING;
 
   const firstError = Object.values(errors)[0]?.message as string | undefined;
 
@@ -60,8 +63,11 @@ const LoginCard = () => {
 
     await dispatch(login(credentials))
       .unwrap()
-      .then(() => navigate(ROUTES.LANDING))
-      .catch((err) => toast.error(isKnownError(err) ? err.data.message : tErr('unknownError')));
+      .then(() => {
+        toast.success(t('success'));
+        navigate(fromPage, { replace: true });
+      })
+      .catch((err) => toast.error(getErrorMessage(err, tErr('unknownError'))));
   };
 
   return (
@@ -106,7 +112,7 @@ const LoginCard = () => {
               type="button"
               size="short"
               variant="outlined"
-              onClick={() => navigate(ROUTES.REGISTER)}
+              onClick={() => navigate(ROUTES.REGISTER, { state: { from: fromPage } })}
             >
               {t('btnRegister')}
             </Button>

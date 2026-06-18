@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import type { RegisterData } from '../../@types/api/auth.api';
@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ROUTES } from '../../routes';
 import { getRigisterSchema } from '../../schemas/register.schema';
 import { clearError } from '../../slices/auth';
-import { isKnownError } from '../../utils/utils';
+import { getErrorMessage } from '../../utils/utils';
 import Button from '../Button';
 import CardFrame from '../CardFrame/CardFrame';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -29,6 +29,7 @@ const RegisterCard = () => {
   const { isLoading, error: serverError } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation('components', { keyPrefix: 'registerCard' });
   const { t: tErr } = useTranslation('components', { keyPrefix: 'errors' });
 
@@ -61,6 +62,8 @@ const RegisterCard = () => {
 
   useEffect(() => setFocus('firstName'), [setFocus]);
 
+  const fromPage = (location.state as { from?: string })?.from || ROUTES.LANDING;
+
   const onSubmit = async (data: RegisterData) => {
     if (serverError) {
       dispatch(clearError());
@@ -68,8 +71,11 @@ const RegisterCard = () => {
 
     await dispatch(signUp(data))
       .unwrap()
-      .then(() => navigate(ROUTES.LANDING))
-      .catch((err) => toast.error(isKnownError(err) ? err.data.message : tErr('unknownError')));
+      .then(() => {
+        toast.success(t('success'));
+        navigate(fromPage, { replace: true });
+      })
+      .catch((err) => toast.error(getErrorMessage(err, tErr('unknownError'))));
   };
 
   return (
@@ -174,7 +180,7 @@ const RegisterCard = () => {
               type="button"
               size="short"
               variant="outlined"
-              onClick={() => navigate(ROUTES.LOGIN)}
+              onClick={() => navigate(ROUTES.LOGIN, { state: { from: fromPage } })}
             >
               {t('btnLogin')}
             </Button>
