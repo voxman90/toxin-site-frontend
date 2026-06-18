@@ -33,7 +33,7 @@ const ThemeProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-  });
+  }, []);
 
   const contextValue = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
 

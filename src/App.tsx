@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(initialize());
-  });
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
