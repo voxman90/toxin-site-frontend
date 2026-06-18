@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { initialize } from './actions/auth.actions';
 import AppErrorBoundary from './components/AppErrorBoundary/AppErrorBoundary';
@@ -20,6 +18,7 @@ import ColorsAndTypes from './pages/ui-kit/colors-and-types/ColorsAndTypes';
 import FormElements from './pages/ui-kit/form-elements/FormElements';
 import HeadersAndFooters from './pages/ui-kit/headers-and-footers/HeadersAndFooters';
 import { ROUTES } from './routes';
+import { AppToast } from './components/AppToast/AppToast';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -55,7 +54,7 @@ function App() {
           />
         </Route>
       </Routes>
-      <ToastContainer position="top-right" />
+      <AppToast />
     </BrowserRouter>
   );
 }
