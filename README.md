@@ -241,7 +241,7 @@ npm install --legacy-peer-deps
         end
 
         subgraph Logic [Слой логики]
-            C <--> |move / jumpTo / State| UC[useCarousel Hook]
+            C <--> |move / jumpTo / State| UC[useCarousel]
         end
 
         subgraph Guards [Защитные механизмы]
@@ -249,7 +249,7 @@ npm install --legacy-peer-deps
             UC -.-> |Предохранитель таймаута| ST[safetyTimerRef / setTimeout]
         end
 
-        style Ref fill:#fff,stroke:#1e293b,stroke-width:4px,color:#1e293b
+        style Ref fill:#1f2020,stroke:#ccc,stroke-width:1px,color:#fff
         
         style CI fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
         style NT fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
@@ -301,45 +301,51 @@ npm install --legacy-peer-deps
 #### Схема
 
 ```mermaid
-    graph TD
-        subgraph Wrapper_Layer [Полиморфные обертки]
-            DG[DropdownGuests]
-            DA[DropdownAmenities]
-        end
+graph TD
+    Ref[Parent Ref / Императивный API] <--> |focusApi| D
 
-        DG --> |hasControls: true + getDisplayedValue| D
-        DA --> |hasControls: false + getDisplayedValue| D
+    subgraph Wrapper_Layer [Полиморфные обертки]
+        DG[DropdownGuests]
+        DA[DropdownAmenities]
+    end
 
-        subgraph UI_Layer [Интерфейс и Доступность]
-            D[Dropdown / Root Component] --> |role: dialog/region| DB[Dropdown__bar Container]
-            DB --> |role: group| DOR[DropdownOptionRow]
-            DB --> |onApply / onClear| DC[DropdownControls]
-        end
+    DG --> |hasControls: true| D[Dropdown / Root Component]
+    DA --> |hasControls: false| D
 
-        subgraph Logic_Layer [Управление Стейтом и Фокусом]
-            D <--> |useExpandable| EX[Состояние раскрытия и ID]
-            D <--> |isProgrammaticFocus| PF[Программный фокус триггера]
-            DB <--> |FocusScope contain autoFocus| FS[react-aria/focus]
-            DOR <--> |focusNext| FM[useFocusManager]
-        end
+    subgraph UI_Layer [Интерфейс и Доступность]
+        D --> |Рендер при isExpanded| DB[Dropdown__bar Container]
+        DB --> |role: dialog/region| DOR[DropdownOptionRow]
+        DB --> |onApply / onClear| DC[DropdownControls]
+    end
 
-        subgraph External_Layer [Внешнее состояние]
-            D <--> |useController / field.onChange| RHF[React Hook Form]
-        end
-
-        style DG fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style DA fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style DB fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style DOR fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style DC fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+    subgraph Logic_Layer [Управление Стейтом и Доступностью]
+        D <--> |useExpandable| EX[Состояние раскрытия]
+        D --> |draftState / Транзакционный стейт| DOR
         
-        style D fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        style EX fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        style PF fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        style FS fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        style FM fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+        DB <--> |Изолирует фокус в FocusScope| RA[react-aria]
+        
+        DOR <--> |onKeyDown / Перехват клавиш| UKN[useKeyboardNavigation]
+        UKN --> |Управляет фокусом через useFocusManager| RA
+    end
 
-        style RHF fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+    subgraph External_Layer [Внешнее состояние]
+        D <--> |useController / field.onChange| RHF[React Hook Form]
+    end
+
+    style Ref fill:#1f2020,stroke:#ccc,stroke-width:1px,color:#fff
+
+    style DG fill:#fff,stroke:mediumblue,stroke-width:2px,color:#1e293b
+    style DA fill:#fff,stroke:mediumblue,stroke-width:2px,color:#1e293b
+    style DB fill:#fff,stroke:mediumblue,stroke-width:2px,color:#1e293b
+    style DOR fill:#fff,stroke:mediumblue,stroke-width:2px,color:#1e293b
+    style DC fill:#fff,stroke:mediumblue,stroke-width:2px,color:#1e293b
+    
+    style D fill:#fff,stroke:orange,stroke-width:2px,color:#1e293b
+    style EX fill:#fff,stroke:orange,stroke-width:2px,color:#1e293b
+    style RA fill:#fff,stroke:orange,stroke-width:2px,color:#1e293b
+    style UKN fill:#fff,stroke:orange,stroke-width:2px,color:#1e293b
+
+    style RHF fill:#fff,stroke:pink,stroke-width:3px,stroke-dasharray:5 5,color:#1e293b
 ```
 
 #### Пропсы
@@ -375,47 +381,54 @@ npm install --legacy-peer-deps
 #### Схема
 
 ```mermaid
-    graph TD
-        subgraph UI_Layer [Слой отображения]
-            C[Calendar / Root Component] --> |Разметка вывода: range / separate| CO[CalendarOutput]
-            C --> |Модальный контейнер| CB[calendar__body]
-            CB --> |Карусель| CS[CalendarSheet]
-            CS --> |Полиморфная таблица| ST[SheetTable]
-            ST --> |Сетки: 7x6 / 4x5| T[MonthTable / YearTable]
-        end
+graph TD
+    Ref[Parent Ref / Императивный API] <--> |focusApi| C
+    EX[Состояние раскрытия] <--> |useExpandable| C
+    RHF[React Hook Form] <--> |field.onChange| C
 
-        subgraph Logic_Layer [Презентер и Навигация]
-            C <--> |Состояние, сдвиги и транзакции| UC[useCalendar Hook]
-            UC <--> |Расчет шагов стрелок и Focus Trap| UKN[useKeyboardNavigation Hook]
-        end
+    C[Calendar / Корень]
 
-        subgraph External_State [Внешнее состояние]
-            UC <--> |field.onChange| RHF[React Hook Form / useController]
-        end
+    C --> CO[CalendarOutput / Триггер]
+    C --> |раскрывается| CB[calendar__body Container]
+    CB --> CS[CalendarSheet / Анимации]
+    CS --> ST[SheetTable / Полиморфный селектор]
+    ST --> T1[MonthTable / Сетка месяца]
+    ST --> T2[YearTable / Сетка года]
 
-        subgraph Focus_Machine [Конечный автомат фокуса]
-            UC <--> |Реф-мост: statusRef| UFM[useFocusManager Hook]
-            UFM <--> |Диспетчеризация событий| FC[FocusController Class]
-            FC -.-> |Очередь отложенного фокуса| PD[pendingDate]
-            FC -.-> |Ленивый сброс обводки| AC[attachCleanup / AbortController]
-        end
+    C <--> UC[useCalendar / Главный стейт]
+    CB -.-> |onKeyDown| UKN[useKeyboardNavigation Hook]
+    T1 -.-> |handleGridKeyDown / Hover| UKN
+    T2 -.-> |handleGridKeyDown| UKN
 
-        style CO fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style CB fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style CS fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style ST fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        style T fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
-        
-        style C fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        style UC fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        style UKN fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        style UFM fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
-        
-        style FC fill:#fff,stroke:forestgreen,stroke-width:4px,color:#1e293b
-        style PD fill:#fff,stroke:forestgreen,stroke-width:4px,color:#1e293b
-        style AC fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+    UC --> |Синхронизация пропсов| SR[statusRef.current / Стейт-мост]
+    UC <--> |Поставка инстанса| FC[FocusController Class]
+    FC --> |Чтение стейта без ререндеров| SR
+    
+    UKN --> |Сигналы .send| FC
 
-        style RHF fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
+    CO <--> |Регистрация и Фокус| FC
+    CB <--> |Регистрация и Фокус| FC
+    T1 <--> |Регистрация и Фокус| FC
+    T2 <--> |Регистрация и Фокус| FC
+
+    style Ref fill:#1f2020,stroke:#ccc,stroke-width:1px,color:#fff
+
+    style CO fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+    style CB fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+    style CS fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+    style ST fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+    style T1 fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+    style T2 fill:#fff,stroke:mediumblue,stroke-width:4px,color:#1e293b
+    
+    style EX fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+    style C fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+    style UC fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+    style UKN fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+    style SR fill:#fff,stroke:orange,stroke-width:4px,color:#1e293b
+    
+    style FC fill:#fff,stroke:forestgreen,stroke-width:4px,color:#1e293b
+
+    style RHF fill:#fff,stroke:pink,stroke-width:5px,stroke-dasharray:5 5,color:#1e293b
 ```
 
 #### Пропсы
